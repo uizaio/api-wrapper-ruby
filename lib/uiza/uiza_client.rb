@@ -1,6 +1,6 @@
 module Uiza
   class UizaClient
-    def initialize(url, method, headers, params)
+    def initialize url, method, headers, params
       @uri = URI url
 
       case method
