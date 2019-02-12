@@ -100,7 +100,7 @@ response["data"].first["id"]
 ```
 
 ## Update entity
-Update entity's information..
+Update entity's information.
 See details [here](https://docs.uiza.io/#update-an-entity).
 
 ```ruby
@@ -115,6 +115,22 @@ params = {
   name: "Name edited",
   description: "Description edited"
 }
+response = Uiza::Entity.update params
+response = JSON.parse response
+response["data"]["id"]
+```
+
+## Delete entity
+Delete entity.
+See details [here](https://docs.uiza.io/#delete-an-entity).
+
+```ruby
+require "uiza"
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
 response = Uiza::Entity.update params
 response = JSON.parse response
 response["data"]["id"]
