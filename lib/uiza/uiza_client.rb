@@ -10,6 +10,9 @@ module Uiza
       when :post
         @request = Net::HTTP::Post.new @uri
         @request.set_form_data params
+      when :put
+        @request = Net::HTTP::Put.new @uri
+        @request.set_form_data params
       end
 
       headers.each do |key, value|
