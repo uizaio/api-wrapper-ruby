@@ -1,10 +1,10 @@
 module Uiza
   module APIOperations
     module Create
-      def create(params)
+      def create params
         url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{self::OBJECT_API_PATH}"
         method = :post
-        headers = { "Authorization" => Uiza.authorization }
+        headers = {"Authorization" => Uiza.authorization}
 
         uiza_client = UizaClient.new url, method, headers, params
         uiza_client.execute_request
