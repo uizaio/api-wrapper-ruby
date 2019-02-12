@@ -1,7 +1,9 @@
 ## Related Tickets
+
 - [#TicketID](https://dev.framgia.com/issues/xxx)
 
 ## What's this PR do ?
+
 - [x] Implement function A
 - [x] Fix bugs on function B
 
@@ -18,15 +20,17 @@
 - bar/baz
 
 ## Performance
-- [x] Resolved n + 1 query
-- [x] Run explain query already
-- [x] Time run rake task : 1000 ms
+
+- [ ] Resolved n + 1 query
+- [ ] Run explain query already
+- [ ] Time run rake task : 1000 ms
 
 ## Checklist
-- [x] It was tested in local success?
-- [x] Fill link PR into ticket and the opposite
-- [x] Note reason, scope of influence, solution into ticket
-- [x] Validate UI/Model/API
+
+- [ ] It was tested in local success?
+- [ ] Fill link PR into ticket and the opposite
+- [ ] Note reason, scope of influence, solution into ticket
+- [ ] Validate UI/Model/API
 
 ## Deploy Notes
 *(List rake task command, environment variable need config after deploy)*
