@@ -1,1 +1,44 @@
 inherit_from: .rubocop_todo.yml
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+
+Style/StringLiterals:
+  Description: 'Checks if uses of quotes match the configured preference.'
+  StyleGuide: '#consistent-string-literals'
+  Enabled: true
+  VersionAdded: '0.9'
+  VersionChanged: '0.36'
+  EnforcedStyle: double_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+  # If `true`, strings which span multiple lines using `\` for continuation must
+  # use the same type of quotes on each line.
+  ConsistentQuotesInMultiline: false
+
+Style/HashSyntax:
+  Description: >-
+                 Prefer Ruby 1.9 hash syntax { a: 1, b: 2 } over 1.8 syntax
+                 { :a => 1, :b => 2 }.
+  Enabled: true
+  EnforcedStyle: no_mixed_keys
+  SupportedStyles:
+    # checks for 1.9 syntax (e.g. {a: 1}) for all symbol keys
+    - ruby19
+    # checks for hash rocket syntax for all hashes
+    - hash_rockets
+    # forbids mixed key syntaxes (e.g. {a: 1, :b => 2})
+    - no_mixed_keys
+    # enforces both ruby19 and no_mixed_keys styles
+    - ruby19_no_mixed_keys
+  # Force hashes that have a symbol value to use hash rockets
+  UseHashRocketsWithSymbolValues: false
+  # Do not suggest { a?: 1 } over { :a? => 1 } in ruby19 style
+  PreferHashRocketsForNonAlnumEndingSymbols: false
+
+Metrics/LineLength:
+  Description: 'Limit lines to 100 characters.'
+  Enabled: true
+  Max: 100
