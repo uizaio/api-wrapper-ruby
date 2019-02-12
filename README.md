@@ -32,10 +32,18 @@ The library needs to be configured with your account's `workspace_api_domain` an
 See details [here](https://docs.uiza.io/#authentication).
 Set `Uiza.workspace_api_domain` and `Uiza.authorization` with your values:
 
+## Ruby
 ```ruby
 require "uiza"
 Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
+```
+
+## ROR
+Create file `your-app/config/initializers/uiza.rb`
+```ruby
+Uiza.workspace_api_domain = ENV["WORKSPACE_API_DOMAIN"]
+Uiza.authorization = ENV["AUTHORIZATION"]
 ```
 
 ## Entity
