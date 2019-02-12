@@ -79,6 +79,25 @@ response = Uiza::Entity.retrieve "your-entity-id"
 response = JSON.parse response
 response["data"]["id"]
 ```
+## List entity
+List entity
+See details [here](https://docs.uiza.io/#list-all-entities).
+
+```ruby
+require "uiza"
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+params = {
+  publishToCdn: "not-ready",
+  metadataId: "095778fa-7e42-45cc-8a0e-6118e540b61d"
+}
+response = Uiza::Entity.list params
+response = JSON.parse response
+response["data"].first["id"]
+```
 
 ## Update entity
 Update entity's information..
