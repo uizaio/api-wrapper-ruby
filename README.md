@@ -22,7 +22,47 @@ Or install it yourself as:
 $ gem install uiza
 ```
 
+### Requirements
+
+* Ruby 2.0+.
+
 ## Usage
+
+The library needs to be configured with your account's `workspace_api_domain` and `authorization` (API key).
+See details [here](https://docs.uiza.io/#authentication).
+Set `Uiza.workspace_api_domain` and `Uiza.authorization` with your values:
+
+```ruby
+require "uiza"
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+```
+
+## Entity
+These below APIs used to take action with your media files (we called Entity)
+See details [here](https://docs.uiza.io/#video).
+
+## Create entity
+Create entity using full URL. Direct HTTP, FTP or AWS S3 link are acceptable.
+See details [here](https://docs.uiza.io/#create-entity).
+
+```ruby
+require "uiza"
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+params = {
+  name: "Sample Video",
+  url: "https://example.com/video.mp4",
+  inputType: "http",
+  description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+}
+response = Uiza::Entity.create params
+response = JSON.parse response
+response["data"]["id"]
+```
 
 ## Development
 
