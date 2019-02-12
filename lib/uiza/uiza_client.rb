@@ -13,6 +13,9 @@ module Uiza
       when :put
         @request = Net::HTTP::Put.new @uri
         @request.set_form_data params
+      when :delete
+        @request = Net::HTTP::Delete.new @uri
+        @request.set_form_data params
       end
 
       headers.each do |key, value|
