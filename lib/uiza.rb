@@ -6,6 +6,7 @@ require "uiza/uiza_client"
 
 require "uiza/api_operations/create"
 require "uiza/api_operations/retrieve"
+require "uiza/api_operations/update"
 
 require "uiza/entity"
 
