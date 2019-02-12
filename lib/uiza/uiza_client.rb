@@ -4,6 +4,9 @@ module Uiza
       @uri = URI url
 
       case method
+      when :get
+        @uri.query = URI.encode_www_form params
+        @request = Net::HTTP::Get.new @uri
       when :post
         @request = Net::HTTP::Post.new @uri
         @request.set_form_data params
