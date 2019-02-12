@@ -64,6 +64,22 @@ response = JSON.parse response
 response["data"]["id"]
 ```
 
+## Retrieve entity
+Get detail of entity including all information of entity.
+See details [here](https://docs.uiza.io/#retrieve-an-entity).
+
+```ruby
+require "uiza"
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+response = Uiza::Entity.retrieve "your-entity-id"
+response = JSON.parse response
+response["data"]["id"]
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
