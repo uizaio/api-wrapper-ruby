@@ -73,9 +73,3 @@ Style/StringLiterals:
     - 'spec/spec_helper.rb'
     - 'spec/uiza_spec.rb'
     - 'uiza.gemspec'
-
-# Offense count: 1
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Metrics/LineLength:
-  Max: 85
