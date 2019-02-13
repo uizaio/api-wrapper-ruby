@@ -100,7 +100,7 @@ Uiza.authorization = "your-authorization"
 
 params = {
   publishToCdn: "not-ready",
-  metadataId: "095778fa-7e42-45cc-8a0e-6118e540b61d"
+  metadataId: "your-folder/playlist-id"
 }
 response = Uiza::Entity.list params
 response = JSON.parse response
@@ -197,7 +197,6 @@ response["data"].["status"]
 This API will be return the bucket temporary upload storage & key for upload, so that you can push your file to Uiza’s storage and get the link for URL upload & create entity
 See details [here](https://docs.uiza.io/#get-aws-upload-key).
 
-
 ```ruby
 require "uiza"
 require "json"
@@ -209,6 +208,7 @@ response = Uiza::Entity.get_aws_upload_key
 response = JSON.parse response
 response["data"].["temp_access_secret"]
 ```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
