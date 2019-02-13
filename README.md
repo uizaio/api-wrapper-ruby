@@ -192,6 +192,23 @@ response = Uiza::Entity.get_status_publish "your-entity-id"
 response = JSON.parse response
 response["data"].["status"]
 ```
+
+## Get AWS upload key
+This API will be return the bucket temporary upload storage & key for upload, so that you can push your file to Uiza’s storage and get the link for URL upload & create entity
+See details [here](https://docs.uiza.io/#get-aws-upload-key).
+
+
+```ruby
+require "uiza"
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+response = Uiza::Entity.get_aws_upload_key
+response = JSON.parse response
+response["data"].["temp_access_secret"]
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
