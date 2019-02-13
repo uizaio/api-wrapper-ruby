@@ -7,5 +7,17 @@ module Uiza
     extend Uiza::APIOperations::Delete
 
     OBJECT_API_PATH = "media/entity".freeze
+
+    class << self
+      def search keyword
+        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/search"
+        method = :get
+        headers = {"Authorization" => Uiza.authorization}
+        params = {keyword: keyword}
+
+        uiza_client = UizaClient.new url, method, headers, params
+        uiza_client.execute_request
+      end
+    end
   end
 end
