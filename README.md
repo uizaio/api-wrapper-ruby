@@ -143,7 +143,22 @@ response = Uiza::Entity.update params
 response = JSON.parse response
 response["data"]["id"]
 ```
+## Search entities
+Search entities.
+See details [here](https://docs.uiza.io/#search-entity).
 
+```ruby
+require "uiza"
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+params = {keyword: "sample"}
+response = Uiza::Entity.search params
+response = JSON.parse response
+response["data"].first["id"]
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
