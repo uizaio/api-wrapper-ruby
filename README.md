@@ -143,6 +143,7 @@ response = Uiza::Entity.update params
 response = JSON.parse response
 response["data"]["id"]
 ```
+
 ## Search entity
 Search entity base on keyword entered
 See details [here](https://docs.uiza.io/#search-entity).
@@ -159,6 +160,7 @@ response = Uiza::Entity.search params
 response = JSON.parse response
 response["data"].first["id"]
 ```
+
 ## Publish entity to CDN
 Publish entity to CDN, use for streaming
 See details [here](https://docs.uiza.io/#publish-entity-to-cdn).
@@ -170,9 +172,26 @@ require "json"
 Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
-response = Uiza::Entity.publish id
+response = Uiza::Entity.publish "your-entity-id"
 response = JSON.parse response
 response["data"].["message"]
+```
+
+## Get status publish
+Publish entity to CDN, use for streaming
+See details [here](https://docs.uiza.io/#get-status-publish).
+
+```ruby
+require "uiza"
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+response = Uiza::Entity.get_status_publish "your-entity-id"
+response = JSON.parse response
+response["data"].["status"]
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
