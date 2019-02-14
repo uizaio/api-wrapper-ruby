@@ -213,6 +213,29 @@ response["data"].["temp_access_secret"]
 You can add your storage (FTP, AWS S3) with UIZA. After synced, you can select your content easier from your storage to create entity.
 See details [here](https://docs.uiza.io/#storage).
 
+## Add a storage
+You can sync your storage (FTP, AWS S3) with UIZA. After synced, you can select your content easier from your storage to create entity.
+See details [here](https://docs.uiza.io/#add-a-storage).
+
+```ruby
+require "uiza"
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+params = {
+  name: "FTP Uiza edited",
+  description: "FTP of Uiza, use for transcode",
+  storageType: "ftp",
+  host: "your-host"
+}
+
+response = Uiza::Entity.add params
+response = JSON.parse response
+response["data"]["id"]
+```
+
 ## Retrieve a storage
 Get information of your added storage (FTP or AWS S3).
 See details [here](https://docs.uiza.io/#retrieve-a-storage).

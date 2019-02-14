@@ -1,5 +1,6 @@
 module Uiza
   class Storage
+    extend Uiza::APIOperations::Add
     extend Uiza::APIOperations::Retrieve
     extend Uiza::APIOperations::Remove
 
