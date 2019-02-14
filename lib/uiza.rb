@@ -9,6 +9,7 @@ require "uiza/api_operations/retrieve"
 require "uiza/api_operations/list"
 require "uiza/api_operations/update"
 require "uiza/api_operations/delete"
+require "uiza/api_operations/remove"
 
 require "uiza/entity"
 require "uiza/storage"
