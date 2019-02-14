@@ -209,6 +209,26 @@ response = JSON.parse response
 response["data"].["temp_access_secret"]
 ```
 
+## Storage
+You can add your storage (FTP, AWS S3) with UIZA. After synced, you can select your content easier from your storage to create entity.
+See details [here](https://docs.uiza.io/#storage).
+
+## Retrieve a storage
+Get information of your added storage (FTP or AWS S3).
+See details [here](https://docs.uiza.io/#retrieve-a-storage).
+
+```ruby
+require "uiza"
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+response = Uiza::Entity.retrieve "your-storage-id"
+response = JSON.parse response
+response["data"]["id"]
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
