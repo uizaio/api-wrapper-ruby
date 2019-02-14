@@ -229,6 +229,20 @@ response = JSON.parse response
 response["data"]["id"]
 ```
 
+## Remove storage
+Remove storage that added to Uiza.
+See details [here](https://docs.uiza.io/#remove-storage).
+
+```ruby
+require "uiza"
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+response = Uiza::Entity.remove "your-storage-id"
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
