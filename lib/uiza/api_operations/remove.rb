@@ -7,7 +7,7 @@ module Uiza
         headers = {"Authorization" => Uiza.authorization}
         params = {id: id}
 
-        uiza_client = UizaClient.new url, method, headers, params
+        uiza_client = UizaClient.new url, method, headers, params, self::OBJECT_API_DESCRIPTION_LINK[:remove]
         uiza_client.execute_request
       end
     end
