@@ -23,11 +23,15 @@ require "uiza/api_operations/update"
 require "uiza/api_operations/delete"
 require "uiza/api_operations/remove"
 
+require "uiza/api_resource/entity_resource"
+
 require "uiza/entity"
 require "uiza/storage"
 require "uiza/category"
 
 module Uiza
+  extend Uiza::APIResource::EntityResource
+
   class << self
     attr_accessor :workspace_api_domain, :authorization
   end
