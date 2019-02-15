@@ -6,8 +6,10 @@ module Uiza
         method = :put
         headers = {"Authorization" => Uiza.authorization}
 
-        uiza_client = UizaClient.new url, method, headers, params
-        uiza_client.execute_request
+        uiza_client = UizaClient.new url, method, headers, params, self::OBJECT_API_DESCRIPTION_LINK[:update]
+        response = uiza_client.execute_request
+
+        self.retrieve response.id
       end
     end
   end
