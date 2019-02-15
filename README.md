@@ -1,5 +1,22 @@
 # Uiza
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/uiza`. To experiment with that code, run `bin/console` for an interactive prompt.
+
+## Introduction
+This is documents the public API for Uiza version 3.0.
+
+The Uiza API is organized around RESTful standard.
+Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors.
+JSON is returned by all API responses, including errors, although our API libraries convert responses to appropriate language-specific objects.
+
+All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.
+
+## Authentication
+In order, to use the Uiza, you should follow these steps:
+
+* **Step 1:** Having an active Uiza account. (If you don't have, please get [here](https://id.uiza.io/))
+* **Step 2:** Once you have an Uiza account, you can get a Token to call the APIs.
+
+This Token will have right & permission related with your account.
+
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -24,9 +41,10 @@ $ gem install uiza
 * Ruby 2.0+.
 
 ## Usage
-The library needs to be configured with your account's `workspace_api_domain` and `authorization` (API key).
-See details [here](https://docs.uiza.io/#authentication).
+The library needs to be configured with your account's `workspace_api_domain` and `authorization` (API key).\
 Set `Uiza.workspace_api_domain` and `Uiza.authorization` with your values:
+
+See details [here](https://docs.uiza.io/#authentication).
 
 ## Ruby
 ```ruby
@@ -45,6 +63,7 @@ Uiza.authorization = ENV["AUTHORIZATION"]
 
 ## Entity
 These below APIs used to take action with your media files (we called Entity).
+
 See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/ENTITY.md).
 
 ```ruby
@@ -61,127 +80,47 @@ rescue StandardError => e
 end
 ```
 
-## Storage
-You can add your storage (FTP, AWS S3) with UIZA. After synced, you can select your content easier from your storage to create entity.
-See details [here](https://docs.uiza.io/#storage).
-
-## Add a storage
-You can sync your storage (FTP, AWS S3) with UIZA. After synced, you can select your content easier from your storage to create entity.
-See details [here](https://docs.uiza.io/#add-a-storage).
-
-```ruby
-require "uiza"
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-params = {
-  name: "FTP Uiza edited",
-  description: "FTP of Uiza, use for transcode",
-  storageType: "ftp",
-  host: "your-host"
-}
-
-response = Uiza::Entity.add params
-response = JSON.parse response
-response["data"]["id"]
-```
-
-## Retrieve a storage
-Get information of your added storage (FTP or AWS S3).
-See details [here](https://docs.uiza.io/#retrieve-a-storage).
-
-```ruby
-require "uiza"
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-response = Uiza::Entity.retrieve "your-storage-id"
-response = JSON.parse response
-response["data"]["id"]
-```
-
-## Update storage
-Update storage's information
-See details [here](https://docs.uiza.io/#update-storage).
-
-```ruby
-require "uiza"
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-params = {
-  id: "your-storage-id",
-  name: "FTP Uiza edited",
-  description: "FTP of Uiza, use for transcode",
-  storageType: "ftp",
-  host: "your-host"
-}
-
-response = Uiza::Entity.update params
-```
-
-## Remove storage
-Remove storage that added to Uiza.
-See details [here](https://docs.uiza.io/#remove-storage).
-
-```ruby
-require "uiza"
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-response = Uiza::Entity.remove "your-storage-id"
-```
-
 ## Category
-Category has been splits into 3 types: folder, playlist and tag. These will make the management of entity more easier.
-See details [here](https://docs.uiza.io/#category).
+Category has been splits into 3 types: `folder`, `playlist` and `tag`. These will make the management of entity more easier.
 
-## Create category
-Create category for entity for easier management. Category use to group all the same entities into a group (like Folder/ playlist/or tag)
-See details [here](https://docs.uiza.io/#create-category).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/CATEGORY.md).
 
-```ruby
-require "uiza"
-require "json"
+## Storage
+You can add your storage (`FTP`, `AWS S3`) with UIZA.
+After synced, you can select your content easier from your storage to [create entity](https://docs.uiza.io/#create-entity).
 
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/STORAGE.md).
 
-params = {
-  name: "Folder sample",
-  type: "folder",
-  description: "Folder description",
-  icon: "https://example.com/icon.png"
-}
-response = Uiza::Category.create params
-response = JSON.parse response
-response["data"]["id"]
-```
+## Live Streaming
+These APIs used to create and manage live streaming event.
+* When a Live is not start : it's named as `Event`.
+* When have an `Event` , you can start it : it's named as `Feed`.
 
-## Retrieve category
-Get detail of category
-See details [here](https://docs.uiza.io/?shell#retrieve-category).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/LIVE_STREAMING.md).
 
-```ruby
-require "uiza"
-require "json"
+## Callback
+Callback used to retrieve an information for Uiza to your server, so you can have a trigger notice about an entity is upload completed and .
 
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/CALLBACK.md).
 
-response = Uiza::Category.retrieve "your-category-id"
-response = JSON.parse response
-response["data"]["id"]
-response["data"]["name"]
-```
+## Analytic
+Monitor the four key dimensions of video QoS: playback failures, startup time, rebuffering, and video quality.
+These 15 metrics help you track playback performance, so your team can know exactly what’s going on.
+
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/ANALYTIC.md).
+
+## Embed Metadata
+Embed metadata is information that can be embed into video/audio file. You can embed into file by adding a json compose these tag.
+
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/EMBED_METADATA.md).
+
+## Errors Code
+Uiza uses conventional HTTP response codes to indicate the success or failure of an API request.
+In general: Codes in the `2xx` range indicate success.
+Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a charge failed, etc.).
+Codes in the `5xx` range indicate an error with Uiza's servers.
+
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/ERRORS_CODE.md).
 
 ## Development
 
