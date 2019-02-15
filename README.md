@@ -1,9 +1,7 @@
 # Uiza
-
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/uiza`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 ## Installation
-
 Add this line to your application's Gemfile:
 
 ```ruby
@@ -23,11 +21,9 @@ $ gem install uiza
 ```
 
 ### Requirements
-
 * Ruby 2.0+.
 
 ## Usage
-
 The library needs to be configured with your account's `workspace_api_domain` and `authorization` (API key).
 See details [here](https://docs.uiza.io/#authentication).
 Set `Uiza.workspace_api_domain` and `Uiza.authorization` with your values:
@@ -41,172 +37,28 @@ Uiza.authorization = "your-authorization"
 
 ## ROR
 Create file `your-app/config/initializers/uiza.rb`
+
 ```ruby
 Uiza.workspace_api_domain = ENV["WORKSPACE_API_DOMAIN"]
 Uiza.authorization = ENV["AUTHORIZATION"]
 ```
 
 ## Entity
-These below APIs used to take action with your media files (we called Entity)
-See details [here](https://docs.uiza.io/#video).
-
-## Create entity
-Create entity using full URL. Direct HTTP, FTP or AWS S3 link are acceptable.
-See details [here](https://docs.uiza.io/#create-entity).
+These below APIs used to take action with your media files (we called Entity).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/ENTITY.md).
 
 ```ruby
-require "uiza"
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-params = {
-  name: "Sample Video",
-  url: "https://example.com/video.mp4",
-  inputType: "http",
-  description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
-}
-response = Uiza::Entity.create params
-response = JSON.parse response
-response["data"]["id"]
-```
-
-## Retrieve entity
-Get detail of entity including all information of entity.
-See details [here](https://docs.uiza.io/#retrieve-an-entity).
-
-```ruby
-require "uiza"
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-response = Uiza::Entity.retrieve "your-entity-id"
-response = JSON.parse response
-response["data"]["id"]
-```
-## List all entities
-Get list of entities including all detail.
-See details [here](https://docs.uiza.io/#list-all-entities).
-
-```ruby
-require "uiza"
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-params = {
-  publishToCdn: "not-ready",
-  metadataId: "your-folder/playlist-id"
-}
-response = Uiza::Entity.list params
-response = JSON.parse response
-response["data"].first["id"]
-```
-
-## Update entity
-Update entity's information.
-See details [here](https://docs.uiza.io/#update-an-entity).
-
-```ruby
-require "uiza"
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-params = {
-  id: "Id edited",
-  name: "Name edited",
-  description: "Description edited"
-}
-response = Uiza::Entity.update params
-response = JSON.parse response
-response["data"]["id"]
-```
-
-## Delete entity
-Delete entity.
-See details [here](https://docs.uiza.io/#delete-an-entity).
-
-```ruby
-require "uiza"
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-response = Uiza::Entity.update params
-response = JSON.parse response
-response["data"]["id"]
-```
-
-## Search entity
-Search entity base on keyword entered
-See details [here](https://docs.uiza.io/#search-entity).
-
-```ruby
-require "uiza"
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-params = {keyword: "sample"}
-response = Uiza::Entity.search params
-response = JSON.parse response
-response["data"].first["id"]
-```
-
-## Publish entity to CDN
-Publish entity to CDN, use for streaming
-See details [here](https://docs.uiza.io/#publish-entity-to-cdn).
-
-```ruby
-require "uiza"
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-response = Uiza::Entity.publish "your-entity-id"
-response = JSON.parse response
-response["data"].["message"]
-```
-
-## Get status publish
-Publish entity to CDN, use for streaming
-See details [here](https://docs.uiza.io/#get-status-publish).
-
-```ruby
-require "uiza"
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-response = Uiza::Entity.get_status_publish "your-entity-id"
-response = JSON.parse response
-response["data"].["status"]
-```
-
-## Get AWS upload key
-This API will be return the bucket temporary upload storage & key for upload, so that you can push your file to Uiza’s storage and get the link for URL upload & create entity
-See details [here](https://docs.uiza.io/#get-aws-upload-key).
-
-```ruby
-require "uiza"
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-response = Uiza::Entity.get_aws_upload_key
-response = JSON.parse response
-response["data"].["temp_access_secret"]
+begin
+  entity = Uiza.retrieve_entity "your-entity-id"
+  puts entity.id
+  puts entity.name
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
 ```
 
 ## Storage

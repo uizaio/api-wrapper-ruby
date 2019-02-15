@@ -4,17 +4,17 @@ module Uiza
       @uri = URI url
       @description_link = description_link
 
-      case method
-      when :get
+      case method.to_s.downcase
+      when "get"
         @uri.query = URI.encode_www_form params
         @request = Net::HTTP::Get.new @uri
-      when :post
+      when "post"
         @request = Net::HTTP::Post.new @uri
         @request.set_form_data params
-      when :put
+      when "put"
         @request = Net::HTTP::Put.new @uri
         @request.set_form_data params
-      when :delete
+      when "delete"
         @request = Net::HTTP::Delete.new @uri
         @request.set_form_data params
       end

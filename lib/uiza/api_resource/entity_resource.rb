@@ -33,7 +33,7 @@ module Uiza
         Uiza::Entity.get_status_publish id
       end
 
-      def get_aws_upload_key
+      def get_aws_upload_key_entity
         Uiza::Entity.get_aws_upload_key
       end
     end
