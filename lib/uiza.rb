@@ -14,6 +14,7 @@ require "uiza/api_operations/remove"
 
 require "uiza/entity"
 require "uiza/storage"
+require "uiza/category"
 
 module Uiza
   class << self
