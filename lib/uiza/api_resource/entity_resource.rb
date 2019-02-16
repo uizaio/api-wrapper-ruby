@@ -9,7 +9,7 @@ module Uiza
         Uiza::Entity.retrieve id
       end
 
-      def list_entity params={}
+      def list_entity params = {}
         Uiza::Entity.list params
       end
 

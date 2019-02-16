@@ -10,8 +10,8 @@ module Uiza
 
       def initialize description_link, code = nil, message = nil
         @description_link = description_link
-        @code = code || self::class::DEFAULT_CODE
-        @message = message || self::class::DEFAULT_MESSAGE
+        @code = code || self.class::DEFAULT_CODE
+        @message = message || self.class::DEFAULT_MESSAGE
       end
     end
   end
