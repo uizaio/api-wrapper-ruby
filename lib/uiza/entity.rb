@@ -1,10 +1,10 @@
 module Uiza
   class Entity
-    extend Uiza::APIOperations::Create
-    extend Uiza::APIOperations::Retrieve
-    extend Uiza::APIOperations::List
-    extend Uiza::APIOperations::Update
-    extend Uiza::APIOperations::Delete
+    extend Uiza::APIOperation::Create
+    extend Uiza::APIOperation::Retrieve
+    extend Uiza::APIOperation::List
+    extend Uiza::APIOperation::Update
+    extend Uiza::APIOperation::Delete
 
     OBJECT_API_PATH = "media/entity".freeze
     OBJECT_API_DESCRIPTION_LINK = {
