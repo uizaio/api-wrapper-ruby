@@ -1,12 +1,12 @@
 module Uiza
-  module APIOperations
-    module List
-      def list params = {}
+  module APIOperation
+    module Add
+      def add params
         url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{self::OBJECT_API_PATH}"
-        method = :get
+        method = :post
         headers = {"Authorization" => Uiza.authorization}
 
-        uiza_client = UizaClient.new url, method, headers, params, self::OBJECT_API_DESCRIPTION_LINK[:list]
+        uiza_client = UizaClient.new url, method, headers, params, self::OBJECT_API_DESCRIPTION_LINK[:add]
         uiza_client.execute_request
       end
     end
