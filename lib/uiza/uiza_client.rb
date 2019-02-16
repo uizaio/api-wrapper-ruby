@@ -1,7 +1,7 @@
 module Uiza
   class UizaClient
     def initialize url, method, headers, params, description_link
-      @uri = URI url
+      @uri = URI.parse url
       @description_link = description_link
 
       case method.to_s.downcase
@@ -10,15 +10,16 @@ module Uiza
         @request = Net::HTTP::Get.new @uri
       when "post"
         @request = Net::HTTP::Post.new @uri
-        @request.set_form_data params
+        @request.body = JSON.dump params
       when "put"
         @request = Net::HTTP::Put.new @uri
-        @request.set_form_data params
+        @request.body = JSON.dump params
       when "delete"
         @request = Net::HTTP::Delete.new @uri
-        @request.set_form_data params
+        @request.body = JSON.dump params
       end
 
+      @request.content_type = "application/json"
       headers.each do |key, value|
         @request[key] = value
       end
