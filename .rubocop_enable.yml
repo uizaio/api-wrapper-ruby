@@ -573,6 +573,7 @@ Metrics/LineLength:
                  Favor modifier while/until usage when you have a
                  single-line body.
   Enabled: true
+
 Metrics/BlockLength:
   Enabled: true
   Exclude:
@@ -580,6 +581,22 @@ Metrics/BlockLength:
     - app/models/concerns/swagger/*
     - app/models/logics/*/*
     - lib/tasks/seed_data_v2.rake
+    - 'spec/**/*'
+
+Metrics/AbcSize:
+  Description: >-
+                 A calculated magnitude based on number of assignments,
+                 branches, and conditions.
+  Reference: 'http://c2.com/cgi/wiki?AbcMetric'
+  Enabled: true
+  Exclude:
+    - app/controllers/concerns/swagger/*
+    - app/models/concerns/swagger/*
+    - app/models/logics/*/*
+    - lib/tasks/seed_data_v2.rake
+    - 'spec/**/*'
+    - 'lib/uiza/uiza_client.rb'
+  Max: 15
 
 Style/WordArray:
   Description: "Use %w or %W for arrays of words."
