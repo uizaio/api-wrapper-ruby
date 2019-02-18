@@ -91,6 +91,26 @@ After synced, you can select your content easier from your storage to [create en
 
 See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/STORAGE.md).
 
+```ruby
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  storage = Uiza.retrieve_storage "your-storage-id"
+  # or storage = Uiza::Storage.retrieve "your-storage-id"
+  puts storage.id
+  puts storage.name
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
 ## Live Streaming
 These APIs used to create and manage live streaming event.
 * When a Live is not start : it's named as `Event`.
