@@ -25,6 +25,7 @@ require "uiza/api_operation/remove"
 
 require "uiza/api_resource/entity_resource"
 require "uiza/api_resource/storage_resource"
+require "uiza/api_resource/category_resource"
 
 require "uiza/entity"
 require "uiza/storage"
@@ -33,6 +34,7 @@ require "uiza/category"
 module Uiza
   extend Uiza::APIResource::EntityResource
   extend Uiza::APIResource::StorageResource
+  extend Uiza::APIResource::CategoryResource
 
   class << self
     attr_accessor :workspace_api_domain, :authorization
