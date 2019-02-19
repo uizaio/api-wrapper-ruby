@@ -20,6 +20,10 @@ module Uiza
       def delete_category id
         Uiza::Category.delete id
       end
+
+      def create_relation_category params
+        Uiza::Category.create_relation params
+      end
     end
   end
 end
