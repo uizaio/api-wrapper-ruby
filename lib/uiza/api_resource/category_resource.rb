@@ -12,6 +12,10 @@ module Uiza
       def update_category params
         Uiza::Category.update params
       end
+
+      def delete_category id
+        Uiza::Category.delete id
+      end
     end
   end
 end
