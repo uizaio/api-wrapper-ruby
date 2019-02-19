@@ -9,6 +9,10 @@ module Uiza
         Uiza::Category.retrieve id
       end
 
+      def list_category params = {}
+        Uiza::Category.list params
+      end
+
       def update_category params
         Uiza::Category.update params
       end
