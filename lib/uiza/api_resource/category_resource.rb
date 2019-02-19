@@ -24,6 +24,10 @@ module Uiza
       def create_relation_category params
         Uiza::Category.create_relation params
       end
+
+      def delete_relation_category params
+        Uiza::Category.delete_relation params
+      end
     end
   end
 end
