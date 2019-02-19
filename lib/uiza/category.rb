@@ -18,22 +18,20 @@ module Uiza
     }.freeze
 
     class << self
-      def create_relation entity_id, metadata_ids
+      def create_relation params
         url = "https://#{Uiza.workspace_api_domain}/api/public/v3/media/entity/related/metadata"
         method = :post
         headers = {"Authorization" => Uiza.authorization}
-        params = {entityId: entity_id, metadataIds: metadata_ids}
         description_link = OBJECT_API_DESCRIPTION_LINK[:create_relation]
 
         uiza_client = UizaClient.new url, method, headers, params, description_link
         uiza_client.execute_request
       end
 
-      def delete_relation entity_id, metadata_ids
+      def delete_relation params
         url = "https://#{Uiza.workspace_api_domain}/api/public/v3/media/entity/related/metadata"
         method = :post
         headers = {"Authorization" => Uiza.authorization}
-        params = {entityId: entity_id, metadataIds: metadata_ids}
         description_link = OBJECT_API_DESCRIPTION_LINK[:delete_relation]
 
         uiza_client = UizaClient.new url, method, headers, params, description_link

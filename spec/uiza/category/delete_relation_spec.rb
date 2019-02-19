@@ -9,13 +9,15 @@ RSpec.describe Uiza::Category do
   describe "::list" do
     context "API returns code 200" do
       it "should returns an array of relation" do
-        entity_id = "your-entity-id-01"
-        metadata_ids = ["your-category-id-01", "your-category-id-02"]
+        params = {
+          entityId: "your-entity-id-01",
+          metadataIds: ["your-category-id-01", "your-category-id-02"]
+        }
 
         expected_method = :post
         expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/related/metadata"
         expected_headers = {"Authorization" => "your-authorization"}
-        expected_body = {entityId: entity_id, metadataIds: metadata_ids}
+        expected_body = params
         mock_response = {
           data: [{
             entityId: "your-entity-id-01",
@@ -31,7 +33,7 @@ RSpec.describe Uiza::Category do
           .with(headers: expected_headers, body: expected_body)
           .to_return(body: mock_response.to_json)
 
-        relations = Uiza::Category.delete_relation entity_id, metadata_ids
+        relations = Uiza::Category.delete_relation params
 
         expect(relations).to be_a Array
         expect(relations.first.entityId).to eq "your-entity-id-01"
@@ -109,13 +111,15 @@ RSpec.describe Uiza::Category do
   end
 
   def api_return_error_code error_code, error_class, error_message
-    entity_id = "your-entity-id-01"
-    metadata_ids = ["your-category-id-01", "your-category-id-02"]
+    params = {
+      entityId: "your-entity-id-01",
+      metadataIds: ["your-category-id-01", "your-category-id-02"]
+    }
 
     expected_method = :post
     expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/related/metadata"
     expected_headers = {"Authorization" => "your-authorization"}
-    expected_body = {entityId: entity_id, metadataIds: metadata_ids}
+    expected_body = params
     mock_response = {
       code: error_code
     }
@@ -124,7 +128,7 @@ RSpec.describe Uiza::Category do
       .with(headers: expected_headers, body: expected_body)
       .to_return(body: mock_response.to_json)
 
-    expect{Uiza::Category.delete_relation entity_id, metadata_ids}.to raise_error do |error|
+    expect{Uiza::Category.delete_relation params}.to raise_error do |error|
       expect(error).to be_a error_class
       expect(error.description_link).to eq "https://docs.uiza.io/#delete-category-relation"
       expect(error.code).to eq error_code
