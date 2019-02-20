@@ -31,7 +31,8 @@ module Uiza
       @response = JSON.parse @response.body
 
       code = @response["code"]
-      check_and_raise_error code
+      message = @response["message"]
+      check_and_raise_error code, message
 
       data = @response["data"]
       JSON.parse(data.to_json, object_class: OpenStruct)
@@ -39,7 +40,7 @@ module Uiza
 
     private
 
-    def check_and_raise_error code
+    def check_and_raise_error code, message
       reg_2xx = /^2\d\d$/
       reg_4xx = /^4\d\d$/
       reg_5xx = /^5\d\d$/
@@ -48,32 +49,23 @@ module Uiza
 
       case code.to_s
       when "400"
-        error = Uiza::Error::BadRequestError.new @description_link
-        message = Uiza::Error::BadRequestError::DEFAULT_MESSAGE
+        error = Uiza::Error::BadRequestError.new @description_link, message
       when "401"
-        error = Uiza::Error::UnauthorizedError.new @description_link
-        message = Uiza::Error::UnauthorizedError::DEFAULT_MESSAGE
+        error = Uiza::Error::UnauthorizedError.new @description_link, message
       when "404"
-        error = Uiza::Error::NotFoundError.new @description_link
-        message = Uiza::Error::NotFoundError::DEFAULT_MESSAGE
+        error = Uiza::Error::NotFoundError.new @description_link, message
       when "422"
-        error = Uiza::Error::UnprocessableError.new @description_link
-        message = Uiza::Error::UnprocessableError::DEFAULT_MESSAGE
+        error = Uiza::Error::UnprocessableError.new @description_link, message
       when "500"
-        error = Uiza::Error::InternalServerError.new @description_link
-        message = Uiza::Error::InternalServerError::DEFAULT_MESSAGE
+        error = Uiza::Error::InternalServerError.new @description_link, message
       when "503"
-        error = Uiza::Error::ServiceUnavailableError.new @description_link
-        message = Uiza::Error::ServiceUnavailableError::DEFAULT_MESSAGE
+        error = Uiza::Error::ServiceUnavailableError.new @description_link, message
       when reg_4xx
-        error = Uiza::Error::ClientError.new @description_link, code
-        message = Uiza::Error::ClientError::DEFAULT_MESSAGE
+        error = Uiza::Error::ClientError.new @description_link, message, code
       when reg_5xx
-        error = Uiza::Error::ServerError.new @description_link, code
-        message = Uiza::Error::ServerError::DEFAULT_MESSAGE
+        error = Uiza::Error::ServerError.new @description_link, message, code
       else
-        error = Uiza::Error::UizaError.new @description_link, code
-        message = Uiza::Error::UizaError::DEFAULT_MESSAGE
+        error = Uiza::Error::UizaError.new @description_link, message, code
       end
 
       raise error, message

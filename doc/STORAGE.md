@@ -24,8 +24,7 @@ params = {
 }
 
 begin
-  storage = Uiza.add_storage params
-  # or storage = Uiza::Storage.add params
+  storage = Uiza::Storage.add params
   puts storage.id
   puts storage.name
 rescue Uiza::Error::UizaError => e
@@ -71,8 +70,7 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  storage = Uiza.retrieve_storage "your-storage-id"
-  # or storage = Uiza::Storage.retrieve "your-storage-id"
+  storage = Uiza::Storage.retrieve "your-storage-id"
   puts storage.id
   puts storage.name
 rescue Uiza::Error::UizaError => e
@@ -126,9 +124,7 @@ params = {
 }
 
 begin
-  storage = Uiza.update_storage params
-  # or storage = Uiza::Storage.update params
-
+  storage = Uiza::Storage.update params
   puts storage.id
   puts storage.name
 rescue Uiza::Error::UizaError => e
@@ -174,9 +170,7 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  storage = Uiza.remove_storage "your-storage-id"
-  # or storage = Uiza::Storage.remove "your-storage-id"
-
+  storage = Uiza::Storage.remove "your-storage-id"
   puts storage.id
 rescue Uiza::Error::UizaError => e
   puts "description_link: #{e.description_link}"
