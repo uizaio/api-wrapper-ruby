@@ -8,10 +8,10 @@ module Uiza
       DEFAULT_CODE = "".freeze
       DEFAULT_MESSAGE = "Unknow Error.".freeze
 
-      def initialize description_link, code = nil, message = nil
+      def initialize description_link, message = nil, code = nil
         @description_link = description_link
-        @code = (code.nil? ? nil : code.to_i) || self.class::DEFAULT_CODE
-        @message = message || self.class::DEFAULT_MESSAGE
+        @message = (message.to_s.empty? ? nil : message) || self.class::DEFAULT_MESSAGE
+        @code = (code.to_s.empty? ? nil : code.to_i) || self.class::DEFAULT_CODE
       end
     end
   end

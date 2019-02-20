@@ -68,7 +68,7 @@ See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/E
 
 ```ruby
 begin
-  entity = Uiza.retrieve_entity "your-entity-id"
+  entity = Uiza::Entity.retrieve "your-entity-id"
   puts entity.id
   puts entity.name
 rescue Uiza::Error::UizaError => e
@@ -92,10 +92,9 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  categories = Uiza.list_category
-  # or categories = Uiza::Category.list
-  puts categories.first.id
-  puts categories.first.name
+  category = Uiza::Category.retrieve "your-category-id"
+  puts category.id
+  puts category.name
 rescue Uiza::Error::UizaError => e
   puts "description_link: #{e.description_link}"
   puts "code: #{e.code}"
@@ -118,8 +117,7 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  storage = Uiza.retrieve_storage "your-storage-id"
-  # or storage = Uiza::Storage.retrieve "your-storage-id"
+  storage = Uiza::Storage.retrieve "your-storage-id"
   puts storage.id
   puts storage.name
 rescue Uiza::Error::UizaError => e

@@ -23,8 +23,7 @@ params = {
 }
 
 begin
-  category = Uiza.create_category params
-  # or category = Uiza::Category.create params
+  category = Uiza::Category.create params
   puts category.id
   puts category.name
 rescue Uiza::Error::UizaError => e
@@ -64,8 +63,7 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  category = Uiza.retrieve_category "your-category-id"
-  # or category = Uiza::Category.retrieve "your-category-id"
+  category = Uiza::Category.retrieve "your-category-id"
   puts category.id
   puts category.name
 rescue Uiza::Error::UizaError => e
@@ -105,8 +103,7 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  categories = Uiza.list_category
-  # or categories = Uiza::Category.list
+  categories = Uiza::Category.list
   puts categories.first.id
   puts categories.first.name
 rescue Uiza::Error::UizaError => e
@@ -136,8 +133,7 @@ params = {
 }
 
 begin
-  category = Uiza.update_category params
-  # or category = Uiza::Category.update params
+  category = Uiza::Category.update params
   puts category.id
   puts category.name
 rescue Uiza::Error::UizaError => e
@@ -177,8 +173,7 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  category = Uiza.delete_category "your-category-id"
-  # or category = Uiza::Category.delete "your-category-id"
+  category = Uiza::Category.delete "your-category-id"
   puts category.id
 rescue Uiza::Error::UizaError => e
   puts "description_link: #{e.description_link}"
@@ -213,8 +208,7 @@ params = {
 }
 
 begin
-  relations = Uiza.create_relation_category params
-  # or relations = Uiza::Category.create_relation params
+  relations = Uiza::Category.create_relation params
   puts relations.first.id
   puts relations.first.entityId
 rescue Uiza::Error::UizaError => e
@@ -259,8 +253,7 @@ params = {
 }
 
 begin
-  relations = Uiza.delete_relation_category params
-  # or relations = Uiza::Category.delete_relation params
+  relations = Uiza::Category.delete_relation params
   puts relations.first.id
   puts relations.first.entityId
 rescue Uiza::Error::UizaError => e

@@ -25,9 +25,7 @@ params = {
 }
 
 begin
-  entity = Uiza.create_entity params
-  # or entity = Uiza::Entity.create params
-
+  entity = Uiza::Entity.create params
   puts entity.id
   puts entity.name
 rescue Uiza::Error::UizaError => e
@@ -80,9 +78,7 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  entity = Uiza.retrieve_entity "your-entity-id"
-  # or entity = Uiza::Entity.retrieve "your-entity-id"
-
+  entity = Uiza::Entity.retrieve "your-entity-id"
   puts entity.id
   puts entity.name
 rescue Uiza::Error::UizaError => e
@@ -140,13 +136,9 @@ params = {
 }
 
 begin
-  entities = Uiza.list_entity params
-  # or entities = Uiza::Entity.list params
-
+  entities = Uiza::Entity.list params
   # params is optional
-  # or entities = Uiza.list_entity
   # or entities = Uiza::Entity.list
-
   puts entities.first.id
   puts entities.first.name
 rescue Uiza::Error::UizaError => e
@@ -227,9 +219,7 @@ params = {
 }
 
 begin
-  entity = Uiza.update_entity params
-  # or entity = Uiza::Entity.update params
-
+  entity = Uiza::Entity.update params
   puts entity.id
   puts entity.name
 rescue Uiza::Error::UizaError => e
@@ -281,9 +271,7 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  entity = Uiza.delete_entity "your-entity-id"
-  # or entity = Uiza::Entity.delete "your-entity-id"
-
+  entity = Uiza::Entity.delete "your-entity-id"
   puts entity.id
 rescue Uiza::Error::UizaError => e
   puts "description_link: #{e.description_link}"
@@ -313,9 +301,7 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  entities = Uiza.search_entity "your-keyword"
-  # or entities = Uiza::Entity.search "your-keyword"
-
+  entities = Uiza::Entity.search "your-keyword"
   puts entities.first.id
   puts entities.first.name
 rescue Uiza::Error::UizaError => e
@@ -391,9 +377,7 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  response = Uiza.publish_entity "your-entity-id"
-  # or entities = Uiza::Entity.publish "your-entity-id"
-
+  response = Uiza::Entity.publish "your-entity-id"
   puts response.message
   puts response.entityId
 rescue Uiza::Error::UizaError => e
@@ -425,9 +409,7 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  response = Uiza.get_status_publish_entity "your-entity-id"
-  # or entities = Uiza::Entity.get_status_publish "your-entity-id"
-
+  response = Uiza::Entity.get_status_publish "your-entity-id"
   puts response.progress
   puts response.status
 rescue Uiza::Error::UizaError => e
@@ -459,9 +441,7 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  response = Uiza.get_aws_upload_key_entity
-  # or entities = Uiza::Entity.get_aws_upload_key
-
+  response = Uiza::Entity.get_aws_upload_key
   puts response.bucket_name
   puts response.region_name
 rescue Uiza::Error::UizaError => e
