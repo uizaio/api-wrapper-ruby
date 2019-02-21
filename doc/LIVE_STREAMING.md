@@ -177,3 +177,62 @@ Example Response
   "updatedAt": "2018-06-21T14:33:36.000Z"
 }
 ```
+
+## Start a live feed
+These API use to start a live event that has been create success.
+The Live channel minute start count whenever the event start success
+
+See details [here](https://docs.uiza.io/#start-a-live-feed).
+
+```ruby
+require "uiza"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+params = {
+  id: "your-live-id",
+  name: "live test",
+  mode: "pull",
+  encode: 0,
+  dvr: 1
+  resourceMode: "single"
+}
+
+begin
+  live = Uiza::Live.start_feed "your-live-id"
+  puts live.id
+  puts live.name
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
+Example Response
+```ruby
+{
+  "id": "8b83886e-9cc3-4eab-9258-ebb16c0c73de",
+  "name": "checking 01",
+  "description": "checking",
+  "mode": "pull",
+  "resourceMode": "single",
+  "encode": 0,
+  "channelName": "checking-01",
+  "lastPresetId": null,
+  "lastFeedId": null,
+  "poster": "https://example.com/poster.jpeg",
+  "thumbnail": "https://example.com/thumbnail.jpeg",
+  "linkPublishSocial": null,
+  "linkStream": "[\"https://www.youtube.com/watch?v=pQzaHPoNX1I\"]",
+  "lastPullInfo": null,
+  "lastPushInfo": null,
+  "lastProcess": null,
+  "eventType": null,
+  "createdAt": "2018-06-21T14:33:36.000Z",
+  "updatedAt": "2018-06-21T14:33:36.000Z"
+}
+```
