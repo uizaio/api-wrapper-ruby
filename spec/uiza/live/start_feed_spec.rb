@@ -6,7 +6,7 @@ RSpec.describe Uiza::Live do
     Uiza.authorization = "your-authorization"
   end
 
-  describe "::create" do
+  describe "::start_feed" do
     context "API returns code 200" do
       it "should returns a live" do
         id = "your-live-id"

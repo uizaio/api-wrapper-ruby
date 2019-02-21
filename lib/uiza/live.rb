@@ -10,7 +10,8 @@ module Uiza
       retrieve: "https://docs.uiza.io/#retrieve-a-live-event",
       update: "https://docs.uiza.io/#update-a-live-event",
       start_feed: "https://docs.uiza.io/#start-a-live-feed",
-      list_recorded: "https://docs.uiza.io/#list-all-recorded-files"
+      list_recorded: "https://docs.uiza.io/#list-all-recorded-files",
+      get_view: "https://docs.uiza.io/#get-view-of-live-feed"
     }.freeze
 
     class << self
@@ -32,6 +33,17 @@ module Uiza
         headers = {"Authorization" => Uiza.authorization}
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:list_recorded]
+        uiza_client.execute_request
+      end
+
+      def get_view id
+        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/tracking/current-view"
+        method = :get
+        headers = {"Authorization" => Uiza.authorization}
+        params = {id: id}
+        description_link = OBJECT_API_DESCRIPTION_LINK[:get_view]
+
+        uiza_client = UizaClient.new url, method, headers, params, description_link
         uiza_client.execute_request
       end
     end
