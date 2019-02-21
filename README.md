@@ -136,6 +136,25 @@ These APIs used to create and manage live streaming event.
 
 See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/LIVE_STREAMING.md).
 
+```ruby
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  live = Uiza::Live.retrieve "your-live-id"
+  puts live.id
+  puts live.name
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
 ## Callback
 Callback used to retrieve an information for Uiza to your server, so you can have a trigger notice about an entity is upload completed and .
 
