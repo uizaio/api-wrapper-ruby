@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.0 - 2019-02-21
+[#53](https://github.com/uizaio/api-wrapper-ruby/pull/53) Release Sprint 2
+1. Add APIOperation
+- `Uiza::APIOperation::Add`
+- `Uiza::APIOperation::Remove`
+
+2. Remove APIResource
+
+3. Add Storage
+
+4. Add Category
+
 ## 0.1.0 - 2019-02-18
 [#39](https://github.com/uizaio/api-wrapper-ruby/pull/39) Release Sprint 1
 1. Add APIOperation

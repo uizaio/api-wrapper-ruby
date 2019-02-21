@@ -1,47 +1,37 @@
 require "spec_helper"
 
-RSpec.describe Uiza::Entity do
+RSpec.describe Uiza::Storage do
   before(:each) do
     Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
     Uiza.authorization = "your-authorization"
   end
 
-  describe "::retrieve" do
+  describe "::remove" do
     context "API returns code 200" do
-      it "should returns an entity" do
-        id = "your-entity-id"
+      it "should returns an id" do
+        id = "your-storage-id"
 
-        expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity"
+        expected_method = :delete
+        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/storage"
         expected_headers = {"Authorization" => "your-authorization"}
-        expected_query = {id: id}
+        expected_body = {id: id}
         mock_response = {
           data: {
-            id: "your-entity-id",
-            name: "Sample Video",
-            embedMetadata: {
-              artist: "John Doe",
-              album: "Album sample",
-              genre: "Pop"
-            }
+            id: "your-storage-id"
           },
           code: 200
         }
 
         stub_request(expected_method, expected_url)
-          .with(headers: expected_headers, query: expected_query)
+          .with(headers: expected_headers, body: expected_body)
           .to_return(body: mock_response.to_json)
 
-        entity = Uiza::Entity.retrieve id
+        response = Uiza::Storage.remove id
 
-        expect(entity.id).to eq "your-entity-id"
-        expect(entity.name).to eq "Sample Video"
-        expect(entity.embedMetadata.artist).to eq "John Doe"
-        expect(entity.embedMetadata.album).to eq "Album sample"
-        expect(entity.embedMetadata.genre).to eq "Pop"
+        expect(response.id).to eq "your-storage-id"
 
         expect(WebMock).to have_requested(expected_method, expected_url)
-          .with(headers: expected_headers, query: expected_query)
+          .with(headers: expected_headers, body: expected_body)
       end
     end
 
@@ -100,30 +90,30 @@ RSpec.describe Uiza::Entity do
     end
 
     def api_return_error_code error_code, error_class
-      id = "invalid-entity-id"
+      id = "invalid-storage-id"
 
-      expected_method = :get
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity"
+      expected_method = :delete
+      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/storage"
       expected_headers = {"Authorization" => "your-authorization"}
-      expected_query = {id: id}
+      expected_body = {id: id}
       mock_response = {
         code: error_code,
         message: "error message"
       }
 
       stub_request(expected_method, expected_url)
-        .with(headers: expected_headers, query: expected_query)
+        .with(headers: expected_headers, body: expected_body)
         .to_return(body: mock_response.to_json)
 
-      expect{Uiza::Entity.retrieve id}.to raise_error do |error|
+      expect{Uiza::Storage.remove id}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#retrieve-an-entity"
+        expect(error.description_link).to eq "https://docs.uiza.io/#remove-storage"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end
 
       expect(WebMock).to have_requested(expected_method, expected_url)
-        .with(headers: expected_headers, query: expected_query)
+        .with(headers: expected_headers, body: expected_body)
     end
   end
 end

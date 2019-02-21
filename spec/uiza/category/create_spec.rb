@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe Uiza::Entity do
+RSpec.describe Uiza::Category do
   before(:each) do
     Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
     Uiza.authorization = "your-authorization"
@@ -8,21 +8,23 @@ RSpec.describe Uiza::Entity do
 
   describe "::create" do
     context "API returns code 200" do
-      it "should returns an entity" do
+      it "should returns an category" do
         params = {
-          name: "Sample Video",
-          url: "https://example.com/video.mp4",
-          inputType: "http"
+          name: "Folder sample",
+          type: "folder",
+          description: "Folder description",
+          icon: "https://example.com/icon.png",
+          orderNumber: 1
         }
 
-        # create entity
+        # create category
         expected_method_1 = :post
-        expected_url_1 = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity"
+        expected_url_1 = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/metadata"
         expected_headers_1 = {"Authorization" => "your-authorization"}
         expected_body_1 = params
         mock_response_1 = {
           data: {
-            id: "your-entity-id"
+            id: "your-category-id"
           },
           code: 200
         }
@@ -31,20 +33,19 @@ RSpec.describe Uiza::Entity do
           .with(headers: expected_headers_1, body: expected_body_1)
           .to_return(body: mock_response_1.to_json)
 
-        # retrieve entity with id = "your-entity-id"
+        # retrieve category with id = "your-category-id"
         expected_method_2 = :get
-        expected_url_2 = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity"
+        expected_url_2 = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/metadata"
         expected_headers_2 = {"Authorization" => "your-authorization"}
-        expected_query_2 = {id: "your-entity-id"}
+        expected_query_2 = {id: "your-category-id"}
         mock_response_2 = {
           data: {
-            id: "your-entity-id",
-            name: "Sample Video",
-            embedMetadata: {
-              artist: "John Doe",
-              album: "Album sample",
-              genre: "Pop"
-            }
+            id: "your-category-id",
+            name: "Folder sample",
+            type: "folder",
+            description: "Folder description",
+            icon: "https://example.com/icon.png",
+            orderNumber: 1
           },
           code: 200
         }
@@ -53,13 +54,14 @@ RSpec.describe Uiza::Entity do
           .with(headers: expected_headers_2, query: expected_query_2)
           .to_return(body: mock_response_2.to_json)
 
-        entity = Uiza::Entity.create params
+        category = Uiza::Category.create params
 
-        expect(entity.id).to eq "your-entity-id"
-        expect(entity.name).to eq "Sample Video"
-        expect(entity.embedMetadata.artist).to eq "John Doe"
-        expect(entity.embedMetadata.album).to eq "Album sample"
-        expect(entity.embedMetadata.genre).to eq "Pop"
+        expect(category.id).to eq "your-category-id"
+        expect(category.name).to eq "Folder sample"
+        expect(category.type).to eq "folder"
+        expect(category.description).to eq "Folder description"
+        expect(category.icon).to eq "https://example.com/icon.png"
+        expect(category.orderNumber).to eq 1
 
         expect(WebMock).to have_requested(expected_method_1, expected_url_1)
           .with(headers: expected_headers_1, body: expected_body_1)
@@ -129,7 +131,7 @@ RSpec.describe Uiza::Entity do
       }
 
       expected_method = :post
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity"
+      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/metadata"
       expected_headers = {"Authorization" => "your-authorization"}
       expected_body = params
       mock_response = {
@@ -141,9 +143,9 @@ RSpec.describe Uiza::Entity do
         .with(headers: expected_headers, body: expected_body)
         .to_return(body: mock_response.to_json)
 
-      expect{Uiza::Entity.create params}.to raise_error do |error|
+      expect{Uiza::Category.create params}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#create-entity"
+        expect(error.description_link).to eq "https://docs.uiza.io/#create-category"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

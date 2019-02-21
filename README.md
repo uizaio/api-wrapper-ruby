@@ -68,7 +68,7 @@ See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/E
 
 ```ruby
 begin
-  entity = Uiza.retrieve_entity "your-entity-id"
+  entity = Uiza::Entity.retrieve "your-entity-id"
   puts entity.id
   puts entity.name
 rescue Uiza::Error::UizaError => e
@@ -85,11 +85,49 @@ Category has been splits into 3 types: `folder`, `playlist` and `tag`. These wil
 
 See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/CATEGORY.md).
 
+```ruby
+require "uiza"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  category = Uiza::Category.retrieve "your-category-id"
+  puts category.id
+  puts category.name
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
 ## Storage
 You can add your storage (`FTP`, `AWS S3`) with UIZA.
 After synced, you can select your content easier from your storage to [create entity](https://docs.uiza.io/#create-entity).
 
 See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/STORAGE.md).
+
+```ruby
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  storage = Uiza::Storage.retrieve "your-storage-id"
+  puts storage.id
+  puts storage.name
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
 
 ## Live Streaming
 These APIs used to create and manage live streaming event.

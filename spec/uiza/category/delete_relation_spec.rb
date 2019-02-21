@@ -1,25 +1,31 @@
 require "spec_helper"
 
-RSpec.describe Uiza::Entity do
+RSpec.describe Uiza::Category do
   before(:each) do
     Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
     Uiza.authorization = "your-authorization"
   end
 
-  describe "::publish" do
+  describe "::list" do
     context "API returns code 200" do
-      it "should returns an object with message and entityId" do
-        id = "your-entity-id"
+      it "should returns an array of relation" do
+        params = {
+          entityId: "your-entity-id-01",
+          metadataIds: ["your-category-id-01", "your-category-id-02"]
+        }
 
         expected_method = :post
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/publish"
+        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/related/metadata"
         expected_headers = {"Authorization" => "your-authorization"}
-        expected_body = {id: id}
+        expected_body = params
         mock_response = {
-          data: {
-            message: "Your entity started publish, check process status with this entity ID",
-            entityId: "your-entity-id"
-          },
+          data: [{
+            entityId: "your-entity-id-01",
+            metadataId: "your-category-id-01"
+          }, {
+            entityId: "your-entity-id-01",
+            metadataId: "your-category-id-02"
+          }],
           code: 200
         }
 
@@ -27,10 +33,13 @@ RSpec.describe Uiza::Entity do
           .with(headers: expected_headers, body: expected_body)
           .to_return(body: mock_response.to_json)
 
-        response = Uiza::Entity.publish id
+        relations = Uiza::Category.delete_relation params
 
-        expect(response.message).to eq "Your entity started publish, check process status with this entity ID"
-        expect(response.entityId).to eq "your-entity-id"
+        expect(relations).to be_a Array
+        expect(relations.first.entityId).to eq "your-entity-id-01"
+        expect(relations.first.metadataId).to eq "your-category-id-01"
+        expect(relations.last.entityId).to eq "your-entity-id-01"
+        expect(relations.last.metadataId).to eq "your-category-id-02"
 
         expect(WebMock).to have_requested(expected_method, expected_url)
           .with(headers: expected_headers, body: expected_body)
@@ -63,7 +72,7 @@ RSpec.describe Uiza::Entity do
 
     context "API returns code 500" do
       it "should raise InternalServerError" do
-        api_return_error_code 422, Uiza::Error::UnprocessableError
+        api_return_error_code 500, Uiza::Error::InternalServerError
       end
     end
 
@@ -90,32 +99,35 @@ RSpec.describe Uiza::Entity do
         api_return_error_code 345, Uiza::Error::UizaError
       end
     end
+  end
 
-    def api_return_error_code error_code, error_class
-      id = "invalid-entity-id"
+  def api_return_error_code error_code, error_class
+    params = {
+      entityId: "your-entity-id-01",
+      metadataIds: ["your-category-id-01", "your-category-id-02"]
+    }
 
-      expected_method = :post
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/publish"
-      expected_headers = {"Authorization" => "your-authorization"}
-      expected_body = {id: id}
-      mock_response = {
-        code: error_code,
-        message: "error message"
-      }
+    expected_method = :post
+    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/related/metadata"
+    expected_headers = {"Authorization" => "your-authorization"}
+    expected_body = params
+    mock_response = {
+      code: error_code,
+      message: "error message"
+    }
 
-      stub_request(expected_method, expected_url)
-        .with(headers: expected_headers, body: expected_body)
-        .to_return(body: mock_response.to_json)
+    stub_request(expected_method, expected_url)
+      .with(headers: expected_headers, body: expected_body)
+      .to_return(body: mock_response.to_json)
 
-      expect{Uiza::Entity.publish id}.to raise_error do |error|
-        expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#publish-entity-to-cdn"
-        expect(error.code).to eq error_code
-        expect(error.message).to eq "error message"
-      end
-
-      expect(WebMock).to have_requested(expected_method, expected_url)
-        .with(headers: expected_headers, body: expected_body)
+    expect{Uiza::Category.delete_relation params}.to raise_error do |error|
+      expect(error).to be_a error_class
+      expect(error.description_link).to eq "https://docs.uiza.io/#delete-category-relation"
+      expect(error.code).to eq error_code
+      expect(error.message).to eq "error message"
     end
+
+    expect(WebMock).to have_requested(expected_method, expected_url)
+      .with(headers: expected_headers, body: expected_body)
   end
 end
