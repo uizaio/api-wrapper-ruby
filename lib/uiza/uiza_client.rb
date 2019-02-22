@@ -47,26 +47,26 @@ module Uiza
 
       return if code.to_s =~ reg_2xx
 
-      case code.to_s
-      when "400"
-        error = Uiza::Error::BadRequestError.new @description_link, message
-      when "401"
-        error = Uiza::Error::UnauthorizedError.new @description_link, message
-      when "404"
-        error = Uiza::Error::NotFoundError.new @description_link, message
-      when "422"
-        error = Uiza::Error::UnprocessableError.new @description_link, message
-      when "500"
-        error = Uiza::Error::InternalServerError.new @description_link, message
-      when "503"
-        error = Uiza::Error::ServiceUnavailableError.new @description_link, message
-      when reg_4xx
-        error = Uiza::Error::ClientError.new @description_link, message, code
-      when reg_5xx
-        error = Uiza::Error::ServerError.new @description_link, message, code
-      else
-        error = Uiza::Error::UizaError.new @description_link, message, code
-      end
+      error = case code.to_s
+              when "400"
+                Uiza::Error::BadRequestError.new @description_link, message
+              when "401"
+                Uiza::Error::UnauthorizedError.new @description_link, message
+              when "404"
+                Uiza::Error::NotFoundError.new @description_link, message
+              when "422"
+                Uiza::Error::UnprocessableError.new @description_link, message
+              when "500"
+                Uiza::Error::InternalServerError.new @description_link, message
+              when "503"
+                Uiza::Error::ServiceUnavailableError.new @description_link, message
+              when reg_4xx
+                Uiza::Error::ClientError.new @description_link, message, code
+              when reg_5xx
+                Uiza::Error::ServerError.new @description_link, message, code
+              else
+                Uiza::Error::UizaError.new @description_link, message, code
+              end
 
       raise error, message
     end

@@ -9,7 +9,7 @@ RSpec.describe Uiza::Live do
   describe "::create" do
     context "API returns code 200" do
       it "should returns a live" do
-       id = "your-live-id"
+        id = "your-live-id"
 
         # start a live feed
         expected_method_1 = :post
