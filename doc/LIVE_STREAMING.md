@@ -330,3 +330,33 @@ Example Response
   "day": 1533271205999
 }
 ```
+
+## Delete a record file
+Delete a recorded file
+
+See details [here](https://docs.uiza.io/#delete-a-record-file).
+
+```ruby
+require "uiza"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  live = Uiza::Live.delete "your-record-id" #Identifier of record (get from list record)
+  puts live.id
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
+Example Response
+```ruby
+{
+  "id": "040df935-61c4-46f7-a41f-0a899ebaa2cc"
+}
+```

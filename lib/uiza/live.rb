@@ -11,7 +11,8 @@ module Uiza
       update: "https://docs.uiza.io/#update-a-live-event",
       start_feed: "https://docs.uiza.io/#start-a-live-feed",
       list_recorded: "https://docs.uiza.io/#list-all-recorded-files",
-      get_view: "https://docs.uiza.io/#get-view-of-live-feed"
+      get_view: "https://docs.uiza.io/#get-view-of-live-feed",
+      delete: "https://docs.uiza.io/#delete-a-record-file"
     }.freeze
 
     class << self
@@ -44,6 +45,16 @@ module Uiza
         description_link = OBJECT_API_DESCRIPTION_LINK[:get_view]
 
         uiza_client = UizaClient.new url, method, headers, params, description_link
+        uiza_client.execute_request
+      end
+
+      def delete id
+        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/dvr"
+        method = :delete
+        headers = {"Authorization" => Uiza.authorization}
+        params = {id: id}
+
+        uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:delete]
         uiza_client.execute_request
       end
     end
