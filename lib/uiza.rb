@@ -27,6 +27,7 @@ require "uiza/entity"
 require "uiza/storage"
 require "uiza/category"
 require "uiza/live"
+require "uiza/callback"
 
 module Uiza
   class << self
