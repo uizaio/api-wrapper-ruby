@@ -4,6 +4,7 @@ require "json"
 
 require "uiza/version"
 require "uiza/uiza_client"
+require "uiza/uiza_open_struct"
 
 require "uiza/error/uiza_error"
 require "uiza/error/bad_request_error"
