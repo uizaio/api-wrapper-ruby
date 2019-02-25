@@ -2,7 +2,6 @@ module Uiza
   class UizaOpenStruct < OpenStruct
     def define_methods()
       data = to_h
-      puts data
       data.each do |key, value|
         if value.is_a?(Uiza::UizaOpenStruct)
           value.define_methods()
