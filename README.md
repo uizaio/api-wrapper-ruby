@@ -160,6 +160,25 @@ Callback used to retrieve an information for Uiza to your server, so you can hav
 
 See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/CALLBACK.md).
 
+```ruby
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  callback = Uiza::Live.retrieve "your-callback-id"
+  puts callback.id
+  puts callback.url
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
 ## Analytic
 Monitor the four key dimensions of video QoS: playback failures, startup time, rebuffering, and video quality.
 These 15 metrics help you track playback performance, so your team can know exactly what’s going on.
