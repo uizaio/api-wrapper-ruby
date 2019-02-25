@@ -85,3 +85,47 @@ Example Response
   "updatedAt": "2018-06-23T01:27:08.000Z"
 }
 ```
+
+## Update a callback
+This API will allow you setup a callback to your server when an entity is completed for upload or public
+
+See details [here](https://docs.uiza.io/#update-a-callback).
+
+```ruby
+require "uiza"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+params = {
+  id: "your-callback-id",
+  url: "https://callback-url.uiza.co",
+  method: "GET"
+}
+
+begin
+  callback = Uiza::Category.update params
+  puts callback.id
+  puts callback.url
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
+Example Response
+```ruby
+{
+  "id": "your-callback-id",
+  "url": "https://callback-url.uiza.co",
+  "headersData": null,
+  "jsonData": null,
+  "method": "GET",
+  "status": 1,
+  "createdAt": "2018-06-23T01:27:08.000Z",
+  "updatedAt": "2018-06-23T01:27:08.000Z"
+}
+```
