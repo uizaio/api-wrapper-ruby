@@ -11,6 +11,7 @@ module Uiza
       update: "https://docs.uiza.io/#update-a-live-event",
       start_feed: "https://docs.uiza.io/#start-a-live-feed",
       list_recorded: "https://docs.uiza.io/#list-all-recorded-files",
+      stop_feed: "https://docs.uiza.io/#stop-a-live-feed",
       get_view: "https://docs.uiza.io/#get-view-of-live-feed",
       delete: "https://docs.uiza.io/#delete-a-record-file"
     }.freeze
@@ -23,6 +24,18 @@ module Uiza
         params = {id: id}
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:start_feed]
+        response = uiza_client.execute_request
+
+        retrieve response.id
+      end
+
+      def stop_feed id
+        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/feed"
+        method = :put
+        headers = {"Authorization" => Uiza.authorization}
+        params = {id: id}
+
+        uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:stop_feed]
         response = uiza_client.execute_request
 
         retrieve response.id
