@@ -129,3 +129,33 @@ Example Response
   "updatedAt": "2018-06-23T01:27:08.000Z"
 }
 ```
+
+## Delete a callback
+Delete an existing callback.
+
+See details [here](https://docs.uiza.io/#delete-a-callback).
+
+```ruby
+require "uiza"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  callback = Uiza::Callback.delete "your-callback-id"
+  puts callback.id
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
+Example Response
+```ruby
+{
+  "id": "your-callback-id"
+}
+```
