@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.1 - 2019-02-23
+[#72](https://github.com/uizaio/api-wrapper-ruby/pull/72) Reslease Sprint 3
+1. Add Live
+
+2. Add Callback
+
+## 1.0.0 - 2019-02-25
+Publish gem to https://rubygems.org
+
 ## 0.1.0 - 2019-02-21
 [#53](https://github.com/uizaio/api-wrapper-ruby/pull/53) Release Sprint 2
 1. Add APIOperation

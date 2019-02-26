@@ -1,5 +1,8 @@
 require "bundler/setup"
 require "webmock/rspec"
+require "simplecov"
+SimpleCov.start
+
 require "uiza"
 
 RSpec.configure do |config|

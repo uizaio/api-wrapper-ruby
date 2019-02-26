@@ -136,10 +136,48 @@ These APIs used to create and manage live streaming event.
 
 See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/LIVE_STREAMING.md).
 
+```ruby
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  live = Uiza::Live.retrieve "your-live-id"
+  puts live.id
+  puts live.name
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
 ## Callback
 Callback used to retrieve an information for Uiza to your server, so you can have a trigger notice about an entity is upload completed and .
 
 See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/CALLBACK.md).
+
+```ruby
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  callback = Uiza::Live.retrieve "your-callback-id"
+  puts callback.id
+  puts callback.url
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
 
 ## Analytic
 Monitor the four key dimensions of video QoS: playback failures, startup time, rebuffering, and video quality.
@@ -161,19 +199,24 @@ Codes in the `5xx` range indicate an error with Uiza's servers.
 See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/ERRORS_CODE.md).
 
 ## Development
-
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
-## Contributing
+## Testing
+Run below command to run rspec for project.
+```ruby
+bundle exec rspec spec
+```
 
+Open `coverage/index.html` to see coversage of RSpec.
+See details [here](https://github.com/colszowka/simplecov).
+
+## Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/uizaio/api-wrapper-ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
-
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Code of Conduct
-
 Everyone interacting in the Uiza project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/uizaio/api-wrapper-ruby/blob/master/CODE_OF_CONDUCT.md).

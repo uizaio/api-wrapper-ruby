@@ -4,6 +4,7 @@ require "json"
 
 require "uiza/version"
 require "uiza/uiza_client"
+require "uiza/uiza_open_struct"
 
 require "uiza/error/uiza_error"
 require "uiza/error/bad_request_error"
@@ -26,6 +27,8 @@ require "uiza/api_operation/remove"
 require "uiza/entity"
 require "uiza/storage"
 require "uiza/category"
+require "uiza/live"
+require "uiza/callback"
 
 module Uiza
   class << self
