@@ -179,6 +179,32 @@ rescue StandardError => e
 end
 ```
 
+## User Management
+You can manage user with APIs user. Uiza have 2 levels of user:
+  Admin - This account will have the highest priority, can have permission to create & manage users.
+  User - This account level is under Admin level. It only manages APIs that relates to this account.
+
+See details [here](https://docs.uiza.io/#user-management).
+
+```ruby
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  user = Uiza::User.retrieve "your-user-id"
+  puts user.id
+  puts user.username
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
 ## Analytic
 Monitor the four key dimensions of video QoS: playback failures, startup time, rebuffering, and video quality.
 These 15 metrics help you track playback performance, so your team can know exactly what’s going on.
