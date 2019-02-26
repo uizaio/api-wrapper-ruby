@@ -415,3 +415,33 @@ Example Response
   "id": "040df935-61c4-46f7-a41f-0a899ebaa2cc"
 }
 ```
+
+## Convert into VOD
+Convert recorded file into VOD entity. After converted, your file can be stream via Uiza's CDN.
+
+See details [here](https://docs.uiza.io/#convert-into-vod).
+
+```ruby
+require "uiza"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  live = Uiza::Live.convert_to_vod "your-record-id" #Identifier of record (get from list record)
+  puts live.id
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
+Example Response
+```ruby
+{
+  "id": "03739912-d781-4d5a-aaf8-7262691a5d0c"
+}
+```

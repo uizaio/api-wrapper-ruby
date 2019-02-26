@@ -18,7 +18,7 @@ RSpec.describe Uiza::Live do
         expected_body_1 = {id: id}
         mock_response_1 = {
           data: {
-            id: "your-live-id"
+            entityId: "your-live-id"
           },
           code: 200
         }
