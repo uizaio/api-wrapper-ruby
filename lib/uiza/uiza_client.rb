@@ -37,6 +37,8 @@ module Uiza
       data = @response["data"]
       response = JSON.parse(data.to_json, object_class: Uiza::UizaOpenStruct)
 
+      return response unless response
+
       if response.is_a?(Array)
         response.each(&:define_methods)
       else
