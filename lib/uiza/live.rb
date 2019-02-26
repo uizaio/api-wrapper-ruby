@@ -26,7 +26,18 @@ module Uiza
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:start_feed]
         response = uiza_client.execute_request
 
-        retrieve response.id
+        retrieve response.entityId
+      end
+
+      def get_view id
+        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/tracking/current-view"
+        method = :get
+        headers = {"Authorization" => Uiza.authorization}
+        params = {id: id}
+        description_link = OBJECT_API_DESCRIPTION_LINK[:get_view]
+
+        uiza_client = UizaClient.new url, method, headers, params, description_link
+        uiza_client.execute_request
       end
 
       def stop_feed id
@@ -38,7 +49,7 @@ module Uiza
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:stop_feed]
         response = uiza_client.execute_request
 
-        retrieve response.id
+        retrieve response.entityId
       end
 
       def list_recorded params = {}
@@ -47,17 +58,6 @@ module Uiza
         headers = {"Authorization" => Uiza.authorization}
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:list_recorded]
-        uiza_client.execute_request
-      end
-
-      def get_view id
-        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/tracking/current-view"
-        method = :get
-        headers = {"Authorization" => Uiza.authorization}
-        params = {id: id}
-        description_link = OBJECT_API_DESCRIPTION_LINK[:get_view]
-
-        uiza_client = UizaClient.new url, method, headers, params, description_link
         uiza_client.execute_request
       end
 

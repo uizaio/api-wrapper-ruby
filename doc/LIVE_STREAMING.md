@@ -237,6 +237,40 @@ Example Response
 }
 ```
 
+## Get view of live feed
+This API use to get a live view status . This view only show when event has been started and being processing.
+
+See details [here](https://docs.uiza.io/#get-view-of-live-feed).
+
+```ruby
+require "uiza"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  response = Uiza::Live.get_view "your-live-id"
+  puts response.stream_name
+  puts response.watchnow
+  puts response.day
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
+Example Response
+```
+{
+  "stream_name": "peppa-pig-english-episodes",
+  "watchnow": 1,
+  "day": 1533271205999
+}
+```
+
 ## Stop a live feed
 Stop live event
 
@@ -349,40 +383,6 @@ Example Response
   "createdAt": "2018-12-13T17:30:42.000Z",
   "updatedAt": "2018-12-13T17:30:42.000Z",
   "entityName": "WATCH: SpaceX to Launch Falcon 9 Rocket #Spaceflight CRS16 @1:16pm EST"
-}
-```
-
-## Get view of live feed
-This API use to get a live view status . This view only show when event has been started and being processing.
-
-See details [here](https://docs.uiza.io/#get-view-of-live-feed).
-
-```ruby
-require "uiza"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-begin
-  response = Uiza::Live.get_view "your-live-id"
-  puts response.stream_name
-  puts response.watchnow
-  puts response.day
-rescue Uiza::Error::UizaError => e
-  puts "description_link: #{e.description_link}"
-  puts "code: #{e.code}"
-  puts "message: #{e.message}"
-rescue StandardError => e
-  puts "message: #{e.message}"
-end
-```
-
-Example Response
-```
-{
-  "stream_name": "peppa-pig-english-episodes",
-  "watchnow": 1,
-  "day": 1533271205999
 }
 ```
 
