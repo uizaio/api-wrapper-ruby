@@ -1,6 +1,6 @@
-The MIT License (MIT)
+The MIT License
 
-Copyright (c) 2019 Uiza (https://uiza.io/)
+Copyright (c) 2010-2018 Uiza Pte. Ltd. https://www.uiza.io
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
