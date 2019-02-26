@@ -190,15 +190,6 @@ require "uiza"
 Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
-params = {
-  id: "your-live-id",
-  name: "live test",
-  mode: "pull",
-  encode: 0,
-  dvr: 1
-  resourceMode: "single"
-}
-
 begin
   live = Uiza::Live.start_feed "your-live-id"
   puts live.id
@@ -280,14 +271,7 @@ See details [here](https://docs.uiza.io/#stop-a-live-feed).
 require "uiza"
 Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
-params = {
-  id: "your-live-id",
-  name: "live test",
-  mode: "pull",
-  encode: 0,
-  dvr: 1
-  resourceMode: "single"
-}
+
 begin
   live = Uiza::Live.stop_feed "your-live-id"
   puts live.id
