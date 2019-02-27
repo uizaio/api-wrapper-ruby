@@ -64,7 +64,6 @@ Get information of your added storage (`FTP` or `AWS S3`).
 See details [here](https://docs.uiza.io/#retrieve-a-storage).
 
 ```ruby
-require "json"
 
 Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
