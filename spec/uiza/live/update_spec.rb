@@ -8,7 +8,7 @@ RSpec.describe Uiza::Live do
 
   describe "::update" do
     context "API returns code 200" do
-      it "should returns an live" do
+      it "should returns a live" do
         params = {
           id: "your-live-id",
           name: "live test",
