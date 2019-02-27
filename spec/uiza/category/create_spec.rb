@@ -8,7 +8,7 @@ RSpec.describe Uiza::Category do
 
   describe "::create" do
     context "API returns code 200" do
-      it "should returns an category" do
+      it "should returns a category" do
         params = {
           name: "Folder sample",
           type: "folder",

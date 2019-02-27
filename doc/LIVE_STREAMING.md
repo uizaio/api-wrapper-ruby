@@ -352,38 +352,40 @@ end
 
 Example Response
 ```ruby
-{
-  "id": "040df935-61c4-46f7-a41f-0a899ebaa2cc",
-  "entityId": "ee122e85-553f-4621-bc77-1396191d5846",
-  "channelName": "dcb8686f-d0f8-4a0f-8b92-22db339eb315",
-  "feedId": "3e3b75df-e6fa-471c-b386-8f44b8a34b6c",
-  "eventType": "pull",
-  "startTime": "2018-12-13T16:28:29.000Z",
-  "endTime": "2018-12-13T18:28:29.000Z",
-  "length": "7200",
-  "fileSize": "9276182",
-  "extraInfo": null,
-  "endpointConfig": "s3-uiza-dvr",
-  "createdAt": "2018-12-13T19:28:43.000Z",
-  "updatedAt": "2018-12-13T19:28:43.000Z",
-  "entityName": "Christmas 2018 Holidays Special | Best Christmas Songs & Cartoons for Kids & Babies on Baby First TV"
-},
-{
-  "id": "3fec45e9-932b-4efe-b97f-dc3053acaa05",
-  "entityId": "47e804bc-d4e5-4442-8f1f-20341a156a70",
-  "channelName": "e9034eac-4905-4f9a-8e79-c0bd67e49dd5",
-  "feedId": "12830696-87e3-4209-a877-954f8f008964",
-  "eventType": "pull",
-  "startTime": "2018-12-13T14:14:14.000Z",
-  "endTime": "2018-12-13T16:14:14.000Z",
-  "length": "7200",
-  "fileSize": "439858038",
-  "extraInfo": null,
-  "endpointConfig": "s3-uiza-dvr",
-  "createdAt": "2018-12-13T17:30:42.000Z",
-  "updatedAt": "2018-12-13T17:30:42.000Z",
-  "entityName": "WATCH: SpaceX to Launch Falcon 9 Rocket #Spaceflight CRS16 @1:16pm EST"
-}
+[
+  {
+    "id": "040df935-61c4-46f7-a41f-0a899ebaa2cc",
+    "entityId": "ee122e85-553f-4621-bc77-1396191d5846",
+    "channelName": "dcb8686f-d0f8-4a0f-8b92-22db339eb315",
+    "feedId": "3e3b75df-e6fa-471c-b386-8f44b8a34b6c",
+    "eventType": "pull",
+    "startTime": "2018-12-13T16:28:29.000Z",
+    "endTime": "2018-12-13T18:28:29.000Z",
+    "length": "7200",
+    "fileSize": "9276182",
+    "extraInfo": null,
+    "endpointConfig": "s3-uiza-dvr",
+    "createdAt": "2018-12-13T19:28:43.000Z",
+    "updatedAt": "2018-12-13T19:28:43.000Z",
+    "entityName": "Christmas 2018 Holidays Special | Best Christmas Songs & Cartoons for Kids & Babies on Baby First TV"
+  },
+  {
+    "id": "3fec45e9-932b-4efe-b97f-dc3053acaa05",
+    "entityId": "47e804bc-d4e5-4442-8f1f-20341a156a70",
+    "channelName": "e9034eac-4905-4f9a-8e79-c0bd67e49dd5",
+    "feedId": "12830696-87e3-4209-a877-954f8f008964",
+    "eventType": "pull",
+    "startTime": "2018-12-13T14:14:14.000Z",
+    "endTime": "2018-12-13T16:14:14.000Z",
+    "length": "7200",
+    "fileSize": "439858038",
+    "extraInfo": null,
+    "endpointConfig": "s3-uiza-dvr",
+    "createdAt": "2018-12-13T17:30:42.000Z",
+    "updatedAt": "2018-12-13T17:30:42.000Z",
+    "entityName": "WATCH: SpaceX to Launch Falcon 9 Rocket #Spaceflight CRS16 @1:16pm EST"
+  }
+]
 ```
 
 ## Delete a record file
