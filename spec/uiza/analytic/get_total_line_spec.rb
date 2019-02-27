@@ -1,48 +1,49 @@
 require "spec_helper"
 
-RSpec.describe Uiza::Category do
+RSpec.describe Uiza::Analytic do
   before(:each) do
     Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
     Uiza.authorization = "your-authorization"
   end
 
-  describe "::create_relation" do
+  describe "::get_total_line" do
     context "API returns code 200" do
-      it "should returns an array of relation" do
+      it "should returns an array of analytic metrics" do
         params = {
-          entityId: "your-entity-id-01",
-          metadataIds: ["your-category-id-01", "your-category-id-02"]
+          start_date: "YYYY-MM-DD hh:mm",
+          end_date: "YYYY-MM-DD hh:mm",
+          metric: "analytic_metric"
         }
 
-        expected_method = :post
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/related/metadata"
+        expected_method = :get
+        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/analytic/entity/video-quality/total-line-v2"
         expected_headers = {"Authorization" => "your-authorization"}
-        expected_body = params
+        expected_query = params
         mock_response = {
           data: [{
-            entityId: "your-entity-id-01",
-            metadataId: "your-category-id-01"
+            date_time: "time-point-01",
+            analytic_metric: "analytic-metric-value-01"
           }, {
-            entityId: "your-entity-id-01",
-            metadataId: "your-category-id-02"
+            date_time: "time-point-02",
+            analytic_metric: "analytic-metric-value-02"
           }],
           code: 200
         }
 
         stub_request(expected_method, expected_url)
-          .with(headers: expected_headers, body: expected_body)
+          .with(headers: expected_headers, query: expected_query)
           .to_return(body: mock_response.to_json)
 
-        relations = Uiza::Category.create_relation params
+        metrics = Uiza::Analytic.get_total_line params
 
-        expect(relations).to be_a Array
-        expect(relations.first.entityId).to eq "your-entity-id-01"
-        expect(relations.first.metadataId).to eq "your-category-id-01"
-        expect(relations.last.entityId).to eq "your-entity-id-01"
-        expect(relations.last.metadataId).to eq "your-category-id-02"
+        expect(metrics).to be_a Array
+        expect(metrics.first.date_time).to eq "time-point-01"
+        expect(metrics.first.analytic_metric).to eq "analytic-metric-value-01"
+        expect(metrics.last.date_time).to eq "time-point-02"
+        expect(metrics.last.analytic_metric).to eq "analytic-metric-value-02"
 
         expect(WebMock).to have_requested(expected_method, expected_url)
-          .with(headers: expected_headers, body: expected_body)
+          .with(headers: expected_headers, query: expected_query)
       end
     end
 
@@ -103,31 +104,32 @@ RSpec.describe Uiza::Category do
 
   def api_return_error_code error_code, error_class
     params = {
-      entityId: "your-entity-id-01",
-      metadataIds: ["your-category-id-01", "your-category-id-02"]
+      start_date: "invalid-value",
+      end_date: "invalid-value",
+      metric: "invalid-value"
     }
 
-    expected_method = :post
-    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/related/metadata"
+    expected_method = :get
+    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/analytic/entity/video-quality/total-line-v2"
     expected_headers = {"Authorization" => "your-authorization"}
-    expected_body = params
+    expected_query = params
     mock_response = {
       code: error_code,
       message: "error message"
     }
 
     stub_request(expected_method, expected_url)
-      .with(headers: expected_headers, body: expected_body)
+      .with(headers: expected_headers, query: expected_query)
       .to_return(body: mock_response.to_json)
 
-    expect{Uiza::Category.create_relation params}.to raise_error do |error|
+    expect{Uiza::Analytic.get_total_line params}.to raise_error do |error|
       expect(error).to be_a error_class
-      expect(error.description_link).to eq "https://docs.uiza.io/#create-category-relation"
+      expect(error.description_link).to eq "https://docs.uiza.io/#total-line"
       expect(error.code).to eq error_code
       expect(error.message).to eq "error message"
     end
 
     expect(WebMock).to have_requested(expected_method, expected_url)
-      .with(headers: expected_headers, body: expected_body)
+      .with(headers: expected_headers, query: expected_query)
   end
 end

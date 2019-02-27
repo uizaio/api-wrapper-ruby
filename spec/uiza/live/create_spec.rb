@@ -8,7 +8,7 @@ RSpec.describe Uiza::Live do
 
   describe "::create" do
     context "API returns code 200" do
-      it "should returns an live" do
+      it "should returns a live" do
         params = {
           name: "test event",
           mode: "push",

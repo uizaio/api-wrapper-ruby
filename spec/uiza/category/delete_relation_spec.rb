@@ -6,7 +6,7 @@ RSpec.describe Uiza::Category do
     Uiza.authorization = "your-authorization"
   end
 
-  describe "::list" do
+  describe "::delete_relation" do
     context "API returns code 200" do
       it "should returns an array of relation" do
         params = {
