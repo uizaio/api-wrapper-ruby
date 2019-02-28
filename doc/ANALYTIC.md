@@ -37,12 +37,12 @@ Example Response
 ```ruby
 [
   {
-   "date_time": 1542978000000,
-   "rebuffer_count": 1.6666666666666667
+    "date_time": 1542978000000,
+    "rebuffer_count": 1.6666666666666667
   },
   {
-   "date_time": 1543215600000,
-   "rebuffer_count": 5
+    "date_time": 1543215600000,
+    "rebuffer_count": 5
   }
 ]
 ```

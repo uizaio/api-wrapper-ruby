@@ -58,7 +58,7 @@ Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
 Uiza.authorization = "your-authorization"
 
 begin
-  callback = Uiza::Category.retrieve "your-callback-id"
+  callback = Uiza::Callback.retrieve "your-callback-id"
   puts callback.id
   puts callback.url
 rescue Uiza::Error::UizaError => e
@@ -104,7 +104,7 @@ params = {
 }
 
 begin
-  callback = Uiza::Category.update params
+  callback = Uiza::Callback.update params
   puts callback.id
   puts callback.url
 rescue Uiza::Error::UizaError => e
