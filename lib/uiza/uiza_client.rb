@@ -4,6 +4,8 @@ module Uiza
       @uri = URI.parse url
       @description_link = description_link
 
+      params ||= {}
+
       case method.to_s.downcase
       when "get"
         @uri.query = URI.encode_www_form params
