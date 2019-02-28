@@ -137,3 +137,39 @@ Example Response
   "createdAt": "2018-06-22T02:32:29.000Z"
 }
 ```
+
+## Update password
+Update password allows Admin or User update their current password.
+
+See details [here](https://docs.uiza.io/#update-password).
+
+```ruby
+require "uiza"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+params = {
+  id: "your-user-id",
+  oldPassword: "FMpsr<4[dGPu?B#u",
+  newPassword: "S57Eb{:aMZhW=)G$"
+}
+
+begin
+  response = Uiza::User.change_password params
+  puts response.result
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
+Example Response
+```ruby
+{
+  "result": "ok"
+}
+```
