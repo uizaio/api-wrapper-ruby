@@ -27,7 +27,7 @@ params = {
   poster: "https://example.com/poster.jpeg",
   thumbnail: "https://example.com/poster.jpeg",
   linkStream: [
-      "https://playlist.m3u8"
+    "https://playlist.m3u8"
   ],
   resourceMode: "single"
 }
@@ -263,7 +263,7 @@ end
 ```
 
 Example Response
-```
+```ruby
 {
   "stream_name": "peppa-pig-english-episodes",
   "watchnow": 1,
@@ -285,9 +285,10 @@ params = {
   name: "live test",
   mode: "pull",
   encode: 0,
-  dvr: 1
+  dvr: 1,
   resourceMode: "single"
 }
+
 begin
   live = Uiza::Live.stop_feed "your-live-id"
   puts live.id
@@ -339,6 +340,8 @@ Uiza.authorization = "your-authorization"
 
 begin
   live = Uiza::Live.list_recorded limit: 2
+  # limit is optional
+  # or live = Uiza::Live.list_recorded
   puts live.first.id
   puts live.first.entityId
 rescue Uiza::Error::UizaError => e

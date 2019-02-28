@@ -52,14 +52,14 @@ Example Response
   "duration": "237.865215",
   "publishToCdn":"success",
   "embedMetadata": {
-      "artist": "John Doe",
-      "album": "Album sample",
-      "genre": "Pop"
+    "artist": "John Doe",
+    "album": "Album sample",
+    "genre": "Pop"
   },
   "extendMetadata": {
-      "movie_category":"action",
-      "imdb_score":8.8,
-      "published_year":"2018"
+    "movie_category":"action",
+    "imdb_score":8.8,
+    "published_year":"2018"
   },
   "createdAt": "2018-06-16T18:54:15.000Z",
   "updatedAt": "2018-06-16T18:54:29.000Z"
@@ -105,14 +105,14 @@ Example Response
   "duration": "237.865215",
   "publishToCdn":"success",
   "embedMetadata": {
-      "artist": "John Doe",
-      "album": "Album sample",
-      "genre": "Pop"
+    "artist": "John Doe",
+    "album": "Album sample",
+    "genre": "Pop"
   },
   "extendMetadata": {
-      "movie_category":"action",
-      "imdb_score":8.8,
-      "published_year":"2018"
+    "movie_category":"action",
+    "imdb_score":8.8,
+    "published_year":"2018"
   },
   "createdAt": "2018-06-16T18:54:15.000Z",
   "updatedAt": "2018-06-16T18:54:29.000Z"
@@ -154,52 +154,52 @@ Example Response
 ```ruby
 [
   {
-      "id": "42ceb1ab-18ef-4f2e-b076-14299756d182",
-      "name": "Sample Video 1",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "shortDescription": "Lorem Ipsum is simply dummy text.",
-      "view": 0,
-      "poster": "https://example.com/picture001",
-      "thumbnail": "https://example.com/picture002",
-      "type": "vod",
-      "duration": "237.865215",
-      "publishToCdn":"success",
-      "embedMetadata": {
-          "artist": "John Doe",
-          "album": "Album sample",
-          "genre": "Pop"
-      },
-      "extendMetadata": {
-          "movie_category":"action",
-          "imdb_score":8.8,
-          "published_year":"2018"
-      },
-      "createdAt": "2018-06-22T19:20:17.000Z",
-      "updatedAt": "2018-06-22T19:20:17.000Z"
+    "id": "42ceb1ab-18ef-4f2e-b076-14299756d182",
+    "name": "Sample Video 1",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "shortDescription": "Lorem Ipsum is simply dummy text.",
+    "view": 0,
+    "poster": "https://example.com/picture001",
+    "thumbnail": "https://example.com/picture002",
+    "type": "vod",
+    "duration": "237.865215",
+    "publishToCdn":"success",
+    "embedMetadata": {
+      "artist": "John Doe",
+      "album": "Album sample",
+      "genre": "Pop"
+    },
+    "extendMetadata": {
+      "movie_category":"action",
+      "imdb_score":8.8,
+      "published_year":"2018"
+    },
+    "createdAt": "2018-06-22T19:20:17.000Z",
+    "updatedAt": "2018-06-22T19:20:17.000Z"
   },
   {
-      "id": "64b15996-2261-4f41-a3c4-72b652323f67",
-      "name": "Sample Video 2",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "shortDescription": "Lorem Ipsum is simply dummy text.",
-      "view": 0,
-      "poster": "https://example.com/picture001",
-      "thumbnail": "https://example.com/picture002",
-      "type": "vod",
-      "duration": "178.178105",
-      "publishToCdn":"success",
-      "embedMetadata": {
-          "artist": "John Doe",
-          "album": "Album sample",
-          "genre": "Pop"
-      },
-      "extendMetadata": {
-          "movie_category":"action",
-          "imdb_score":8.8,
-          "published_year":"2018"
-      },
-      "createdAt": "2018-06-22T19:16:22.000Z",
-      "updatedAt": "2018-06-22T19:16:22.000Z"
+    "id": "64b15996-2261-4f41-a3c4-72b652323f67",
+    "name": "Sample Video 2",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "shortDescription": "Lorem Ipsum is simply dummy text.",
+    "view": 0,
+    "poster": "https://example.com/picture001",
+    "thumbnail": "https://example.com/picture002",
+    "type": "vod",
+    "duration": "178.178105",
+    "publishToCdn":"success",
+    "embedMetadata": {
+      "artist": "John Doe",
+      "album": "Album sample",
+      "genre": "Pop"
+    },
+    "extendMetadata": {
+      "movie_category":"action",
+      "imdb_score":8.8,
+      "published_year":"2018"
+    },
+    "createdAt": "2018-06-22T19:16:22.000Z",
+    "updatedAt": "2018-06-22T19:16:22.000Z"
   }
 ]
 ```
@@ -236,28 +236,28 @@ end
 Example Response
 ```ruby
 {
-    "id": "64b15996-2261-4f41-a3c4-72b652323f67",
-    "name": "Sample Video",
-    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    "shortDescription": "Lorem Ipsum is simply dummy text.",
-    "view": 0,
-    "poster": "https://example.com/picture001",
-    "thumbnail": "https://example.com/picture002",
-    "type": "vod",
-    "duration": "178.178105",
-    "publishToCdn":"success",
-    "embedMetadata": {
-        "artist": "John Doe",
-        "album": "Album sample",
-        "genre": "Pop"
-    },
-    "extendMetadata": {
-        "movie_category":"action",
-        "imdb_score":8.8,
-        "published_year":"2018"
-    },
-    "createdAt": "2018-06-22T19:16:22.000Z",
-    "updatedAt": "2018-06-22T19:16:22.000Z"
+  "id": "64b15996-2261-4f41-a3c4-72b652323f67",
+  "name": "Sample Video",
+  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  "shortDescription": "Lorem Ipsum is simply dummy text.",
+  "view": 0,
+  "poster": "https://example.com/picture001",
+  "thumbnail": "https://example.com/picture002",
+  "type": "vod",
+  "duration": "178.178105",
+  "publishToCdn":"success",
+  "embedMetadata": {
+    "artist": "John Doe",
+    "album": "Album sample",
+    "genre": "Pop"
+  },
+  "extendMetadata": {
+    "movie_category":"action",
+    "imdb_score":8.8,
+    "published_year":"2018"
+  },
+  "createdAt": "2018-06-22T19:16:22.000Z",
+  "updatedAt": "2018-06-22T19:16:22.000Z"
 }
 ```
 
@@ -285,9 +285,9 @@ end
 ```
 
 Example Response
-```
+```ruby
 {
-    "id": "64b15996-2261-4f41-a3c4-72b652323f67"
+  "id": "64b15996-2261-4f41-a3c4-72b652323f67"
 }
 ```
 
@@ -319,52 +319,52 @@ Example Response
 ```ruby
 [
   {
-      "id": "42ceb1ab-18ef-4f2e-b076-14299756d182",
-      "name": "Sample Video 1",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "shortDescription": "Lorem Ipsum is simply dummy text.",
-      "view": 0,
-      "poster": "https://example.com/picture001",
-      "thumbnail": "https://example.com/picture002",
-      "type": "vod",
-      "duration": "237.865215",
-      "publishToCdn":"success",
-      "embedMetadata": {
-          "artist": "John Doe",
-          "album": "Album sample",
-          "genre": "Pop"
-      },
-      "extendMetadata": {
-          "movie_category":"action",
-          "imdb_score":8.8,
-          "published_year":"2018"
-      },
-      "createdAt": "2018-06-22T19:20:17.000Z",
-      "updatedAt": "2018-06-22T19:20:17.000Z"
+    "id": "42ceb1ab-18ef-4f2e-b076-14299756d182",
+    "name": "Sample Video 1",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "shortDescription": "Lorem Ipsum is simply dummy text.",
+    "view": 0,
+    "poster": "https://example.com/picture001",
+    "thumbnail": "https://example.com/picture002",
+    "type": "vod",
+    "duration": "237.865215",
+    "publishToCdn":"success",
+    "embedMetadata": {
+      "artist": "John Doe",
+      "album": "Album sample",
+      "genre": "Pop"
+    },
+    "extendMetadata": {
+      "movie_category":"action",
+      "imdb_score":8.8,
+      "published_year":"2018"
+    },
+    "createdAt": "2018-06-22T19:20:17.000Z",
+    "updatedAt": "2018-06-22T19:20:17.000Z"
   },
   {
-      "id": "64b15996-2261-4f41-a3c4-72b652323f67",
-      "name": "Sample Video 2",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "shortDescription": "Lorem Ipsum is simply dummy text.",
-      "view": 0,
-      "poster": "https://example.com/picture001",
-      "thumbnail": "https://example.com/picture002",
-      "type": "vod",
-      "duration": "178.178105",
-      "publishToCdn":"success",
-      "embedMetadata": {
-          "artist": "John Doe",
-          "album": "Album sample",
-          "genre": "Pop"
-      },
-      "extendMetadata": {
-          "movie_category":"action",
-          "imdb_score":8.8,
-          "published_year":"2018"
-      },
-      "createdAt": "2018-06-22T19:16:22.000Z",
-      "updatedAt": "2018-06-22T19:16:22.000Z"
+    "id": "64b15996-2261-4f41-a3c4-72b652323f67",
+    "name": "Sample Video 2",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "shortDescription": "Lorem Ipsum is simply dummy text.",
+    "view": 0,
+    "poster": "https://example.com/picture001",
+    "thumbnail": "https://example.com/picture002",
+    "type": "vod",
+    "duration": "178.178105",
+    "publishToCdn":"success",
+    "embedMetadata": {
+      "artist": "John Doe",
+      "album": "Album sample",
+      "genre": "Pop"
+    },
+    "extendMetadata": {
+      "movie_category":"action",
+      "imdb_score":8.8,
+      "published_year":"2018"
+    },
+    "createdAt": "2018-06-22T19:16:22.000Z",
+    "updatedAt": "2018-06-22T19:16:22.000Z"
   }
 ]
 ```
@@ -396,8 +396,8 @@ end
 Example Response
 ```ruby
 {
-    "message": "Your entity started publish, check process status with this entity ID",
-    "entityId": "42ceb1ab-18ef-4f2e-b076-14299756d182"
+  "message": "Your entity started publish, check process status with this entity ID",
+  "entityId": "42ceb1ab-18ef-4f2e-b076-14299756d182"
 }
 ```
 
@@ -426,10 +426,10 @@ end
 ```
 
 Example Response
-```
+```ruby
 {
-    "progress": 0,
-    "status": "processing"
+  "progress": 0,
+  "status": "processing"
 }
 ```
 
@@ -458,13 +458,13 @@ end
 ```
 
 Example Response
-```
+```ruby
 {
-    "temp_expire_at": 1533658598,
-    "temp_access_id": "ASIAV*******GPHO2DTZ",
-    "bucket_name": "uiza****-storage-ap-southeast-1-01/upload-temp/****ff4ad74a5195f4c/",
-    "temp_session_token": "FQo///wEaDM3rrospITbBQ==",
-    "region_name": "ap-southeast-1",
-    "temp_access_secret": "dp****cx2mE2lZxsSq7kV++vWSL6RNatAhbqc"
+  "temp_expire_at": 1533658598,
+  "temp_access_id": "ASIAV*******GPHO2DTZ",
+  "bucket_name": "uiza****-storage-ap-southeast-1-01/upload-temp/****ff4ad74a5195f4c/",
+  "temp_session_token": "FQo///wEaDM3rrospITbBQ==",
+  "region_name": "ap-southeast-1",
+  "temp_access_secret": "dp****cx2mE2lZxsSq7kV++vWSL6RNatAhbqc"
 }
 ```
