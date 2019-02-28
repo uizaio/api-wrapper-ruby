@@ -224,3 +224,33 @@ Example Response
   "result": "ok"
 }
 ```
+
+## Log Out
+This API use to log out an user. After logged out, token will be removed.
+
+See details [here](https://docs.uiza.io/#log-out).
+
+```ruby
+require "uiza"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  response = Uiza::User.logout
+  puts response.message
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
+Example Response
+```ruby
+{
+  "message": "Logout success"
+}
+```
