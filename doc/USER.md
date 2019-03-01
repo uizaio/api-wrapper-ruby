@@ -189,6 +189,36 @@ Example Response
 }
 ```
 
+## Delete an user
+Permanently deletes an user. It cannot be undone. Also immediately cancels all token & information of this user.
+
+See details [here](https://docs.uiza.io/#delete-an-user).
+
+```ruby
+require "uiza"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  user = Uiza::User.delete "your-user-id"
+  puts user.id
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
+Example Response
+```
+{
+  "id": "2c98b4d5-7d7f-4a0f-9258-5689f90fd28c"
+}
+```
+
 ## Update password
 Update password allows Admin or User update their current password.
 
