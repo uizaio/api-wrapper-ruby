@@ -11,7 +11,8 @@ module Uiza
       retrieve: "https://docs.uiza.io/#retrieve-an-user",
       list: "https://docs.uiza.io/#list-all-users",
       update: "https://docs.uiza.io/#update-an-user",
-      change_password: "https://docs.uiza.io/#update-password"
+      change_password: "https://docs.uiza.io/#update-password",
+      logout: "https://docs.uiza.io/#log-out"
     }.freeze
 
     class << self
@@ -21,6 +22,16 @@ module Uiza
         headers = {"Authorization" => Uiza.authorization}
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:change_password]
+        uiza_client.execute_request
+      end
+
+      def logout
+        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/logout"
+        method = :post
+        headers = {"Authorization" => Uiza.authorization}
+        params = {}
+
+        uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:logout]
         uiza_client.execute_request
       end
     end
