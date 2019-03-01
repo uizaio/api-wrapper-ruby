@@ -4,6 +4,7 @@ module Uiza
     extend Uiza::APIOperation::Retrieve
     extend Uiza::APIOperation::List
     extend Uiza::APIOperation::Update
+    extend Uiza::APIOperation::Delete
 
     OBJECT_API_PATH = "admin/user".freeze
     OBJECT_API_DESCRIPTION_LINK = {
@@ -11,6 +12,7 @@ module Uiza
       retrieve: "https://docs.uiza.io/#retrieve-an-user",
       list: "https://docs.uiza.io/#list-all-users",
       update: "https://docs.uiza.io/#update-an-user",
+      delete: "https://docs.uiza.io/#delete-an-user",
       change_password: "https://docs.uiza.io/#update-password",
       logout: "https://docs.uiza.io/#log-out"
     }.freeze
