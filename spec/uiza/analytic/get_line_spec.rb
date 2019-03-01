@@ -11,7 +11,8 @@ RSpec.describe Uiza::Analytic do
       it "should returns an array of lines" do
         params = {
           start_date: "YYYY-MM-DD hh:mm",
-          end_date: "YYYY-MM-DD hh:mm"
+          end_date: "YYYY-MM-DD hh:mm",
+          type: "your-metric-type"
         }
 
         expected_method = :get
@@ -20,11 +21,11 @@ RSpec.describe Uiza::Analytic do
         expected_query = params
         mock_response = {
           data: [{
-            day: 1,
-            total_view: 15
+            day_time: 1,
+            value: 15
           }, {
-            day: 2,
-            total_view: 17
+            day_time: 2,
+            value: 17
           }],
           code: 200
         }
@@ -36,10 +37,10 @@ RSpec.describe Uiza::Analytic do
         filters = Uiza::Analytic.get_line params
 
         expect(filters).to be_a Array
-        expect(filters.first.day).to eq 1
-        expect(filters.first.total_view).to eq 15
-        expect(filters.last.day).to eq 2
-        expect(filters.last.total_view).to eq 17
+        expect(filters.first.day_time).to eq 1
+        expect(filters.first.value).to eq 15
+        expect(filters.last.day_time).to eq 2
+        expect(filters.last.value).to eq 17
 
         expect(WebMock).to have_requested(expected_method, expected_url)
           .with(headers: expected_headers, query: expected_query)
@@ -104,7 +105,8 @@ RSpec.describe Uiza::Analytic do
   def api_return_error_code error_code, error_class
     params = {
       start_date: "invalid-value",
-      end_date: "invalid-value"
+      end_date: "invalid-value",
+      type: "invalid-value"
     }
 
     expected_method = :get

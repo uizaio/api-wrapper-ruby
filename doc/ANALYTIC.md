@@ -107,13 +107,14 @@ Uiza.authorization = "your-authorization"
 
 params = {
   start_date: "YYYY-MM-DD hh:mm",
-  end_date: "YYYY-MM-DD hh:mm"
+  end_date: "YYYY-MM-DD hh:mm",
+  type: "your-metric-type"
 }
 
 begin
   response = Uiza::Analytic.get_line params
-  puts response.first.day
-  puts response.first.total_view
+  puts response.first.day_time
+  puts response.first.value
 rescue Uiza::Error::UizaError => e
   puts "description_link: #{e.description_link}"
   puts "code: #{e.code}"
@@ -127,20 +128,16 @@ Example Response
 ```ruby
 [
   {
-    "day": 1541548800000,
-    "total_view": 4
+    "day_time": 1541548800000,
+    "value": 4
   },
   {
-    "day": 1541635200000,
-    "total_view": 5
+    "day_time": 1541635200000,
+    "value": 5
   },
   {
-    "day": 1541721600000,
-    "total_view": 5
-  },
-  {
-    "day": 1541980800000,
-    "total_view": 1
+    "day_time": 1541721600000,
+    "value": 5
   }
 ]
 ```
