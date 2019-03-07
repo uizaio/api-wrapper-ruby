@@ -1,7 +1,12 @@
 # Changelog
+## 1.1.0 - 2019-03-07
+[#](https://github.com/uizaio/api-wrapper-ruby/pull/) Release Sprint 4
+1. Add User
+
+2. Add Analytic
 
 ## 1.0.1 - 2019-02-23
-[#72](https://github.com/uizaio/api-wrapper-ruby/pull/72) Reslease Sprint 3
+[#72](https://github.com/uizaio/api-wrapper-ruby/pull/72) Release Sprint 3
 1. Add Live
 
 2. Add Callback
