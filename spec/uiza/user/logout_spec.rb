@@ -1,25 +1,21 @@
 require "spec_helper"
 
-RSpec.describe Uiza::Category do
+RSpec.describe Uiza::User do
   before(:each) do
     Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
     Uiza.authorization = "your-authorization"
   end
 
-  describe "::list" do
+  describe "::logout" do
     context "API returns code 200" do
-      it "should returns an array of categories" do
-        expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/metadata"
+      it "should returns a message" do
+        expected_method = :post
+        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user/logout"
         expected_headers = {"Authorization" => "your-authorization"}
         mock_response = {
-          data: [{
-            id: "your-category-id-01",
-            name: "Sample category 1"
-          }, {
-            id: "your-category-id-02",
-            name: "Sample category 2"
-          }],
+          data: {
+            message: "Logout success"
+          },
           code: 200
         }
 
@@ -27,13 +23,9 @@ RSpec.describe Uiza::Category do
           .with(headers: expected_headers)
           .to_return(body: mock_response.to_json)
 
-        categories = Uiza::Category.list
+        response = Uiza::User.logout
 
-        expect(categories).to be_a Array
-        expect(categories.first.id).to eq "your-category-id-01"
-        expect(categories.first.name).to eq "Sample category 1"
-        expect(categories.last.id).to eq "your-category-id-02"
-        expect(categories.last.name).to eq "Sample category 2"
+        expect(response.message).to eq "Logout success"
 
         expect(WebMock).to have_requested(expected_method, expected_url)
           .with(headers: expected_headers)
@@ -66,7 +58,7 @@ RSpec.describe Uiza::Category do
 
     context "API returns code 500" do
       it "should raise InternalServerError" do
-        api_return_error_code 500, Uiza::Error::InternalServerError
+        api_return_error_code 422, Uiza::Error::UnprocessableError
       end
     end
 
@@ -93,29 +85,29 @@ RSpec.describe Uiza::Category do
         api_return_error_code 345, Uiza::Error::UizaError
       end
     end
-  end
 
-  def api_return_error_code error_code, error_class
-    expected_method = :get
-    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/metadata"
-    expected_headers = {"Authorization" => "your-authorization"}
-    mock_response = {
-      code: error_code,
-      message: "error message"
-    }
+    def api_return_error_code error_code, error_class
+      expected_method = :post
+      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user/logout"
+      expected_headers = {"Authorization" => "your-authorization"}
+      mock_response = {
+        code: error_code,
+        message: "error message"
+      }
 
-    stub_request(expected_method, expected_url)
-      .with(headers: expected_headers)
-      .to_return(body: mock_response.to_json)
+      stub_request(expected_method, expected_url)
+        .with(headers: expected_headers)
+        .to_return(body: mock_response.to_json)
 
-    expect{Uiza::Category.list}.to raise_error do |error|
-      expect(error).to be_a error_class
-      expect(error.description_link).to eq "https://docs.uiza.io/#retrieve-category-list"
-      expect(error.code).to eq error_code
-      expect(error.message).to eq "error message"
+      expect{Uiza::User.logout}.to raise_error do |error|
+        expect(error).to be_a error_class
+        expect(error.description_link).to eq "https://docs.uiza.io/#log-out"
+        expect(error.code).to eq error_code
+        expect(error.message).to eq "error message"
+      end
+
+      expect(WebMock).to have_requested(expected_method, expected_url)
+        .with(headers: expected_headers)
     end
-
-    expect(WebMock).to have_requested(expected_method, expected_url)
-      .with(headers: expected_headers)
   end
 end

@@ -1,49 +1,42 @@
 require "spec_helper"
 
-RSpec.describe Uiza::Live do
+RSpec.describe Uiza::User do
   before(:each) do
     Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
     Uiza.authorization = "your-authorization"
   end
 
-  describe "::retrieve" do
+  describe "::change_password" do
     context "API returns code 200" do
-      it "should returns a live" do
-        id = "your-live-id"
+      it "should returns a result" do
+        params = {
+          id: "your-user-id",
+          oldPassword: "FMpsr<4[dGPu?B#u",
+          newPassword: "S57Eb{:aMZhW=)G$"
+        }
 
-        expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity"
-        expected_headers = {"Authorization" => "your-authorization"}
-        expected_query = {id: id}
-        mock_response = {
+        # change password
+        expected_method_1 = :post
+        expected_url_1 = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user/changepassword"
+        expected_headers_1 = {"Authorization" => "your-authorization"}
+        expected_body_1 = params
+        mock_response_1 = {
           data: {
-            id: "your-live-id",
-            name: "test event",
-            mode: "push",
-            encode: 1,
-            dvr: 1,
-            linkStream: ["https://www.youtube.com/watch?v=GYktOE77oog"],
-            resourceMode: "single"
+            result: "ok"
           },
           code: 200
         }
 
-        stub_request(expected_method, expected_url)
-          .with(headers: expected_headers, query: expected_query)
-          .to_return(body: mock_response.to_json)
+        stub_request(expected_method_1, expected_url_1)
+          .with(headers: expected_headers_1, body: expected_body_1)
+          .to_return(body: mock_response_1.to_json)
 
-        live = Uiza::Live.retrieve id
+        response = Uiza::User.change_password params
 
-        expect(live.id).to eq "your-live-id"
-        expect(live.name).to eq "test event"
-        expect(live.mode).to eq "push"
-        expect(live.encode).to eq 1
-        expect(live.dvr).to eq 1
-        expect(live.linkStream).to eq ["https://www.youtube.com/watch?v=GYktOE77oog"]
-        expect(live.resourceMode).to eq "single"
+        expect(response.result).to eq "ok"
 
-        expect(WebMock).to have_requested(expected_method, expected_url)
-          .with(headers: expected_headers, query: expected_query)
+        expect(WebMock).to have_requested(expected_method_1, expected_url_1)
+          .with(headers: expected_headers_1, body: expected_body_1)
       end
     end
 
@@ -73,7 +66,7 @@ RSpec.describe Uiza::Live do
 
     context "API returns code 500" do
       it "should raise InternalServerError" do
-        api_return_error_code 422, Uiza::Error::UnprocessableError
+        api_return_error_code 500, Uiza::Error::InternalServerError
       end
     end
 
@@ -102,30 +95,32 @@ RSpec.describe Uiza::Live do
     end
 
     def api_return_error_code error_code, error_class
-      id = "invalid-live-id"
+      params = {
+        key: "invalid-value"
+      }
 
-      expected_method = :get
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity"
+      expected_method = :post
+      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user/changepassword"
       expected_headers = {"Authorization" => "your-authorization"}
-      expected_query = {id: id}
+      expected_body = params
       mock_response = {
         code: error_code,
         message: "error message"
       }
 
       stub_request(expected_method, expected_url)
-        .with(headers: expected_headers, query: expected_query)
+        .with(headers: expected_headers, body: expected_body)
         .to_return(body: mock_response.to_json)
 
-      expect{Uiza::Live.retrieve id}.to raise_error do |error|
+      expect{Uiza::User.change_password params}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#retrieve-a-live-event"
+        expect(error.description_link).to eq "https://docs.uiza.io/#update-password"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end
 
       expect(WebMock).to have_requested(expected_method, expected_url)
-        .with(headers: expected_headers, query: expected_query)
+        .with(headers: expected_headers, body: expected_body)
     end
   end
 end

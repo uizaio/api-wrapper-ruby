@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe Uiza::Category do
+RSpec.describe Uiza::User do
   before(:each) do
     Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
     Uiza.authorization = "your-authorization"
@@ -8,17 +8,17 @@ RSpec.describe Uiza::Category do
 
   describe "::list" do
     context "API returns code 200" do
-      it "should returns an array of categories" do
+      it "should returns an array of user" do
         expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/metadata"
+        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user"
         expected_headers = {"Authorization" => "your-authorization"}
         mock_response = {
           data: [{
-            id: "your-category-id-01",
-            name: "Sample category 1"
+            id: "your-user-id-01",
+            username: "user_test001"
           }, {
-            id: "your-category-id-02",
-            name: "Sample category 2"
+            id: "your-user-id-02",
+            username: "user_test002"
           }],
           code: 200
         }
@@ -27,13 +27,13 @@ RSpec.describe Uiza::Category do
           .with(headers: expected_headers)
           .to_return(body: mock_response.to_json)
 
-        categories = Uiza::Category.list
+        users = Uiza::User.list
 
-        expect(categories).to be_a Array
-        expect(categories.first.id).to eq "your-category-id-01"
-        expect(categories.first.name).to eq "Sample category 1"
-        expect(categories.last.id).to eq "your-category-id-02"
-        expect(categories.last.name).to eq "Sample category 2"
+        expect(users).to be_a Array
+        expect(users.first.id).to eq "your-user-id-01"
+        expect(users.first.username).to eq "user_test001"
+        expect(users.last.id).to eq "your-user-id-02"
+        expect(users.last.username).to eq "user_test002"
 
         expect(WebMock).to have_requested(expected_method, expected_url)
           .with(headers: expected_headers)
@@ -97,7 +97,7 @@ RSpec.describe Uiza::Category do
 
   def api_return_error_code error_code, error_class
     expected_method = :get
-    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/metadata"
+    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user"
     expected_headers = {"Authorization" => "your-authorization"}
     mock_response = {
       code: error_code,
@@ -108,9 +108,9 @@ RSpec.describe Uiza::Category do
       .with(headers: expected_headers)
       .to_return(body: mock_response.to_json)
 
-    expect{Uiza::Category.list}.to raise_error do |error|
+    expect{Uiza::User.list}.to raise_error do |error|
       expect(error).to be_a error_class
-      expect(error.description_link).to eq "https://docs.uiza.io/#retrieve-category-list"
+      expect(error.description_link).to eq "https://docs.uiza.io/#list-all-users"
       expect(error.code).to eq error_code
       expect(error.message).to eq "error message"
     end

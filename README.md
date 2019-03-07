@@ -64,7 +64,7 @@ Uiza.authorization = ENV["AUTHORIZATION"]
 ## Entity
 These below APIs used to take action with your media files (we called Entity).
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/ENTITY.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/ENTITY.md).
 
 ```ruby
 begin
@@ -83,7 +83,7 @@ end
 ## Category
 Category has been splits into 3 types: `folder`, `playlist` and `tag`. These will make the management of entity more easier.
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/CATEGORY.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/CATEGORY.md).
 
 ```ruby
 require "uiza"
@@ -108,7 +108,7 @@ end
 You can add your storage (`FTP`, `AWS S3`) with UIZA.
 After synced, you can select your content easier from your storage to [create entity](https://docs.uiza.io/#create-entity).
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/STORAGE.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/STORAGE.md).
 
 ```ruby
 require "json"
@@ -134,7 +134,7 @@ These APIs used to create and manage live streaming event.
 * When a Live is not start : it's named as `Event`.
 * When have an `Event` , you can start it : it's named as `Feed`.
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/LIVE_STREAMING.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/LIVE_STREAMING.md).
 
 ```ruby
 require "json"
@@ -158,7 +158,7 @@ end
 ## Callback
 Callback used to retrieve an information for Uiza to your server, so you can have a trigger notice about an entity is upload completed and .
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/CALLBACK.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/CALLBACK.md).
 
 ```ruby
 require "json"
@@ -179,16 +179,68 @@ rescue StandardError => e
 end
 ```
 
+## User Management
+You can manage user with APIs user. Uiza have 2 levels of user:
+  Admin - This account will have the highest priority, can have permission to create & manage users.
+  User - This account level is under Admin level. It only manages APIs that relates to this account.
+
+See details [here](https://docs.uiza.io/#user-management).
+
+```ruby
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+begin
+  user = Uiza::User.retrieve "your-user-id"
+  puts user.id
+  puts user.username
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
+
 ## Analytic
 Monitor the four key dimensions of video QoS: playback failures, startup time, rebuffering, and video quality.
 These 15 metrics help you track playback performance, so your team can know exactly what’s going on.
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/ANALYTIC.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/ANALYTIC.md).
+
+```ruby
+require "json"
+
+Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.authorization = "your-authorization"
+
+params = {
+  start_date: "YYYY-MM-DD hh:mm",
+  end_date: "YYYY-MM-DD hh:mm",
+  type_filter: "your-type-filter"
+}
+
+begin
+  response = Uiza::Analytic.total_line params
+  puts response.first.name
+  puts response.first.total_view
+  puts response.percentage_of_view
+rescue Uiza::Error::UizaError => e
+  puts "description_link: #{e.description_link}"
+  puts "code: #{e.code}"
+  puts "message: #{e.message}"
+rescue StandardError => e
+  puts "message: #{e.message}"
+end
+```
 
 ## Embed Metadata
 Embed metadata is information that can be embed into video/audio file. You can embed into file by adding a json compose these tag.
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/EMBED_METADATA.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/EMBED_METADATA.md).
 
 ## Errors Code
 Uiza uses conventional HTTP response codes to indicate the success or failure of an API request.
@@ -196,7 +248,7 @@ In general: Codes in the `2xx` range indicate success.
 Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a charge failed, etc.).
 Codes in the `5xx` range indicate an error with Uiza's servers.
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/ERRORS_CODE.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/ERRORS_CODE.md).
 
 ## Development
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

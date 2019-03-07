@@ -1,42 +1,49 @@
 require "spec_helper"
 
-RSpec.describe Uiza::Category do
+RSpec.describe Uiza::Analytic do
   before(:each) do
     Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
     Uiza.authorization = "your-authorization"
   end
 
-  describe "::list" do
+  describe "::get_line" do
     context "API returns code 200" do
-      it "should returns an array of categories" do
+      it "should returns an array of lines" do
+        params = {
+          start_date: "YYYY-MM-DD hh:mm",
+          end_date: "YYYY-MM-DD hh:mm",
+          type: "your-metric-type"
+        }
+
         expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/metadata"
+        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/analytic/entity/video-quality/line"
         expected_headers = {"Authorization" => "your-authorization"}
+        expected_query = params
         mock_response = {
           data: [{
-            id: "your-category-id-01",
-            name: "Sample category 1"
+            day_time: 1,
+            value: 15
           }, {
-            id: "your-category-id-02",
-            name: "Sample category 2"
+            day_time: 2,
+            value: 17
           }],
           code: 200
         }
 
         stub_request(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, query: expected_query)
           .to_return(body: mock_response.to_json)
 
-        categories = Uiza::Category.list
+        filters = Uiza::Analytic.get_line params
 
-        expect(categories).to be_a Array
-        expect(categories.first.id).to eq "your-category-id-01"
-        expect(categories.first.name).to eq "Sample category 1"
-        expect(categories.last.id).to eq "your-category-id-02"
-        expect(categories.last.name).to eq "Sample category 2"
+        expect(filters).to be_a Array
+        expect(filters.first.day_time).to eq 1
+        expect(filters.first.value).to eq 15
+        expect(filters.last.day_time).to eq 2
+        expect(filters.last.value).to eq 17
 
         expect(WebMock).to have_requested(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, query: expected_query)
       end
     end
 
@@ -96,26 +103,33 @@ RSpec.describe Uiza::Category do
   end
 
   def api_return_error_code error_code, error_class
+    params = {
+      start_date: "invalid-value",
+      end_date: "invalid-value",
+      type: "invalid-value"
+    }
+
     expected_method = :get
-    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/metadata"
+    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/analytic/entity/video-quality/line"
     expected_headers = {"Authorization" => "your-authorization"}
+    expected_query = params
     mock_response = {
       code: error_code,
       message: "error message"
     }
 
     stub_request(expected_method, expected_url)
-      .with(headers: expected_headers)
+      .with(headers: expected_headers, query: expected_query)
       .to_return(body: mock_response.to_json)
 
-    expect{Uiza::Category.list}.to raise_error do |error|
+    expect{Uiza::Analytic.get_line params}.to raise_error do |error|
       expect(error).to be_a error_class
-      expect(error.description_link).to eq "https://docs.uiza.io/#retrieve-category-list"
+      expect(error.description_link).to eq "https://docs.uiza.io/#line"
       expect(error.code).to eq error_code
       expect(error.message).to eq "error message"
     end
 
     expect(WebMock).to have_requested(expected_method, expected_url)
-      .with(headers: expected_headers)
+      .with(headers: expected_headers, query: expected_query)
   end
 end

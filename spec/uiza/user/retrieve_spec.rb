@@ -1,42 +1,43 @@
 require "spec_helper"
 
-RSpec.describe Uiza::Category do
+RSpec.describe Uiza::User do
   before(:each) do
     Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
     Uiza.authorization = "your-authorization"
   end
 
-  describe "::list" do
+  describe "::retrieve" do
     context "API returns code 200" do
-      it "should returns an array of categories" do
+      it "should returns an user" do
+        id = "your-user-id"
+
         expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/metadata"
+        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user"
         expected_headers = {"Authorization" => "your-authorization"}
+        expected_query = {id: id}
         mock_response = {
-          data: [{
-            id: "your-category-id-01",
-            name: "Sample category 1"
-          }, {
-            id: "your-category-id-02",
-            name: "Sample category 2"
-          }],
+          data: {
+            id: "your-user-id",
+            isAdmin: 1,
+            username: "user_test",
+            email: "user_test@uiza.io"
+          },
           code: 200
         }
 
         stub_request(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, query: expected_query)
           .to_return(body: mock_response.to_json)
 
-        categories = Uiza::Category.list
+        user = Uiza::User.retrieve id
 
-        expect(categories).to be_a Array
-        expect(categories.first.id).to eq "your-category-id-01"
-        expect(categories.first.name).to eq "Sample category 1"
-        expect(categories.last.id).to eq "your-category-id-02"
-        expect(categories.last.name).to eq "Sample category 2"
+        expect(user.id).to eq "your-user-id"
+        expect(user.isAdmin).to eq 1
+        expect(user.username).to eq "user_test"
+        expect(user.email).to eq "user_test@uiza.io"
 
         expect(WebMock).to have_requested(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, query: expected_query)
       end
     end
 
@@ -66,7 +67,7 @@ RSpec.describe Uiza::Category do
 
     context "API returns code 500" do
       it "should raise InternalServerError" do
-        api_return_error_code 500, Uiza::Error::InternalServerError
+        api_return_error_code 422, Uiza::Error::UnprocessableError
       end
     end
 
@@ -93,29 +94,32 @@ RSpec.describe Uiza::Category do
         api_return_error_code 345, Uiza::Error::UizaError
       end
     end
-  end
 
-  def api_return_error_code error_code, error_class
-    expected_method = :get
-    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/metadata"
-    expected_headers = {"Authorization" => "your-authorization"}
-    mock_response = {
-      code: error_code,
-      message: "error message"
-    }
+    def api_return_error_code error_code, error_class
+      id = "invalid-user-id"
 
-    stub_request(expected_method, expected_url)
-      .with(headers: expected_headers)
-      .to_return(body: mock_response.to_json)
+      expected_method = :get
+      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user"
+      expected_headers = {"Authorization" => "your-authorization"}
+      expected_query = {id: id}
+      mock_response = {
+        code: error_code,
+        message: "error message"
+      }
 
-    expect{Uiza::Category.list}.to raise_error do |error|
-      expect(error).to be_a error_class
-      expect(error.description_link).to eq "https://docs.uiza.io/#retrieve-category-list"
-      expect(error.code).to eq error_code
-      expect(error.message).to eq "error message"
+      stub_request(expected_method, expected_url)
+        .with(headers: expected_headers, query: expected_query)
+        .to_return(body: mock_response.to_json)
+
+      expect{Uiza::User.retrieve id}.to raise_error do |error|
+        expect(error).to be_a error_class
+        expect(error.description_link).to eq "https://docs.uiza.io/#retrieve-an-user"
+        expect(error.code).to eq error_code
+        expect(error.message).to eq "error message"
+      end
+
+      expect(WebMock).to have_requested(expected_method, expected_url)
+        .with(headers: expected_headers, query: expected_query)
     end
-
-    expect(WebMock).to have_requested(expected_method, expected_url)
-      .with(headers: expected_headers)
   end
 end

@@ -1,31 +1,43 @@
 require "spec_helper"
 
-RSpec.describe Uiza::Live do
+RSpec.describe Uiza::Callback do
   before(:each) do
     Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
     Uiza.authorization = "your-authorization"
   end
 
-  describe "::update" do
+  describe "::create" do
     context "API returns code 200" do
-      it "should returns a live" do
+      it "should returns an user" do
         params = {
-          id: "your-live-id",
-          name: "live test",
-          mode: "push",
-          encode: 0,
-          dvr: 1,
-          resourceMode: "single"
+          status: 1,
+          username: "user_test002",
+          email: "user_test002@uiza.io",
+          password: "FMpsr<4[dGPu?B#u",
+          gender: 0,
+          dob: "05/15/2018",
+          avatar: "https://exemple.com/avatar.jpeg",
+          fullname: "User Test",
+          isAdmin: 0
         }
 
-        # update live
-        expected_method_1 = :put
-        expected_url_1 = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity"
+        # create user
+        expected_method_1 = :post
+        expected_url_1 = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user"
         expected_headers_1 = {"Authorization" => "your-authorization"}
         expected_body_1 = params
         mock_response_1 = {
           data: {
-            id: "your-live-id"
+            id: "your-user-id",
+            status: 1,
+            username: "user_test002",
+            email: "user_test002@uiza.io",
+            password: "FMpsr<4[dGPu?B#u",
+            gender: 0,
+            dob: "05/15/2018",
+            avatar: "https://exemple.com/avatar.jpeg",
+            fullname: "User Test",
+            isAdmin: 0
           },
           code: 200
         }
@@ -34,20 +46,23 @@ RSpec.describe Uiza::Live do
           .with(headers: expected_headers_1, body: expected_body_1)
           .to_return(body: mock_response_1.to_json)
 
-        # retrieve live with id = "your-live-id"
+        # retrieve user with id = "your-user-id"
         expected_method_2 = :get
-        expected_url_2 = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity"
+        expected_url_2 = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user"
         expected_headers_2 = {"Authorization" => "your-authorization"}
-        expected_query_2 = {id: "your-live-id"}
+        expected_query_2 = {id: "your-user-id"}
         mock_response_2 = {
           data: {
-            id: "your-live-id",
-            name: "live test",
-            mode: "push",
-            encode: 0,
-            dvr: 1,
-            linkStream: ["https://www.youtube.com/watch?v=GYktOE77oog"],
-            resourceMode: "single"
+            id: "your-callback-id",
+            status: 1,
+            username: "user_test002",
+            email: "user_test002@uiza.io",
+            password: "FMpsr<4[dGPu?B#u",
+            gender: 0,
+            dob: "05/15/2018",
+            avatar: "https://exemple.com/avatar.jpeg",
+            fullname: "User Test",
+            isAdmin: 0
           },
           code: 200
         }
@@ -56,15 +71,18 @@ RSpec.describe Uiza::Live do
           .with(headers: expected_headers_2, query: expected_query_2)
           .to_return(body: mock_response_2.to_json)
 
-        live = Uiza::Live.update params
+        user = Uiza::User.create params
 
-        expect(live.id).to eq "your-live-id"
-        expect(live.name).to eq "live test"
-        expect(live.mode).to eq "push"
-        expect(live.encode).to eq 0
-        expect(live.dvr).to eq 1
-        expect(live.linkStream).to eq ["https://www.youtube.com/watch?v=GYktOE77oog"]
-        expect(live.resourceMode).to eq "single"
+        expect(user.id).to eq "your-callback-id"
+        expect(user.status).to eq 1
+        expect(user.username).to eq "user_test002"
+        expect(user.email).to eq "user_test002@uiza.io"
+        expect(user.password).to eq "FMpsr<4[dGPu?B#u"
+        expect(user.gender).to eq 0
+        expect(user.dob).to eq "05/15/2018"
+        expect(user.avatar).to eq "https://exemple.com/avatar.jpeg"
+        expect(user.fullname).to eq "User Test"
+        expect(user.isAdmin).to eq 0
 
         expect(WebMock).to have_requested(expected_method_1, expected_url_1)
           .with(headers: expected_headers_1, body: expected_body_1)
@@ -133,8 +151,8 @@ RSpec.describe Uiza::Live do
         key: "invalid-value"
       }
 
-      expected_method = :put
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity"
+      expected_method = :post
+      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user"
       expected_headers = {"Authorization" => "your-authorization"}
       expected_body = params
       mock_response = {
@@ -146,9 +164,9 @@ RSpec.describe Uiza::Live do
         .with(headers: expected_headers, body: expected_body)
         .to_return(body: mock_response.to_json)
 
-      expect{Uiza::Live.update params}.to raise_error do |error|
+      expect{Uiza::User.create params}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#update-a-live-event"
+        expect(error.description_link).to eq "https://docs.uiza.io/#create-an-user"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end
