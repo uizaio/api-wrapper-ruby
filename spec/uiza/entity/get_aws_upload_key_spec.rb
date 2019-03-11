@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::Entity do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -10,8 +10,9 @@ RSpec.describe Uiza::Entity do
     context "API returns code 200" do
       it "should returns an object with aws data" do
         expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/app/config/aws"
+        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/app/config/aws"
         expected_headers = {"Authorization" => "your-authorization"}
+        expected_query = {"appId" => "your-app-id"}
         mock_response = {
           data: {
             bucket_name: "Sample bucket name",
@@ -21,7 +22,7 @@ RSpec.describe Uiza::Entity do
         }
 
         stub_request(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, query: expected_query)
           .to_return(body: mock_response.to_json)
 
         response = Uiza::Entity.get_aws_upload_key
@@ -30,7 +31,7 @@ RSpec.describe Uiza::Entity do
         expect(response.region_name).to eq "Sample region name"
 
         expect(WebMock).to have_requested(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, query: expected_query)
       end
     end
 
@@ -90,15 +91,16 @@ RSpec.describe Uiza::Entity do
 
     def api_return_error_code error_code, error_class
       expected_method = :get
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/app/config/aws"
+      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/app/config/aws"
       expected_headers = {"Authorization" => "your-authorization"}
+      expected_query = {"appId" => "your-app-id"}
       mock_response = {
         code: error_code,
         message: "error message"
       }
 
       stub_request(expected_method, expected_url)
-        .with(headers: expected_headers)
+        .with(headers: expected_headers, query: expected_query)
         .to_return(body: mock_response.to_json)
 
       expect{Uiza::Entity.get_aws_upload_key}.to raise_error do |error|
@@ -109,7 +111,7 @@ RSpec.describe Uiza::Entity do
       end
 
       expect(WebMock).to have_requested(expected_method, expected_url)
-        .with(headers: expected_headers)
+        .with(headers: expected_headers, query: expected_query)
     end
   end
 end

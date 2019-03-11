@@ -54,10 +54,10 @@ module Uiza
       end
 
       def get_aws_upload_key
-        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/admin/app/config/aws"
+        url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/admin/app/config/aws"
         method = :get
         headers = {"Authorization" => Uiza.authorization}
-        params = {}
+        params = {"appId" => Uiza.app_id}
         description_link = OBJECT_API_DESCRIPTION_LINK[:get_aws_upload_key]
 
         uiza_client = UizaClient.new url, method, headers, params, description_link
