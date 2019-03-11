@@ -34,6 +34,14 @@ require "uiza/analytic"
 
 module Uiza
   class << self
-    attr_accessor :workspace_api_domain, :authorization
+    attr_accessor :app_id, :authorization
+
+    def workspace_api_domain
+      "https://stag-ap-southeast-1-api.uizadev.io"
+    end
+
+    def api_version
+      "v4"
+    end
   end
 end

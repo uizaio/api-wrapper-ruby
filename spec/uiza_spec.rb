@@ -5,10 +5,10 @@ RSpec.describe Uiza do
     expect(Uiza::VERSION).not_to be nil
   end
 
-  it "should allows workspace_api_domain to be configured" do
-    Uiza.workspace_api_domain = "your-workspace-api-domain"
+  it "should allows app_id to be configured" do
+    Uiza.app_id = "your-app-id"
 
-    expect(Uiza.workspace_api_domain).to eq "your-workspace-api-domain"
+    expect(Uiza.app_id).to eq "your-app-id"
   end
 
  it "should allows authorization to be configured" do
