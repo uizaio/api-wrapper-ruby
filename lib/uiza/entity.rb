@@ -21,10 +21,10 @@ module Uiza
 
     class << self
       def search keyword
-        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/search"
+        url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/search"
         method = :get
-        headers = {"Authorization" => Uiza.authorization}
-        params = {keyword: keyword}
+        headers = {"Authorization" => Uiza.authorization, appId: Uiza.app_id}
+        params = {keyword: keyword, appId: Uiza.app_id}
         description_link = OBJECT_API_DESCRIPTION_LINK[:search]
 
         uiza_client = UizaClient.new url, method, headers, params, description_link
