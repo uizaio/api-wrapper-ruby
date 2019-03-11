@@ -49,7 +49,7 @@ See details [here](https://docs.uiza.io/#authentication).
 ## Ruby
 ```ruby
 require "uiza"
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 ```
 
@@ -57,14 +57,14 @@ Uiza.authorization = "your-authorization"
 Create file `your-app/config/initializers/uiza.rb`
 
 ```ruby
-Uiza.workspace_api_domain = ENV["WORKSPACE_API_DOMAIN"]
+Uiza.app_id = ENV["APP_ID"]
 Uiza.authorization = ENV["AUTHORIZATION"]
 ```
 
 ## Entity
 These below APIs used to take action with your media files (we called Entity).
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/ENTITY.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/ENTITY.md).
 
 ```ruby
 begin
