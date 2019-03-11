@@ -37,7 +37,7 @@ module Uiza
     attr_accessor :app_id, :authorization
 
     def workspace_api_domain
-      "https://stag-ap-southeast-1-api.uizadev.io"
+      "stag-ap-southeast-1-api.uizadev.io"
     end
 
     def api_version
