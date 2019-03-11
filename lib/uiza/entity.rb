@@ -32,10 +32,10 @@ module Uiza
       end
 
       def publish id
-        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/publish"
+        url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/publish"
         method = :post
         headers = {"Authorization" => Uiza.authorization}
-        params = {id: id}
+        params = {id: id, appId: Uiza.app_id}
         description_link = OBJECT_API_DESCRIPTION_LINK[:publish]
 
         uiza_client = UizaClient.new url, method, headers, params, description_link
