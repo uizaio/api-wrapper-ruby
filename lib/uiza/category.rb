@@ -19,10 +19,11 @@ module Uiza
 
     class << self
       def create_relation params
-        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/media/entity/related/metadata"
+        url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/media/entity/related/metadata"
         method = :post
         headers = {"Authorization" => Uiza.authorization}
         description_link = OBJECT_API_DESCRIPTION_LINK[:create_relation]
+        params["appId"] = Uiza.app_id
 
         uiza_client = UizaClient.new url, method, headers, params, description_link
         uiza_client.execute_request
