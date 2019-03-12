@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::Category do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -11,11 +11,12 @@ RSpec.describe Uiza::Category do
       it "should returns an array of relations" do
         params = {
           entityId: "your-entity-id-01",
-          metadataIds: ["your-category-id-01", "your-category-id-02"]
+          metadataIds: ["your-category-id-01", "your-category-id-02"],
+          appId: "your-app-id"
         }
 
         expected_method = :post
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/related/metadata"
+        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/entity/related/metadata"
         expected_headers = {"Authorization" => "your-authorization"}
         expected_body = params
         mock_response = {
@@ -104,11 +105,12 @@ RSpec.describe Uiza::Category do
   def api_return_error_code error_code, error_class
     params = {
       entityId: "your-entity-id-01",
-      metadataIds: ["your-category-id-01", "your-category-id-02"]
+      metadataIds: ["your-category-id-01", "your-category-id-02"],
+      appId: "your-app-id"
     }
 
     expected_method = :post
-    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/related/metadata"
+    expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/entity/related/metadata"
     expected_headers = {"Authorization" => "your-authorization"}
     expected_body = params
     mock_response = {
