@@ -83,12 +83,12 @@ end
 ## Category
 Category has been splits into 3 types: `folder`, `playlist` and `tag`. These will make the management of entity more easier.
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/CATEGORY.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/CATEGORY.md).
 
 ```ruby
 require "uiza"
 
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 
 begin
