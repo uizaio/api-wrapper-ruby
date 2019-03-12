@@ -311,7 +311,7 @@ See details [here](https://docs.uiza.io/#list-all-recorded-files).
 ```ruby
 require "uiza"
 
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 
 begin

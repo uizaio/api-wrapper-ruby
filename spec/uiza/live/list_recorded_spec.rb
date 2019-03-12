@@ -2,16 +2,17 @@ require "spec_helper"
 
 RSpec.describe Uiza::Live do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
-  describe "::list" do
+  describe "::list_recorded" do
     context "API returns code 200" do
       it "should returns an array of recorded files" do
         expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity/dvr"
+        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/live/entity/dvr"
         expected_headers = {"Authorization" => "your-authorization"}
+        expected_query = {"appId" => "your-app-id"}
         mock_response = {
           data: [{
             id: "your-record-id-01",
@@ -24,7 +25,7 @@ RSpec.describe Uiza::Live do
         }
 
         stub_request(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, query: expected_query)
           .to_return(body: mock_response.to_json)
 
         list_recorded = Uiza::Live.list_recorded
@@ -36,7 +37,7 @@ RSpec.describe Uiza::Live do
         expect(list_recorded.last.entityId).to eq "your-entity-id-02"
 
         expect(WebMock).to have_requested(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, query: expected_query)
       end
     end
 
@@ -97,15 +98,16 @@ RSpec.describe Uiza::Live do
 
   def api_return_error_code error_code, error_class
     expected_method = :get
-    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity/dvr"
+    expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/live/entity/dvr"
     expected_headers = {"Authorization" => "your-authorization"}
+    expected_query = {"appId" => "your-app-id"}
     mock_response = {
       code: error_code,
       message: "error message"
     }
 
     stub_request(expected_method, expected_url)
-      .with(headers: expected_headers)
+      .with(headers: expected_headers, query: expected_query)
       .to_return(body: mock_response.to_json)
 
     expect{Uiza::Live.list_recorded}.to raise_error do |error|
@@ -116,6 +118,6 @@ RSpec.describe Uiza::Live do
     end
 
     expect(WebMock).to have_requested(expected_method, expected_url)
-      .with(headers: expected_headers)
+      .with(headers: expected_headers, query: expected_query)
   end
 end
