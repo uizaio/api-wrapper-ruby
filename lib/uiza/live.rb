@@ -54,9 +54,10 @@ module Uiza
       end
 
       def list_recorded params = {}
-        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/dvr"
+        url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/dvr"
         method = :get
         headers = {"Authorization" => Uiza.authorization}
+        params[:appId] = Uiza.app_id
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:list_recorded]
         uiza_client.execute_request
