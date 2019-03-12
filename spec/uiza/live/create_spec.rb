@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::Live do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -20,9 +20,9 @@ RSpec.describe Uiza::Live do
 
         # create live
         expected_method_1 = :post
-        expected_url_1 = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity"
+        expected_url_1 = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/live/entity"
         expected_headers_1 = {"Authorization" => "your-authorization"}
-        expected_body_1 = params
+        expected_body_1 = params.merge(appId: "your-app-id")
         mock_response_1 = {
           data: {
             id: "your-live-id"
@@ -36,9 +36,9 @@ RSpec.describe Uiza::Live do
 
         # retrieve live with id = "your-live-id"
         expected_method_2 = :get
-        expected_url_2 = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity"
+        expected_url_2 = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/live/entity"
         expected_headers_2 = {"Authorization" => "your-authorization"}
-        expected_query_2 = {id: "your-live-id"}
+        expected_query_2 = {id: "your-live-id", appId: "your-app-id"}
         mock_response_2 = {
           data: {
             id: "your-live-id",
@@ -134,9 +134,9 @@ RSpec.describe Uiza::Live do
       }
 
       expected_method = :post
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity"
+      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/live/entity"
       expected_headers = {"Authorization" => "your-authorization"}
-      expected_body = params
+      expected_body = params.merge(appId: "your-app-id")
       mock_response = {
         code: error_code,
         message: "error message"

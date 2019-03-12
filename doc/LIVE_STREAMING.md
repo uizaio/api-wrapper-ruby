@@ -15,21 +15,14 @@ See details [here](https://docs.uiza.io/#create-a-live-event).
 ```ruby
 require "uiza"
 
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 
 params = {
-  name: "test event",
+  name: "Sample Video",
   mode: "push",
-  encode: 1,
-  dvr: 1,
-  description: "This is for test event",
-  poster: "https://example.com/poster.jpeg",
-  thumbnail: "https://example.com/poster.jpeg",
-  linkStream: [
-    "https://playlist.m3u8"
-  ],
-  resourceMode: "single"
+  resourceMode: "single",
+  encode: 0
 }
 
 begin

@@ -23,7 +23,7 @@ module Uiza
       def search keyword
         url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/search"
         method = :get
-        headers = {"Authorization" => Uiza.authorization, appId: Uiza.app_id}
+        headers = {"Authorization" => Uiza.authorization}
         params = {keyword: keyword, appId: Uiza.app_id}
         description_link = OBJECT_API_DESCRIPTION_LINK[:search]
 
