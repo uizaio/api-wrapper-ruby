@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::Storage do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -12,9 +12,9 @@ RSpec.describe Uiza::Storage do
         id = "your-storage-id"
 
         expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/storage"
+        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/storage"
         expected_headers = {"Authorization" => "your-authorization"}
-        expected_query = {id: id}
+        expected_query = {id: id, appId: "your-app-id"}
         mock_response = {
           data: {
             id: "your-storage-id",
@@ -103,9 +103,9 @@ RSpec.describe Uiza::Storage do
       id = "invalid-storage-id"
 
       expected_method = :get
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/storage"
+      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/storage"
       expected_headers = {"Authorization" => "your-authorization"}
-      expected_query = {id: id}
+      expected_query = {id: id, appId: "your-app-id"}
       mock_response = {
         code: error_code,
         message: "error message"
