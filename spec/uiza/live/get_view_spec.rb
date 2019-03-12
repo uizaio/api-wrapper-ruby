@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::Live do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -12,9 +12,9 @@ RSpec.describe Uiza::Live do
         id = "your-live-id"
 
         expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity/tracking/current-view"
+        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/live/entity/tracking/current-view"
         expected_headers = {"Authorization" => "your-authorization"}
-        expected_query = {id: id}
+        expected_query = {id: id, appId: "your-app-id"}
         mock_response = {
           data: {
             stream_name: "your-stream-name",
@@ -97,9 +97,9 @@ RSpec.describe Uiza::Live do
       id = "invalid-live-id"
 
       expected_method = :get
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity/tracking/current-view"
+      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/live/entity/tracking/current-view"
       expected_headers = {"Authorization" => "your-authorization"}
-      expected_query = {id: id}
+      expected_query = {id: id, appId: "your-app-id"}
       mock_response = {
         code: error_code,
         message: "error message"
