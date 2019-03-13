@@ -35,7 +35,7 @@ RSpec.describe Uiza::User do
         expected_method_2 = :get
         expected_url_2 = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/user"
         expected_headers_2 = {"Authorization" => "your-authorization"}
-        expected_query_2 = {id: "your-user-id"}
+        expected_query_2 = {id: "your-user-id", appId: "your-app-id"}
         mock_response_2 = {
           data: {
             id: "your-user-id",
