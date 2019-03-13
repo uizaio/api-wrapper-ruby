@@ -20,7 +20,10 @@ params = {
   name: "FTP Uiza",
   description: "FTP of Uiza, use for transcode",
   storageType: "ftp",
-  host: "ftp-example.uiza.io"
+  host: "ftp-example.uiza.io",
+  username: "example user",
+  password: "example password",
+  description: "example description"
 }
 
 begin
@@ -37,24 +40,34 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "cd003123-7ec9-4f3a-9d7c-f2de93e83e49",
-  "name": "FTP Uiza",
-  "description": "FTP of Uiza, use for transcode",
-  "storageType": "ftp",
-  "usageType": "input",
-  "bucket": null,
-  "prefix": null,
-  "host": "ftp-exemple.uiza.io",
-  "awsAccessKey": null,
-  "awsSecretKey": null,
-  "username": "uiza",
-  "password": "=5;9x@LPsd+w7qW",
-  "region": null,
-  "port": 21,
-  "createdAt": "2018-06-19T03:01:56.000Z",
-  "updatedAt": "2018-06-19T03:01:56.000Z"
+  "data": {
+    "id": "f8819781-df28-410f-8cb1-ee3a29523840",
+    "name": "FTP Uiza",
+    "description": "example description",
+    "storageType": "ftp",
+    "usageType": "input",
+    "bucket": nil,
+    "prefix": nil,
+    "host": "ftp-example.uiza.io",
+    "awsAccessKey": nil,
+    "awsSecretKey": nil,
+    "username": "example user",
+    "password": "example password",
+    "region": nil,
+    "port": nil,
+    "createdAt": "2019-03-13T11:21:26.000Z",
+    "updatedAt": nil
+  },
+  "version": 4,
+  "datetime": "2019-03-13T11:21:26.707Z",
+  "policy": "public",
+  "requestId": "9e49aa2e-2e52-497f-b858-3ae172986a54",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -82,24 +95,34 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "cd003123-7ec9-4f3a-9d7c-f2de93e83e49",
-  "name": "FTP Uiza",
-  "description": "FTP of Uiza, use for transcode",
-  "storageType": "ftp",
-  "usageType": "input",
-  "bucket": null,
-  "prefix": null,
-  "host": "ftp-exemple.uiza.io",
-  "awsAccessKey": null,
-  "awsSecretKey": null,
-  "username": "uiza",
-  "password": "=5;9x@LPsd+w7qW",
-  "region": null,
-  "port": 21,
-  "createdAt": "2018-06-19T03:01:56.000Z",
-  "updatedAt": "2018-06-19T03:01:56.000Z"
+  "data": {
+    "id": "f8819781-df28-410f-8cb1-ee3a29523840",
+    "name": "FTP Uiza",
+    "description": "example description",
+    "storageType": "ftp",
+    "usageType": "input",
+    "bucket": nil,
+    "prefix": nil,
+    "host": "ftp-example.uiza.io",
+    "awsAccessKey": nil,
+    "awsSecretKey": nil,
+    "username": "example user",
+    "password": "example password",
+    "region": nil,
+    "port": nil,
+    "createdAt": "2019-03-13T11:21:26.000Z",
+    "updatedAt": nil
+  },
+  "version": 4,
+  "datetime": "2019-03-13T11:21:26.707Z",
+  "policy": "public",
+  "requestId": "9e49aa2e-2e52-497f-b858-3ae172986a54",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -118,8 +141,7 @@ params = {
   id: "your-storage-id",
   name: "FTP Uiza edited",
   host: "ftp-example.uiza.io",
-  port: 21,
-  storageType: "ftp"
+  storageType: "s3"
 }
 
 begin
@@ -136,24 +158,34 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "cd003123-7ec9-4f3a-9d7c-f2de93e83e49",
-  "name": "FTP Uiza edited",
-  "description": "FTP of Uiza, use for transcode",
-  "storageType": "ftp",
-  "usageType": "input",
-  "bucket": null,
-  "prefix": null,
-  "host": "ftp-exemple.uiza.io",
-  "awsAccessKey": null,
-  "awsSecretKey": null,
-  "username": "uiza",
-  "password": "=5;9x@LPsd+w7qW",
-  "region": null,
-  "port": 21,
-  "createdAt": "2018-06-19T03:01:56.000Z",
-  "updatedAt": "2018-06-19T03:01:56.000Z"
+  "data": {
+    "id": "f8819781-df28-410f-8cb1-ee3a29523840",
+    "name": "FTP Uiza edited",
+    "description": "example description",
+    "storageType": "s3",
+    "usageType": "input",
+    "bucket": nil,
+    "prefix": nil,
+    "host": "ftp-example.uiza.io",
+    "awsAccessKey": nil,
+    "awsSecretKey": nil,
+    "username": "example username",
+    "password": "example password",
+    "region": nil,
+    "port": 80,
+    "createdAt": "2019-03-13T11:21:26.000Z",
+    "updatedAt": nil
+  },
+  "version": 4,
+  "datetime": "2019-03-13T11:40:36.334Z",
+  "policy": "public",
+  "requestId": "da83e775-33a5-4ced-8074-144d1eeb5d9e",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -181,8 +213,33 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "cd003123-7ec9-4f3a-9d7c-f2de93e83e49"
+  "data": {
+    "id": "f8819781-df28-410f-8cb1-ee3a29523840",
+    "name": "FTP Uiza edited",
+    "description": "example description",
+    "storageType": "s3",
+    "usageType": "input",
+    "bucket": nil,
+    "prefix": nil,
+    "host": "ftp-example.uiza.io",
+    "awsAccessKey": nil,
+    "awsSecretKey": nil,
+    "username": "example username",
+    "password": "example password",
+    "region": nil,
+    "port": 80,
+    "createdAt": "2019-03-13T11:21:26.000Z",
+    "updatedAt": nil
+  },
+  "version": 4,
+  "datetime": "2019-03-13T11:42:38.205Z",
+  "policy": "public",
+  "requestId": "d864a038-401c-470e-87b0-c282122a4d64",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
