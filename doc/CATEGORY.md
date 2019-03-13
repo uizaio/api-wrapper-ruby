@@ -169,7 +169,7 @@ Example Response
       "slug": "folder-sample",
       "type": "folder",
       "orderNumber": 0,
-      "icon": "nil",
+      "icon": nil,
       "status": 1,
       "createdAt": "2019-03-13T10:41:28.000Z",
       "updatedAt": "0000-00-00 00:00:00"
