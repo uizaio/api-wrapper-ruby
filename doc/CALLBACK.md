@@ -33,16 +33,26 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "0a6bf245-1cce-494f-a193-b5a44aa05558",
-  "url": "https://callback-url.uiza.co",
-  "headersData": null,
-  "jsonData": null,
-  "method": "POST",
-  "status": 1,
-  "createdAt": "2018-06-23T01:27:08.000Z",
-  "updatedAt": "2018-06-23T01:27:08.000Z"
+  "data": {
+    "id": "37b3b1fe-c73d-4a7c-8e6b-108d6a251b7b",
+    "url": "https://61b2923c-b7fd-4186-ac7d-cb4bbd6480e0.uiza.co",
+    "headersData": nil,
+    "jsonData": nil,
+    "method": "POST",
+    "status": 1,
+    "createdAt": "2019-03-13T09:32:39.000Z",
+    "updatedAt": "0000-00-00 00:00:00"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:36:37.811Z",
+  "policy": "public",
+  "requestId": "7f8931e6-4d5b-459d-b107-94043494516a",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -71,18 +81,26 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "0a6bf245-1cce-494f-a193-b5a44aa05558",
-  "url": "https://callback-url.uiza.co",
-  "headersData": null,
-  "jsonData": {
-    "text": "example callback"
+  "data": {
+    "id": "37b3b1fe-c73d-4a7c-8e6b-108d6a251b7b",
+    "url": "https://61b2923c-b7fd-4186-ac7d-cb4bbd6480e0.uiza.co",
+    "headersData": nil,
+    "jsonData": nil,
+    "method": "POST",
+    "status": 1,
+    "createdAt": "2019-03-13T09:32:39.000Z",
+    "updatedAt": "0000-00-00 00:00:00"
   },
-  "method": "POST",
-  "status": 1,
-  "createdAt": "2018-06-23T01:27:08.000Z",
-  "updatedAt": "2018-06-23T01:27:08.000Z"
+  "version": 4,
+  "datetime": "2019-03-13T12:36:37.811Z",
+  "policy": "public",
+  "requestId": "7f8931e6-4d5b-459d-b107-94043494516a",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -117,16 +135,26 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "your-callback-id",
-  "url": "https://callback-url.uiza.co",
-  "headersData": null,
-  "jsonData": null,
-  "method": "GET",
-  "status": 1,
-  "createdAt": "2018-06-23T01:27:08.000Z",
-  "updatedAt": "2018-06-23T01:27:08.000Z"
+  "data": {
+    "id": "37b3b1fe-c73d-4a7c-8e6b-108d6a251b7b",
+    "url": "https://update-callback-url.uiza.co",
+    "headersData": nil,
+    "jsonData": nil,
+    "method": "POST",
+    "status": 1,
+    "createdAt": "2019-03-13T09:32:39.000Z",
+    "updatedAt": "0000-00-00 00:00:00"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:39:35.619Z",
+  "policy": "public",
+  "requestId": "c3ad45c8-d022-4dbe-8161-5c140ea2ea7f",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -154,8 +182,18 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "your-callback-id"
+  "data": {
+    "id": "37b3b1fe-c73d-4a7c-8e6b-108d6a251b7b"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:41:10.784Z",
+  "policy": "public",
+  "requestId": "4b89d46a-c7e4-4f97-8ebb-fb5b769b7fda",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
