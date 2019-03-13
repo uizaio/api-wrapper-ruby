@@ -29,10 +29,10 @@ module Uiza
       end
 
       def logout
-        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/logout"
+        url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/logout"
         method = :post
         headers = {"Authorization" => Uiza.authorization}
-        params = {}
+        params = {appId: Uiza.app_id}
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:logout]
         uiza_client.execute_request
