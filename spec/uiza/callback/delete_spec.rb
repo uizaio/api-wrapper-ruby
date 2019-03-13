@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::Callback do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -12,9 +12,9 @@ RSpec.describe Uiza::Callback do
         id = "your-callback-id"
 
         expected_method = :delete
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/callback"
+        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/entity/callback"
         expected_headers = {"Authorization" => "your-authorization"}
-        expected_body = {id: id}
+        expected_body = {id: id, appId: "your-app-id"}
         mock_response = {
           data: {
             id: "your-callback-id"
@@ -93,9 +93,9 @@ RSpec.describe Uiza::Callback do
       id = "invalid-callback-id"
 
       expected_method = :delete
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/callback"
+      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/entity/callback"
       expected_headers = {"Authorization" => "your-authorization"}
-      expected_body = {id: id}
+      expected_body = {id: id, appId: "your-app-id"}
       mock_response = {
         code: error_code,
         message: "error message"
