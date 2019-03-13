@@ -1,7 +1,9 @@
 # Uiza
 
 ## Introduction
-This is documents the public API for Uiza version 3.0.
+This is documents the public API for Uiza version 4.0.
+
+See documents for public API for Uiza version 3.0 [here](https://github.com/uizaio/api-wrapper-ruby/tree/master_v3). Please use gem `uiza` version 1.1.0 to use API v3
 
 The Uiza API is organized around RESTful standard.
 Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors.
