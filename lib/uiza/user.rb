@@ -19,9 +19,10 @@ module Uiza
 
     class << self
       def change_password params
-        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/changepassword"
+        url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/changepassword"
         method = :post
         headers = {"Authorization" => Uiza.authorization}
+        params["appId"] = Uiza.app_id
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:change_password]
         uiza_client.execute_request
