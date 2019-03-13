@@ -40,16 +40,26 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "37d6706e-be91-463e-b3b3-b69451dd4752",
-  "isAdmin": 0,
-  "username": "user_test",
-  "email": "user_test@uiza.io",
-  "avatar": "https://exemple.com/avatar.jpeg",
-  "fullname": "User Test",
-  "updatedAt": "2018-06-22T18:05:47.000Z",
-  "createdAt": "2018-06-22T18:05:47.000Z"
+  "data": {
+    "id": "fc1e299b-be9f-40d7-9413-1850e6feb1df",
+    "email": "vugakl12@gmail.com",
+    "dob": nil,
+    "name": nil,
+    "status": 1,
+    "avatar": nil,
+    "createdAt": "2019-03-13T11:39:18.000Z",
+    "updatedAt": "2019-03-13T11:39:18.000Z"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:58:10.973Z",
+  "policy": "public",
+  "requestId": "da58224d-a431-4b3a-bac5-141ab03d0052",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -78,16 +88,26 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "37d6706e-be91-463e-b3b3-b69451dd4752",
-  "isAdmin": 0,
-  "username": "user_test",
-  "email": "user_test@uiza.io",
-  "avatar": "https://exemple.com/avatar.jpeg",
-  "fullname": "User Test",
-  "updatedAt": "2018-06-22T18:05:47.000Z",
-  "createdAt": "2018-06-22T18:05:47.000Z"
+  "data": {
+    "id": "fc1e299b-be9f-40d7-9413-1850e6feb1df",
+    "email": "vugakl12@gmail.com",
+    "dob": nil,
+    "name": nil,
+    "status": 1,
+    "avatar": nil,
+    "createdAt": "2019-03-13T11:39:18.000Z",
+    "updatedAt": "2019-03-13T11:39:18.000Z"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:58:10.973Z",
+  "policy": "public",
+  "requestId": "da58224d-a431-4b3a-bac5-141ab03d0052",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -104,9 +124,14 @@ require "uiza"
 Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 
+params = {
+  limit: 2
+}
+
 begin
-  users = Uiza::User.list
-  # or users = Uiza::User.list limit: 2, page: 2
+  users = Uiza::User.list params
+  # params is optional
+  # or users = Uiza::User.list
   puts users.first.id
   puts users.first.username
 rescue Uiza::Error::UizaError => e
@@ -119,22 +144,38 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "1a95f752-19e0-4a2e-9951-6d1fc0adbeaf",
-  "isAdmin": 0,
-  "username": "user_test",
-  "email": "user_test@uiza.io",
-  "updatedAt": "2018-06-22T02:31:14.000Z",
-  "createdAt": "2018-06-22T02:31:14.000Z"
-},
-{
-  "id": "95c1229a-73e6-4ef7-98eb-e64a765c32d5",
-  "isAdmin": 1,
-  "username": "user_admin",
-  "email": "user_admin@uiza.io",
-  "updatedAt": "2018-06-22T00:00:00.000Z",
-  "createdAt": "2018-06-22T02:32:29.000Z"
+  "data": [
+    {
+      "id": "fc1e299b-be9f-40d7-9413-1850e6feb1df",
+      "email": "vugakl12@gmail.com",
+      "dob": nil,
+      "name": nil,
+      "status": 1,
+      "avatar": nil,
+      "createdAt": "2019-03-13T11:39:18.000Z",
+      "updatedAt": "2019-03-13T11:39:18.000Z"
+    },
+    {
+      "id": "6a597947-83d0-4288-aa26-c32751e099f8",
+      "email": "vu.nguyen.thanh1993@gmail.com",
+      "dob": nil,
+      "name": nil,
+      "status": 1,
+      "avatar": nil,
+      "createdAt": "2019-03-13T11:17:48.000Z",
+      "updatedAt": "2019-03-13T11:17:48.000Z"
+    }
+  ],
+  "version": 4,
+  "datetime": "2019-03-13T13:01:03.750Z",
+  "policy": "public",
+  "requestId": "e9e625ea-2bcf-44d1-b43e-d52a083f5831",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -150,16 +191,9 @@ Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 
 params = {
-  id: "37d6706e-be91-463e-b3b3-b69451dd4752"
+  id: "your-user-id"
   status: 1,
-  username: "user_test",
-  email: "user_test@uiza.io",
-  password: "FMpsr<4[dGPu?B#u",
-  gender: 0,
-  dob: "05/15/2018",
-  avatar: "https://exemple.com/avatar.jpeg",
-  fullname: "User Test",
-  isAdmin: 0
+  name: "user_test"
 }
 
 begin
@@ -176,16 +210,26 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "37d6706e-be91-463e-b3b3-b69451dd4752",
-  "isAdmin": 0,
-  "username": "user_test",
-  "email": "user_test@uiza.io",
-  "avatar": "https://exemple.com/avatar.jpeg",
-  "fullname": "User Test",
-  "updatedAt": "2018-06-22T18:05:47.000Z",
-  "createdAt": "2018-06-22T18:05:47.000Z"
+  "data": {
+    "id": "fc1e299b-be9f-40d7-9413-1850e6feb1df",
+    "email": "vugakl12@gmail.com",
+    "dob": nil,
+    "name": "user_test",
+    "status": 1,
+    "avatar": nil,
+    "createdAt": "2019-03-13T11:39:18.000Z",
+    "updatedAt": "2019-03-13T13:06:27.000Z"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T13:06:27.620Z",
+  "policy": "public",
+  "requestId": "8b0bbbd5-8699-4a69-a314-674ec9f23602",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -215,7 +259,17 @@ end
 Example Response
 ```
 {
-  "id": "2c98b4d5-7d7f-4a0f-9258-5689f90fd28c"
+  "data": {
+    "id": "fc1e299b-be9f-40d7-9413-1850e6feb1df"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T13:06:27.620Z",
+  "policy": "public",
+  "requestId": "8b0bbbd5-8699-4a69-a314-674ec9f23602",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -281,6 +335,16 @@ end
 Example Response
 ```ruby
 {
-  "message": "Logout success"
+  "data": {
+    "message": "success"
+  },
+  "message": "Logout success",
+  "version": 4,
+  "datetime": "2019-03-13T13:09:56.471Z",
+  "policy": "public",
+  "requestId": "b3609e7f-a02d-49cb-a6c0-dde57e49cca5",
+  "serviceName": "api-v4",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
