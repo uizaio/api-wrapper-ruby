@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::User do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -10,8 +10,9 @@ RSpec.describe Uiza::User do
     context "API returns code 200" do
       it "should returns a message" do
         expected_method = :post
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user/logout"
+        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/user/logout"
         expected_headers = {"Authorization" => "your-authorization"}
+        expected_body = {"appId" => "your-app-id"}
         mock_response = {
           data: {
             message: "Logout success"
@@ -20,7 +21,7 @@ RSpec.describe Uiza::User do
         }
 
         stub_request(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, body: expected_body)
           .to_return(body: mock_response.to_json)
 
         response = Uiza::User.logout
@@ -28,7 +29,7 @@ RSpec.describe Uiza::User do
         expect(response.message).to eq "Logout success"
 
         expect(WebMock).to have_requested(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, body: expected_body)
       end
     end
 
@@ -88,15 +89,16 @@ RSpec.describe Uiza::User do
 
     def api_return_error_code error_code, error_class
       expected_method = :post
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user/logout"
+      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/user/logout"
       expected_headers = {"Authorization" => "your-authorization"}
+      expected_body = {"appId" => "your-app-id"}
       mock_response = {
         code: error_code,
         message: "error message"
       }
 
       stub_request(expected_method, expected_url)
-        .with(headers: expected_headers)
+        .with(headers: expected_headers, body: expected_body)
         .to_return(body: mock_response.to_json)
 
       expect{Uiza::User.logout}.to raise_error do |error|
