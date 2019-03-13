@@ -19,10 +19,11 @@ Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 
 params = {
-  name: "Sample Video",
+  name: "Sample Event",
   mode: "push",
   resourceMode: "single",
-  encode: 0
+  encode: 0,
+  description: "This is a sample event"
 }
 
 begin
@@ -39,27 +40,39 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "8b83886e-9cc3-4eab-9258-ebb16c0c73de",
-  "name": "checking 01",
-  "description": "checking",
-  "mode": "pull",
-  "resourceMode": "single",
-  "encode": 0,
-  "channelName": "checking-01",
-  "lastPresetId": null,
-  "lastFeedId": null,
-  "poster": "https://example.com/poster.jpeg",
-  "thumbnail": "https://example.com/thumbnail.jpeg",
-  "linkPublishSocial": null,
-  "linkStream": "[\"https://www.youtube.com/watch?v=pQzaHPoNX1I\"]",
-  "lastPullInfo": null,
-  "lastPushInfo": null,
-  "lastProcess": null,
-  "eventType": null,
-  "createdAt": "2018-06-21T14:33:36.000Z",
-  "updatedAt": "2018-06-21T14:33:36.000Z"
+  "data": {
+    "id": "d956f4a2-a3a8-4c7d-a738-98e6b1433d70",
+    "name": "Sample Event",
+    "description": "This is a sample event",
+    "mode": "push",
+    "resourceMode": "single",
+    "encode": 0,
+    "channelName": "9a5a1280-1ccf-458d-a77c-85c0d17f7fb7",
+    "lastPresetId": nil,
+    "lastFeedId": nil,
+    "poster": nil,
+    "thumbnail": nil,
+    "linkPublishSocial": nil,
+    "linkStream": nil,
+    "lastPullInfo": nil,
+    "lastPushInfo": nil,
+    "lastProcess": nil,
+    "eventType": nil,
+    "drm": 0,
+    "dvr": 0,
+    "createdAt": "2019-03-13T12:07:45.000Z",
+    "updatedAt": "2019-03-13T12:07:45.000Z"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:07:45.342Z",
+  "policy": "public",
+  "requestId": "4f3db256-1bac-4ba4-90f0-83e8aa5bb403",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -89,27 +102,39 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "8b83886e-9cc3-4eab-9258-ebb16c0c73de",
-  "name": "checking 01",
-  "description": "checking",
-  "mode": "pull",
-  "resourceMode": "single",
-  "encode": 0,
-  "channelName": "checking-01",
-  "lastPresetId": null,
-  "lastFeedId": null,
-  "poster": "https://example.com/poster.jpeg",
-  "thumbnail": "https://example.com/thumbnail.jpeg",
-  "linkPublishSocial": null,
-  "linkStream": "[\"https://www.youtube.com/watch?v=pQzaHPoNX1I\"]",
-  "lastPullInfo": null,
-  "lastPushInfo": null,
-  "lastProcess": null,
-  "eventType": null,
-  "createdAt": "2018-06-21T14:33:36.000Z",
-  "updatedAt": "2018-06-21T14:33:36.000Z"
+  "data": {
+    "id": "d956f4a2-a3a8-4c7d-a738-98e6b1433d70",
+    "name": "Sample Event",
+    "description": "This is a sample event",
+    "mode": "push",
+    "resourceMode": "single",
+    "encode": 0,
+    "channelName": "9a5a1280-1ccf-458d-a77c-85c0d17f7fb7",
+    "lastPresetId": nil,
+    "lastFeedId": nil,
+    "poster": nil,
+    "thumbnail": nil,
+    "linkPublishSocial": nil,
+    "linkStream": nil,
+    "lastPullInfo": nil,
+    "lastPushInfo": nil,
+    "lastProcess": nil,
+    "eventType": nil,
+    "drm": 0,
+    "dvr": 0,
+    "createdAt": "2019-03-13T12:07:45.000Z",
+    "updatedAt": "2019-03-13T12:07:45.000Z"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:07:45.342Z",
+  "policy": "public",
+  "requestId": "4f3db256-1bac-4ba4-90f0-83e8aa5bb403",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -147,27 +172,44 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "8b83886e-9cc3-4eab-9258-ebb16c0c73de",
-  "name": "checking 01",
-  "description": "checking",
-  "mode": "pull",
-  "resourceMode": "single",
-  "encode": 0,
-  "channelName": "checking-01",
-  "lastPresetId": null,
-  "lastFeedId": null,
-  "poster": "https://example.com/poster.jpeg",
-  "thumbnail": "https://example.com/thumbnail.jpeg",
-  "linkPublishSocial": null,
-  "linkStream": "[\"https://www.youtube.com/watch?v=pQzaHPoNX1I\"]",
-  "lastPullInfo": null,
-  "lastPushInfo": null,
-  "lastProcess": null,
-  "eventType": null,
-  "createdAt": "2018-06-21T14:33:36.000Z",
-  "updatedAt": "2018-06-21T14:33:36.000Z"
+  "data": {
+    "id": "40197661-4e43-4b6f-a555-4b87708650b1",
+    "name": "Sample Live updated",
+    "description": nil,
+    "mode": "push",
+    "resourceMode": "single",
+    "encode": 0,
+    "channelName": "44461a2e-ff43-4fe0-862e-fce72e7f6201",
+    "lastPresetId": nil,
+    "lastFeedId": "5eef64c2-a375-40a7-8de9-aff7b2becea3",
+    "poster": nil,
+    "thumbnail": nil,
+    "linkPublishSocial": nil,
+    "linkStream": nil,
+    "lastPullInfo": nil,
+    "lastPushInfo": [
+      {
+        "streamUrl": "rtmp://stag-asia-southeast1-u-01-gw.uizadev.io:1935/push-only",
+        "streamKey": "44461a2e-ff43-4fe0-862e-fce72e7f6201?token=857767c06f2d70cf525d1c302d69e034&ulasId=57ee741f-3daf-11e9-89c5-02c1b5b83c1a"
+      }
+    ],
+    "lastProcess": "stop",
+    "eventType": nil,
+    "drm": 0,
+    "dvr": 0,
+    "createdAt": "2019-03-12T07:08:30.000Z",
+    "updatedAt": "2019-03-12T07:08:30.000Z"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:10:49.776Z",
+  "policy": "public",
+  "requestId": "9ab44ac2-2983-4268-ba6a-5aae25297481",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -197,27 +239,44 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "8b83886e-9cc3-4eab-9258-ebb16c0c73de",
-  "name": "checking 01",
-  "description": "checking",
-  "mode": "pull",
-  "resourceMode": "single",
-  "encode": 0,
-  "channelName": "checking-01",
-  "lastPresetId": null,
-  "lastFeedId": null,
-  "poster": "https://example.com/poster.jpeg",
-  "thumbnail": "https://example.com/thumbnail.jpeg",
-  "linkPublishSocial": null,
-  "linkStream": "[\"https://www.youtube.com/watch?v=pQzaHPoNX1I\"]",
-  "lastPullInfo": null,
-  "lastPushInfo": null,
-  "lastProcess": null,
-  "eventType": null,
-  "createdAt": "2018-06-21T14:33:36.000Z",
-  "updatedAt": "2018-06-21T14:33:36.000Z"
+  "data": {
+    "id": "40197661-4e43-4b6f-a555-4b87708650b1",
+    "name": "Sample Live updated",
+    "description": nil,
+    "mode": "push",
+    "resourceMode": "single",
+    "encode": 0,
+    "channelName": "44461a2e-ff43-4fe0-862e-fce72e7f6201",
+    "lastPresetId": nil,
+    "lastFeedId": "2d90d8f9-bf97-455a-b3d6-1a5dec487381",
+    "poster": nil,
+    "thumbnail": nil,
+    "linkPublishSocial": nil,
+    "linkStream": nil,
+    "lastPullInfo": nil,
+    "lastPushInfo": [
+      {
+        "streamUrl": "rtmp://stag-asia-southeast1-u-01-gw.uizadev.io:1935/push-only",
+        "streamKey": "44461a2e-ff43-4fe0-862e-fce72e7f6201?token=857767c06f2d70cf525d1c302d69e034&ulasId=57ee741f-3daf-11e9-89c5-02c1b5b83c1a"
+      }
+    ],
+    "lastProcess": "init",
+    "eventType": nil,
+    "drm": 0,
+    "dvr": 0,
+    "createdAt": "2019-03-12T07:08:30.000Z",
+    "updatedAt": "2019-03-12T07:08:30.000Z"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:13:38.556Z",
+  "policy": "public",
+  "requestId": "6aaa5abb-df16-4c64-a9fe-0b8e0398aa7f",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -234,9 +293,7 @@ Uiza.authorization = "your-authorization"
 
 begin
   response = Uiza::Live.get_view "your-live-id"
-  puts response.stream_name
   puts response.watchnow
-  puts response.day
 rescue Uiza::Error::UizaError => e
   puts "description_link: #{e.description_link}"
   puts "code: #{e.code}"
@@ -247,11 +304,19 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "stream_name": "peppa-pig-english-episodes",
-  "watchnow": 1,
-  "day": 1533271205999
+  "data": {
+    "watchnow": 0
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:17:17.416Z",
+  "policy": "public",
+  "requestId": "ed933ac0-e5ed-46c8-91eb-88e0c39577fc",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -279,27 +344,44 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "8b83886e-9cc3-4eab-9258-ebb16c0c73de",
-  "name": "checking 01",
-  "description": "checking",
-  "mode": "pull",
-  "resourceMode": "single",
-  "encode": 0,
-  "channelName": "checking-01",
-  "lastPresetId": null,
-  "lastFeedId": null,
-  "poster": "https://example.com/poster.jpeg",
-  "thumbnail": "https://example.com/thumbnail.jpeg",
-  "linkPublishSocial": null,
-  "linkStream": "[\"https://www.youtube.com/watch?v=pQzaHPoNX1I\"]",
-  "lastPullInfo": null,
-  "lastPushInfo": null,
-  "lastProcess": null,
-  "eventType": null,
-  "createdAt": "2018-06-21T14:33:36.000Z",
-  "updatedAt": "2018-06-21T14:33:36.000Z"
+  "data": {
+    "id": "40197661-4e43-4b6f-a555-4b87708650b1",
+    "name": "Sample Live updated",
+    "description": nil,
+    "mode": "push",
+    "resourceMode": "single",
+    "encode": 0,
+    "channelName": "44461a2e-ff43-4fe0-862e-fce72e7f6201",
+    "lastPresetId": nil,
+    "lastFeedId": "2d90d8f9-bf97-455a-b3d6-1a5dec487381",
+    "poster": nil,
+    "thumbnail": nil,
+    "linkPublishSocial": nil,
+    "linkStream": nil,
+    "lastPullInfo": nil,
+    "lastPushInfo": [
+      {
+        "streamUrl": "rtmp://stag-asia-southeast1-u-01-gw.uizadev.io:1935/push-only",
+        "streamKey": "44461a2e-ff43-4fe0-862e-fce72e7f6201?token=857767c06f2d70cf525d1c302d69e034&ulasId=57ee741f-3daf-11e9-89c5-02c1b5b83c1a"
+      }
+    ],
+    "lastProcess": "init",
+    "eventType": nil,
+    "drm": 0,
+    "dvr": 0,
+    "createdAt": "2019-03-12T07:08:30.000Z",
+    "updatedAt": "2019-03-12T07:08:30.000Z"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:13:38.556Z",
+  "policy": "public",
+  "requestId": "6aaa5abb-df16-4c64-a9fe-0b8e0398aa7f",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -314,10 +396,14 @@ require "uiza"
 Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 
+params = {
+  limit: 2
+}
+
 begin
-  live = Uiza::Live.list_recorded limit: 2
-  # limit is optional
-  # or live = Uiza::Live.list_recorded
+  lives = Uiza::Live.list_recorded params
+  # params is optional
+  # or lives = Uiza::Live.list_recorded
   puts live.first.id
   puts live.first.entityId
 rescue Uiza::Error::UizaError => e
@@ -330,41 +416,47 @@ end
 ```
 
 Example Response
-```ruby
-[
-  {
-    "id": "040df935-61c4-46f7-a41f-0a899ebaa2cc",
-    "entityId": "ee122e85-553f-4621-bc77-1396191d5846",
-    "channelName": "dcb8686f-d0f8-4a0f-8b92-22db339eb315",
-    "feedId": "3e3b75df-e6fa-471c-b386-8f44b8a34b6c",
-    "eventType": "pull",
-    "startTime": "2018-12-13T16:28:29.000Z",
-    "endTime": "2018-12-13T18:28:29.000Z",
-    "length": "7200",
-    "fileSize": "9276182",
-    "extraInfo": null,
-    "endpointConfig": "s3-uiza-dvr",
-    "createdAt": "2018-12-13T19:28:43.000Z",
-    "updatedAt": "2018-12-13T19:28:43.000Z",
-    "entityName": "Christmas 2018 Holidays Special | Best Christmas Songs & Cartoons for Kids & Babies on Baby First TV"
-  },
-  {
-    "id": "3fec45e9-932b-4efe-b97f-dc3053acaa05",
-    "entityId": "47e804bc-d4e5-4442-8f1f-20341a156a70",
-    "channelName": "e9034eac-4905-4f9a-8e79-c0bd67e49dd5",
-    "feedId": "12830696-87e3-4209-a877-954f8f008964",
-    "eventType": "pull",
-    "startTime": "2018-12-13T14:14:14.000Z",
-    "endTime": "2018-12-13T16:14:14.000Z",
-    "length": "7200",
-    "fileSize": "439858038",
-    "extraInfo": null,
-    "endpointConfig": "s3-uiza-dvr",
-    "createdAt": "2018-12-13T17:30:42.000Z",
-    "updatedAt": "2018-12-13T17:30:42.000Z",
-    "entityName": "WATCH: SpaceX to Launch Falcon 9 Rocket #Spaceflight CRS16 @1:16pm EST"
-  }
-]
+```json
+{
+  "data": [
+    {
+      "id": "40197661-4e43-4b6f-a555-4b87708650b1",
+      "name": "Sample Live updated",
+      "description": nil,
+      "mode": "push",
+      "resourceMode": "single",
+      "encode": 0,
+      "channelName": "44461a2e-ff43-4fe0-862e-fce72e7f6201",
+      "lastPresetId": nil,
+      "lastFeedId": "2d90d8f9-bf97-455a-b3d6-1a5dec487381",
+      "poster": nil,
+      "thumbnail": nil,
+      "linkPublishSocial": nil,
+      "linkStream": nil,
+      "lastPullInfo": nil,
+      "lastPushInfo": [
+        {
+          "streamUrl": "rtmp://stag-asia-southeast1-u-01-gw.uizadev.io:1935/push-only",
+          "streamKey": "44461a2e-ff43-4fe0-862e-fce72e7f6201?token=857767c06f2d70cf525d1c302d69e034&ulasId=57ee741f-3daf-11e9-89c5-02c1b5b83c1a"
+        }
+      ],
+      "lastProcess": "init",
+      "eventType": nil,
+      "drm": 0,
+      "dvr": 0,
+      "createdAt": "2019-03-12T07:08:30.000Z",
+      "updatedAt": "2019-03-12T07:08:30.000Z"
+    }
+  ],
+  "version": 4,
+  "datetime": "2019-03-13T12:19:42.074Z",
+  "policy": "public",
+  "requestId": "e7621f67-27ba-43a8-8ae1-6da48b0a6b03",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
+}
 ```
 
 ## Delete a record file
@@ -391,9 +483,19 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "040df935-61c4-46f7-a41f-0a899ebaa2cc"
+  "data": {
+    "id": "40197661-4e43-4b6f-a555-4b87708650b1"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:22:54.735Z",
+  "policy": "public",
+  "requestId": "20649dd3-41f5-4762-8c37-96aaac4f6498",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
@@ -421,8 +523,43 @@ end
 ```
 
 Example Response
-```ruby
+```json
 {
-  "id": "03739912-d781-4d5a-aaf8-7262691a5d0c"
+  "data": {
+    "id": "40197661-4e43-4b6f-a555-4b87708650b1",
+    "name": "Sample Live updated",
+    "description": nil,
+    "mode": "push",
+    "resourceMode": "single",
+    "encode": 0,
+    "channelName": "44461a2e-ff43-4fe0-862e-fce72e7f6201",
+    "lastPresetId": nil,
+    "lastFeedId": "2d90d8f9-bf97-455a-b3d6-1a5dec487381",
+    "poster": nil,
+    "thumbnail": nil,
+    "linkPublishSocial": nil,
+    "linkStream": nil,
+    "lastPullInfo": nil,
+    "lastPushInfo": [
+      {
+        "streamUrl": "rtmp://stag-asia-southeast1-u-01-gw.uizadev.io:1935/push-only",
+        "streamKey": "44461a2e-ff43-4fe0-862e-fce72e7f6201?token=857767c06f2d70cf525d1c302d69e034&ulasId=57ee741f-3daf-11e9-89c5-02c1b5b83c1a"
+      }
+    ],
+    "lastProcess": "init",
+    "eventType": nil,
+    "drm": 0,
+    "dvr": 0,
+    "createdAt": "2019-03-12T07:08:30.000Z",
+    "updatedAt": "2019-03-12T07:08:30.000Z"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:13:38.556Z",
+  "policy": "public",
+  "requestId": "6aaa5abb-df16-4c64-a9fe-0b8e0398aa7f",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
