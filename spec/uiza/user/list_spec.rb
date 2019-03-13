@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::User do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -10,8 +10,9 @@ RSpec.describe Uiza::User do
     context "API returns code 200" do
       it "should returns an array of user" do
         expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user"
+        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/user"
         expected_headers = {"Authorization" => "your-authorization"}
+        expected_query = {"appId" => "your-app-id"}
         mock_response = {
           data: [{
             id: "your-user-id-01",
@@ -24,7 +25,7 @@ RSpec.describe Uiza::User do
         }
 
         stub_request(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, query: expected_query)
           .to_return(body: mock_response.to_json)
 
         users = Uiza::User.list
@@ -36,7 +37,7 @@ RSpec.describe Uiza::User do
         expect(users.last.username).to eq "user_test002"
 
         expect(WebMock).to have_requested(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, query: expected_query)
       end
     end
 
@@ -97,15 +98,16 @@ RSpec.describe Uiza::User do
 
   def api_return_error_code error_code, error_class
     expected_method = :get
-    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/admin/user"
+    expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/user"
     expected_headers = {"Authorization" => "your-authorization"}
+    expected_query = {"appId" => "your-app-id"}
     mock_response = {
       code: error_code,
       message: "error message"
     }
 
     stub_request(expected_method, expected_url)
-      .with(headers: expected_headers)
+      .with(headers: expected_headers, query: expected_query)
       .to_return(body: mock_response.to_json)
 
     expect{Uiza::User.list}.to raise_error do |error|
@@ -116,6 +118,6 @@ RSpec.describe Uiza::User do
     end
 
     expect(WebMock).to have_requested(expected_method, expected_url)
-      .with(headers: expected_headers)
+      .with(headers: expected_headers, query: expected_query)
   end
 end
