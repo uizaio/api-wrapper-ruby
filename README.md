@@ -184,12 +184,12 @@ You can manage user with APIs user. Uiza have 2 levels of user:
   Admin - This account will have the highest priority, can have permission to create & manage users.
   User - This account level is under Admin level. It only manages APIs that relates to this account.
 
-See details [here](https://docs.uiza.io/#user-management).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/USER.md).
 
 ```ruby
 require "json"
 
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 
 begin
