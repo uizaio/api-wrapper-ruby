@@ -158,16 +158,16 @@ end
 ## Callback
 Callback used to retrieve an information for Uiza to your server, so you can have a trigger notice about an entity is upload completed and .
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/CALLBACK.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/CALLBACK.md).
 
 ```ruby
 require "json"
 
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 
 begin
-  callback = Uiza::Live.retrieve "your-callback-id"
+  callback = Uiza::Callback.retrieve "your-callback-id"
   puts callback.id
   puts callback.url
 rescue Uiza::Error::UizaError => e
