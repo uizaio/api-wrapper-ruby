@@ -207,38 +207,6 @@ rescue StandardError => e
 end
 ```
 
-## Analytic
-Monitor the four key dimensions of video QoS: playback failures, startup time, rebuffering, and video quality.
-These 15 metrics help you track playback performance, so your team can know exactly what’s going on.
-
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/ANALYTIC.md).
-
-```ruby
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-params = {
-  start_date: "YYYY-MM-DD hh:mm",
-  end_date: "YYYY-MM-DD hh:mm",
-  type_filter: "your-type-filter"
-}
-
-begin
-  response = Uiza::Analytic.total_line params
-  puts response.first.name
-  puts response.first.total_view
-  puts response.percentage_of_view
-rescue Uiza::Error::UizaError => e
-  puts "description_link: #{e.description_link}"
-  puts "code: #{e.code}"
-  puts "message: #{e.message}"
-rescue StandardError => e
-  puts "message: #{e.message}"
-end
-```
-
 ## Embed Metadata
 Embed metadata is information that can be embed into video/audio file. You can embed into file by adding a json compose these tag.
 
