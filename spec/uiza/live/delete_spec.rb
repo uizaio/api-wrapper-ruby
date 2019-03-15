@@ -107,7 +107,7 @@ RSpec.describe Uiza::Live do
 
       expect{Uiza::Live.delete id}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#delete-a-record-file"
+        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-delete_live_entity_dvr"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

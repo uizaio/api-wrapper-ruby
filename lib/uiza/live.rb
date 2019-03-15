@@ -7,14 +7,14 @@ module Uiza
     OBJECT_API_PATH = "live/entity".freeze
     OBJECT_API_DESCRIPTION_LINK = {
       create: "https://docs.uiza.io/#create-a-live-event",
-      retrieve: "https://docs.uiza.io/#retrieve-a-live-event",
+      retrieve: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-get_live_entity",
       update: "https://docs.uiza.io/#update-a-live-event",
-      start_feed: "https://docs.uiza.io/#start-a-live-feed",
-      list_recorded: "https://docs.uiza.io/#list-all-recorded-files",
-      stop_feed: "https://docs.uiza.io/#stop-a-live-feed",
-      get_view: "https://docs.uiza.io/#get-view-of-live-feed",
-      delete: "https://docs.uiza.io/#delete-a-record-file",
-      convert_to_vod: "https://docs.uiza.io/#convert-into-vod"
+      start_feed: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live_Feed-post_live_feed_start",
+      list_recorded: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-get_live_entity_dvr",
+      stop_feed: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live_Feed-put_live_feed_stop",
+      get_view: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live_Tracking-get_live_currentview",
+      delete: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-delete_live_entity_dvr",
+      convert_to_vod: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-post_convert_to_vod"
     }.freeze
 
     class << self
@@ -26,8 +26,6 @@ module Uiza
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:start_feed]
         response = uiza_client.execute_request
-
-        retrieve response.entityId
       end
 
       def get_view id
@@ -49,8 +47,6 @@ module Uiza
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:stop_feed]
         response = uiza_client.execute_request
-
-        retrieve response.entityId
       end
 
       def list_recorded params = {}

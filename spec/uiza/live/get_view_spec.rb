@@ -111,7 +111,7 @@ RSpec.describe Uiza::Live do
 
       expect{Uiza::Live.get_view id}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#get-view-of-live-feed"
+        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live_Tracking-get_live_currentview"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

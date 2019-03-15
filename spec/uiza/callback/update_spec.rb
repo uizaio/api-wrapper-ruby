@@ -136,7 +136,7 @@ RSpec.describe Uiza::Callback do
 
       expect{Uiza::Callback.update params}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#update-a-callback"
+        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Callback-update_entity_callback"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end
