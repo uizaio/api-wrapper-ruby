@@ -109,7 +109,7 @@ RSpec.describe Uiza::Entity do
 
       expect{Uiza::Entity.publish id}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#publish-entity-to-cdn"
+        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-post_transcode_standard"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

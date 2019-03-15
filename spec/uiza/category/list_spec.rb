@@ -112,7 +112,7 @@ RSpec.describe Uiza::Category do
 
     expect{Uiza::Category.list}.to raise_error do |error|
       expect(error).to be_a error_class
-      expect(error.description_link).to eq "https://docs.uiza.io/#retrieve-category-list"
+      expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-get_metadata"
       expect(error.code).to eq error_code
       expect(error.message).to eq "error message"
     end

@@ -145,7 +145,7 @@ RSpec.describe Uiza::Storage do
 
       expect{Uiza::Storage.add params}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#add-a-storage"
+        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Storage-create_storage"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

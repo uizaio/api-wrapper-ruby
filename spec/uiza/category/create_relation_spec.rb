@@ -124,7 +124,7 @@ RSpec.describe Uiza::Category do
 
     expect{Uiza::Category.create_relation params}.to raise_error do |error|
       expect(error).to be_a error_class
-      expect(error.description_link).to eq "https://docs.uiza.io/#create-category-relation"
+      expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-create_n_metadata_for_one_entiy"
       expect(error.code).to eq error_code
       expect(error.message).to eq "error message"
     end
