@@ -112,7 +112,7 @@ RSpec.describe Uiza::Live do
 
     expect{Uiza::Live.list_recorded}.to raise_error do |error|
       expect(error).to be_a error_class
-      expect(error.description_link).to eq "https://docs.uiza.io/#list-all-recorded-files"
+      expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-get_live_entity_dvr"
       expect(error.code).to eq error_code
       expect(error.message).to eq "error message"
     end

@@ -3,7 +3,7 @@ These APIs used to create and manage live streaming event.
 * When a Live is not start : it's named as `Event`.
 * When have an Event , you can start it : it's named as `Feed`.
 
-See details [here](https://docs.uiza.io/#live-streaming).
+See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live).
 
 ## Create a live event
 These APIs use to create a live streaming and manage the live streaming input (output).
@@ -80,7 +80,7 @@ Example Response
 Retrieves the details of an existing event.
 You need only provide the unique identifier of event that was returned upon Live event creation.
 
-See details [here](https://docs.uiza.io/#retrieve-a-live-event).
+See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-get_live_entity).
 
 ```ruby
 require "uiza"
@@ -154,7 +154,7 @@ params = {
   name: "live test",
   mode: "pull",
   encode: 0,
-  dvr: 1
+  dvr: 1,
   resourceMode: "single"
 }
 
@@ -217,7 +217,7 @@ Example Response
 These API use to start a live event that has been create success.
 The Live channel minute start count whenever the event start success
 
-See details [here](https://docs.uiza.io/#start-a-live-feed).
+See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live_Feed-post_live_feed_start).
 
 ```ruby
 require "uiza"
@@ -228,7 +228,6 @@ Uiza.authorization = "your-authorization"
 begin
   live = Uiza::Live.start_feed "your-live-id"
   puts live.id
-  puts live.name
 rescue Uiza::Error::UizaError => e
   puts "description_link: #{e.description_link}"
   puts "code: #{e.code}"
@@ -242,32 +241,7 @@ Example Response
 ```json
 {
   "data": {
-    "id": "40197661-4e43-4b6f-a555-4b87708650b1",
-    "name": "Sample Live updated",
-    "description": nil,
-    "mode": "push",
-    "resourceMode": "single",
-    "encode": 0,
-    "channelName": "44461a2e-ff43-4fe0-862e-fce72e7f6201",
-    "lastPresetId": nil,
-    "lastFeedId": "2d90d8f9-bf97-455a-b3d6-1a5dec487381",
-    "poster": nil,
-    "thumbnail": nil,
-    "linkPublishSocial": nil,
-    "linkStream": nil,
-    "lastPullInfo": nil,
-    "lastPushInfo": [
-      {
-        "streamUrl": "rtmp://stag-asia-southeast1-u-01-gw.uizadev.io:1935/push-only",
-        "streamKey": "44461a2e-ff43-4fe0-862e-fce72e7f6201?token=857767c06f2d70cf525d1c302d69e034&ulasId=57ee741f-3daf-11e9-89c5-02c1b5b83c1a"
-      }
-    ],
-    "lastProcess": "init",
-    "eventType": nil,
-    "drm": 0,
-    "dvr": 0,
-    "createdAt": "2019-03-12T07:08:30.000Z",
-    "updatedAt": "2019-03-12T07:08:30.000Z"
+    "id": "40197661-4e43-4b6f-a555-4b87708650b1"
   },
   "version": 4,
   "datetime": "2019-03-13T12:13:38.556Z",
@@ -283,7 +257,7 @@ Example Response
 ## Get view of live feed
 This API use to get a live view status . This view only show when event has been started and being processing.
 
-See details [here](https://docs.uiza.io/#get-view-of-live-feed).
+See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live_Tracking-get_live_currentview).
 
 ```ruby
 require "uiza"
@@ -323,7 +297,7 @@ Example Response
 ## Stop a live feed
 Stop live event
 
-See details [here](https://docs.uiza.io/#stop-a-live-feed).
+See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live_Feed-put_live_feed_stop).
 
 ```ruby
 require "uiza"
@@ -333,7 +307,6 @@ Uiza.authorization = "your-authorization"
 begin
   live = Uiza::Live.stop_feed "your-live-id"
   puts live.id
-  puts live.name
 rescue Uiza::Error::UizaError => e
   puts "description_link: #{e.description_link}"
   puts "code: #{e.code}"
@@ -347,32 +320,7 @@ Example Response
 ```json
 {
   "data": {
-    "id": "40197661-4e43-4b6f-a555-4b87708650b1",
-    "name": "Sample Live updated",
-    "description": nil,
-    "mode": "push",
-    "resourceMode": "single",
-    "encode": 0,
-    "channelName": "44461a2e-ff43-4fe0-862e-fce72e7f6201",
-    "lastPresetId": nil,
-    "lastFeedId": "2d90d8f9-bf97-455a-b3d6-1a5dec487381",
-    "poster": nil,
-    "thumbnail": nil,
-    "linkPublishSocial": nil,
-    "linkStream": nil,
-    "lastPullInfo": nil,
-    "lastPushInfo": [
-      {
-        "streamUrl": "rtmp://stag-asia-southeast1-u-01-gw.uizadev.io:1935/push-only",
-        "streamKey": "44461a2e-ff43-4fe0-862e-fce72e7f6201?token=857767c06f2d70cf525d1c302d69e034&ulasId=57ee741f-3daf-11e9-89c5-02c1b5b83c1a"
-      }
-    ],
-    "lastProcess": "init",
-    "eventType": nil,
-    "drm": 0,
-    "dvr": 0,
-    "createdAt": "2019-03-12T07:08:30.000Z",
-    "updatedAt": "2019-03-12T07:08:30.000Z"
+    "id": "40197661-4e43-4b6f-a555-4b87708650b1"
   },
   "version": 4,
   "datetime": "2019-03-13T12:13:38.556Z",
@@ -388,7 +336,7 @@ Example Response
 ## List all recorded files
 Retrieves list of recorded file after streamed (only available when your live event has turned on Record feature)
 
-See details [here](https://docs.uiza.io/#list-all-recorded-files).
+See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-get_live_entity_dvr).
 
 ```ruby
 require "uiza"
@@ -462,7 +410,7 @@ Example Response
 ## Delete a record file
 Delete a recorded file
 
-See details [here](https://docs.uiza.io/#delete-a-record-file).
+See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-delete_live_entity_dvr).
 
 ```ruby
 require "uiza"
@@ -502,7 +450,7 @@ Example Response
 ## Convert into VOD
 Convert recorded file into VOD entity. After converted, your file can be stream via Uiza's CDN.
 
-See details [here](https://docs.uiza.io/#convert-into-vod).
+See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-post_convert_to_vod).
 
 ```ruby
 require "uiza"
