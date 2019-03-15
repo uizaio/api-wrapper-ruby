@@ -139,7 +139,7 @@ RSpec.describe Uiza::Entity do
 
       expect{Uiza::Entity.update params}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#update-an-entity"
+        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-update_entity"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

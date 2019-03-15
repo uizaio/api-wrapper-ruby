@@ -105,7 +105,7 @@ RSpec.describe Uiza::Entity do
 
       expect{Uiza::Entity.get_aws_upload_key}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#get-aws-upload-key"
+        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-App-get_aws_key"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

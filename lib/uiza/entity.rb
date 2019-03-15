@@ -8,15 +8,15 @@ module Uiza
 
     OBJECT_API_PATH = "media/entity".freeze
     OBJECT_API_DESCRIPTION_LINK = {
-      create: "https://docs.uiza.io/#create-entity",
-      retrieve: "https://docs.uiza.io/#retrieve-an-entity",
-      list: "https://docs.uiza.io/#list-all-entities",
-      update: "https://docs.uiza.io/#update-an-entity",
-      delete: "https://docs.uiza.io/#delete-an-entity",
+      create: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-create_entity",
+      retrieve: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-get_entity",
+      list: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-get_entity",
+      update: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-update_entity",
+      delete: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-delete_entity",
       search: "https://docs.uiza.io/#search-entity",
-      publish: "https://docs.uiza.io/#publish-entity-to-cdn",
-      get_status_publish: "https://docs.uiza.io/#get-status-publish",
-      get_aws_upload_key: "https://docs.uiza.io/#get-aws-upload-key"
+      publish: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-post_transcode_standard",
+      get_status_publish: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-get_publish_cdn_status",
+      get_aws_upload_key: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-App-get_aws_key"
     }.freeze
 
     class << self
