@@ -6,6 +6,7 @@ module Uiza
         method = :get
         headers = {"Authorization" => Uiza.authorization}
         params["appId"] = Uiza.app_id
+        params["id"] = "" if self::OBJECT_API_PATH == "admin/user"
 
         uiza_client = UizaClient.new url, method, headers, params, self::OBJECT_API_DESCRIPTION_LINK[:list]
         uiza_client.execute_request
