@@ -12,58 +12,29 @@ RSpec.describe Uiza::Live do
         id = "your-live-id"
 
         # start a live feed
-        expected_method_1 = :post
-        expected_url_1 = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity/feed"
-        expected_headers_1 = {"Authorization" => "your-authorization"}
-        expected_body_1 = {id: id}
-        mock_response_1 = {
+        expected_method = :post
+        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity/feed"
+        expected_headers = {"Authorization" => "your-authorization"}
+        expected_body = {id: id}
+        mock_response = {
           data: {
-            entityId: "your-live-id"
+            entityId: "your-live-id",
+            message: "Start feed success"
           },
           code: 200
         }
 
-        stub_request(expected_method_1, expected_url_1)
-          .with(headers: expected_headers_1, body: expected_body_1)
-          .to_return(body: mock_response_1.to_json)
+        stub_request(expected_method, expected_url)
+          .with(headers: expected_headers, body: expected_body)
+          .to_return(body: mock_response.to_json)
 
-        # retrieve live with id = "your-live-id"
-        expected_method_2 = :get
-        expected_url_2 = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity"
-        expected_headers_2 = {"Authorization" => "your-authorization"}
-        expected_query_2 = {id: "your-live-id"}
-        mock_response_2 = {
-          data: {
-            id: "your-live-id",
-            name: "test event",
-            mode: "push",
-            encode: 1,
-            dvr: 1,
-            linkStream: ["https://www.youtube.com/watch?v=GYktOE77oog"],
-            resourceMode: "single"
-          },
-          code: 200
-        }
+        response = Uiza::Live.start_feed id
 
-        stub_request(expected_method_2, expected_url_2)
-          .with(headers: expected_headers_2, query: expected_query_2)
-          .to_return(body: mock_response_2.to_json)
+        expect(response.entityId).to eq "your-live-id"
+        expect(response.message).to eq "Start feed success"
 
-        live = Uiza::Live.start_feed id
-
-        expect(live.id).to eq "your-live-id"
-        expect(live.name).to eq "test event"
-        expect(live.mode).to eq "push"
-        expect(live.encode).to eq 1
-        expect(live.dvr).to eq 1
-        expect(live.linkStream).to eq ["https://www.youtube.com/watch?v=GYktOE77oog"]
-        expect(live.resourceMode).to eq "single"
-
-        expect(WebMock).to have_requested(expected_method_1, expected_url_1)
-          .with(headers: expected_headers_1, body: expected_body_1)
-
-        expect(WebMock).to have_requested(expected_method_2, expected_url_2)
-          .with(headers: expected_headers_2, query: expected_query_2)
+        expect(WebMock).to have_requested(expected_method, expected_url)
+          .with(headers: expected_headers, body: expected_body)
       end
     end
 
