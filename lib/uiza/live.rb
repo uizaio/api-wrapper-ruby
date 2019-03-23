@@ -25,9 +25,7 @@ module Uiza
         params = {id: id}
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:start_feed]
-        response = uiza_client.execute_request
-
-        retrieve response.entityId
+        uiza_client.execute_request
       end
 
       def get_view id
@@ -48,9 +46,7 @@ module Uiza
         params = {id: id}
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:stop_feed]
-        response = uiza_client.execute_request
-
-        retrieve response.entityId
+        uiza_client.execute_request
       end
 
       def list_recorded params = {}

@@ -6,12 +6,12 @@ Gem::Specification.new do |spec|
   spec.name          = "uiza"
   spec.version       = Uiza::VERSION
   spec.required_ruby_version = ">= 2.0.0"
-  spec.authors       = ["Vo Khanh Toan"]
-  spec.email         = ["toanvk@uiza.io"]
+  spec.authors       = ["Uiza"]
+  spec.email         = ["developer@uiza.io"]
 
   spec.summary       = "Ruby wrapper library for Uiza API"
   spec.description   = "See https://docs.uiza.io for details"
-  spec.homepage      = "https://docs.uiza.io"
+  spec.homepage      = "https://uiza.io"
   spec.license       = "MIT"
 
   if spec.respond_to?(:metadata)
