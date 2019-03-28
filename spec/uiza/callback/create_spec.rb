@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::Callback do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -11,12 +11,13 @@ RSpec.describe Uiza::Callback do
       it "should returns a callback" do
         params = {
           url: "https://callback-url.uiza.co",
-          method: "POST"
+          method: "POST",
+          appId: "your-app-id"
         }
 
         # create callback
         expected_method_1 = :post
-        expected_url_1 = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/callback"
+        expected_url_1 = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity/callback"
         expected_headers_1 = {"Authorization" => "your-authorization"}
         expected_body_1 = params
         mock_response_1 = {
@@ -34,9 +35,9 @@ RSpec.describe Uiza::Callback do
 
         # retrieve callback with id = "your-callback-id"
         expected_method_2 = :get
-        expected_url_2 = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/callback"
+        expected_url_2 = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity/callback"
         expected_headers_2 = {"Authorization" => "your-authorization"}
-        expected_query_2 = {id: "your-callback-id"}
+        expected_query_2 = {id: "your-callback-id", appId: "your-app-id"}
         mock_response_2 = {
           data: {
             id: "your-callback-id",
@@ -118,11 +119,12 @@ RSpec.describe Uiza::Callback do
 
     def api_return_error_code error_code, error_class
       params = {
-        key: "invalid-value"
+        key: "invalid-value",
+        appId: "your-app-id"
       }
 
       expected_method = :post
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/callback"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity/callback"
       expected_headers = {"Authorization" => "your-authorization"}
       expected_body = params
       mock_response = {
@@ -136,7 +138,7 @@ RSpec.describe Uiza::Callback do
 
       expect{Uiza::Callback.create params}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#create-a-callback"
+        expect(error.description_link).to eq "https://docs.uiza.io/v4/#create-a-callback"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

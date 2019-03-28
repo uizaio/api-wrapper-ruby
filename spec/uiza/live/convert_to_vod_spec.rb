@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::Live do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -12,9 +12,9 @@ RSpec.describe Uiza::Live do
         id = "your-record-id"
 
         expected_method = :post
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity/dvr/convert-to-vod"
+        expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/live/entity/dvr/convert-to-vod"
         expected_headers = {"Authorization" => "your-authorization"}
-        expected_body = {id: id}
+        expected_body = {id: id, appId: "your-app-id"}
         mock_response = {
           data: {
             id: "your-record-id"
@@ -93,9 +93,9 @@ RSpec.describe Uiza::Live do
       id = "invalid-record-id"
 
       expected_method = :post
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/live/entity/dvr/convert-to-vod"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/live/entity/dvr/convert-to-vod"
       expected_headers = {"Authorization" => "your-authorization"}
-      expected_body = {id: id}
+      expected_body = {id: id, appId: "your-app-id"}
       mock_response = {
         code: error_code,
         message: "error message"
@@ -107,7 +107,7 @@ RSpec.describe Uiza::Live do
 
       expect{Uiza::Live.convert_to_vod id}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#convert-into-vod"
+        expect(error.description_link).to eq "https://docs.uiza.io/v4/#convert-into-vod"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

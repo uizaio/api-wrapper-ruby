@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::Entity do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -17,9 +17,9 @@ RSpec.describe Uiza::Entity do
 
         # create entity
         expected_method_1 = :post
-        expected_url_1 = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity"
+        expected_url_1 = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity"
         expected_headers_1 = {"Authorization" => "your-authorization"}
-        expected_body_1 = params
+        expected_body_1 = params.merge!(appId: "your-app-id")
         mock_response_1 = {
           data: {
             id: "your-entity-id"
@@ -33,9 +33,9 @@ RSpec.describe Uiza::Entity do
 
         # retrieve entity with id = "your-entity-id"
         expected_method_2 = :get
-        expected_url_2 = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity"
+        expected_url_2 = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity"
         expected_headers_2 = {"Authorization" => "your-authorization"}
-        expected_query_2 = {id: "your-entity-id"}
+        expected_query_2 = {id: "your-entity-id", appId: "your-app-id"}
         mock_response_2 = {
           data: {
             id: "your-entity-id",
@@ -129,9 +129,9 @@ RSpec.describe Uiza::Entity do
       }
 
       expected_method = :post
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity"
       expected_headers = {"Authorization" => "your-authorization"}
-      expected_body = params
+      expected_body = params.merge(appId: "your-app-id")
       mock_response = {
         code: error_code,
         message: "error message"
@@ -143,7 +143,7 @@ RSpec.describe Uiza::Entity do
 
       expect{Uiza::Entity.create params}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#create-entity"
+        expect(error.description_link).to eq "https://docs.uiza.io/v4/#create-entity"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

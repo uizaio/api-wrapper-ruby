@@ -30,10 +30,17 @@ require "uiza/category"
 require "uiza/live"
 require "uiza/callback"
 require "uiza/user"
-require "uiza/analytic"
 
 module Uiza
   class << self
-    attr_accessor :workspace_api_domain, :authorization
+    attr_accessor :app_id, :authorization
+
+    def workspace_api_domain
+      "ap-southeast-1-api.uiza.co"
+    end
+
+    def api_version
+      "v4"
+    end
   end
 end

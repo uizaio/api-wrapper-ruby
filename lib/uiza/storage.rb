@@ -8,10 +8,10 @@ module Uiza
     OBJECT_API_PATH = "media/storage".freeze
 
     OBJECT_API_DESCRIPTION_LINK = {
-      add: "https://docs.uiza.io/#add-a-storage",
-      retrieve: "https://docs.uiza.io/#retrieve-a-storage",
-      update: "https://docs.uiza.io/#update-storage",
-      remove: "https://docs.uiza.io/#remove-storage"
+      add: "https://docs.uiza.io/v4/#add-a-storage",
+      retrieve: "https://docs.uiza.io/v4/#retrieve-a-storage",
+      update: "https://docs.uiza.io/v4/#update-storage",
+      remove: "https://docs.uiza.io/v4/#delete-a-storage"
     }.freeze
   end
 end

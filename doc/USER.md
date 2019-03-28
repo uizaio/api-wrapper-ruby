@@ -3,68 +3,18 @@ You can manage user with APIs user. Uiza have 2 levels of user:
   Admin - This account will have the highest priority, can have permission to create & manage users.
   User - This account level is under Admin level. It only manages APIs that relates to this account.
 
-See details [here](https://docs.uiza.io/#user-management).
+ See details [here](https://docs.uiza.io/#user-management).
 
-## Create an user
-Create an user account for workspace
-
-See details [here](https://docs.uiza.io/#create-an-user).
-
-```ruby
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-params = {
-  status: 1,
-  username: "user_test",
-  email: "user_test@uiza.io",
-  password: "FMpsr<4[dGPu?B#u",
-  gender: 0,
-  dob: "05/15/2018",
-  avatar: "https://exemple.com/avatar.jpeg",
-  fullname: "User Test",
-  isAdmin: 0
-}
-
-begin
-  user = Uiza::User.create params
-  puts user.id
-  puts user.username
-rescue Uiza::Error::UizaError => e
-  puts "description_link: #{e.description_link}"
-  puts "code: #{e.code}"
-  puts "message: #{e.message}"
-rescue StandardError => e
-  puts "message: #{e.message}"
-end
-```
-
-Example Response
-```ruby
-{
-  "id": "37d6706e-be91-463e-b3b3-b69451dd4752",
-  "isAdmin": 0,
-  "username": "user_test",
-  "email": "user_test@uiza.io",
-  "avatar": "https://exemple.com/avatar.jpeg",
-  "fullname": "User Test",
-  "updatedAt": "2018-06-22T18:05:47.000Z",
-  "createdAt": "2018-06-22T18:05:47.000Z"
-}
-```
-
-## Retrieve an user
+ ## Retrieve an user
 Retrieves the details of an existing user.
 You need only supply the unique userId that was returned upon user creation.
 
-See details [here](https://docs.uiza.io/#retrieve-an-user).
+ See details [here](https://docs.uiza.io/#retrieve-an-user).
 
-```ruby
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+ ```ruby
+ Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
-
-begin
+ begin
   user = Uiza::User.retrieve "your-user-id"
   puts user.id
   puts user.username
@@ -77,36 +27,48 @@ rescue StandardError => e
 end
 ```
 
-Example Response
-```ruby
+ Example Response
+```json
 {
-  "id": "37d6706e-be91-463e-b3b3-b69451dd4752",
-  "isAdmin": 0,
-  "username": "user_test",
-  "email": "user_test@uiza.io",
-  "avatar": "https://exemple.com/avatar.jpeg",
-  "fullname": "User Test",
-  "updatedAt": "2018-06-22T18:05:47.000Z",
-  "createdAt": "2018-06-22T18:05:47.000Z"
+  "data": {
+    "id": "fc1e299b-be9f-40d7-9413-1850e6feb1df",
+    "email": "vugakl12@gmail.com",
+    "dob": nil,
+    "name": nil,
+    "status": 1,
+    "avatar": nil,
+    "createdAt": "2019-03-13T11:39:18.000Z",
+    "updatedAt": "2019-03-13T11:39:18.000Z"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T12:58:10.973Z",
+  "policy": "public",
+  "requestId": "da58224d-a431-4b3a-bac5-141ab03d0052",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
-## List all users
+ ## List all users
 Returns a list of your user. The users are returned sorted by creation date, with the most recent user appearing first.
 If you use Admin token, you will get all the user.
 If you use User token, you can only get the information of that user
 
-See details [here](https://docs.uiza.io/#list-all-users).
+ See details [here](https://docs.uiza.io/#list-all-users).
 
-```ruby
+ ```ruby
 require "uiza"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+ Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
-
-begin
-  users = Uiza::User.list
-  # or users = Uiza::User.list limit: 2, page: 2
+ params = {
+  limit: 2
+}
+ begin
+  users = Uiza::User.list params
+  # params is optional
+  # or users = Uiza::User.list
   puts users.first.id
   puts users.first.username
 rescue Uiza::Error::UizaError => e
@@ -118,51 +80,57 @@ rescue StandardError => e
 end
 ```
 
-Example Response
-```ruby
+ Example Response
+```json
 {
-  "id": "1a95f752-19e0-4a2e-9951-6d1fc0adbeaf",
-  "isAdmin": 0,
-  "username": "user_test",
-  "email": "user_test@uiza.io",
-  "updatedAt": "2018-06-22T02:31:14.000Z",
-  "createdAt": "2018-06-22T02:31:14.000Z"
-},
-{
-  "id": "95c1229a-73e6-4ef7-98eb-e64a765c32d5",
-  "isAdmin": 1,
-  "username": "user_admin",
-  "email": "user_admin@uiza.io",
-  "updatedAt": "2018-06-22T00:00:00.000Z",
-  "createdAt": "2018-06-22T02:32:29.000Z"
+  "data": [
+    {
+      "id": "fc1e299b-be9f-40d7-9413-1850e6feb1df",
+      "email": "vugakl12@gmail.com",
+      "dob": nil,
+      "name": nil,
+      "status": 1,
+      "avatar": nil,
+      "createdAt": "2019-03-13T11:39:18.000Z",
+      "updatedAt": "2019-03-13T11:39:18.000Z"
+    },
+    {
+      "id": "6a597947-83d0-4288-aa26-c32751e099f8",
+      "email": "vu.nguyen.thanh1993@gmail.com",
+      "dob": nil,
+      "name": nil,
+      "status": 1,
+      "avatar": nil,
+      "createdAt": "2019-03-13T11:17:48.000Z",
+      "updatedAt": "2019-03-13T11:17:48.000Z"
+    }
+  ],
+  "version": 4,
+  "datetime": "2019-03-13T13:01:03.750Z",
+  "policy": "public",
+  "requestId": "e9e625ea-2bcf-44d1-b43e-d52a083f5831",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
-## Update an user
+ ## Update an user
 Updates the specified user by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
 
-See details [here](https://docs.uiza.io/#update-an-user).
+ See details [here](https://docs.uiza.io/#update-an-user).
 
-```ruby
+ ```ruby
 require "uiza"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+ Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
-
-params = {
-  id: "37d6706e-be91-463e-b3b3-b69451dd4752"
+ params = {
+  id: "your-user-id"
   status: 1,
-  username: "user_test",
-  email: "user_test@uiza.io",
-  password: "FMpsr<4[dGPu?B#u",
-  gender: 0,
-  dob: "05/15/2018",
-  avatar: "https://exemple.com/avatar.jpeg",
-  fullname: "User Test",
-  isAdmin: 0
+  name: "user_test"
 }
-
-begin
+ begin
   user = Uiza::User.update params
   puts user.id
   puts user.username
@@ -175,98 +143,40 @@ rescue StandardError => e
 end
 ```
 
-Example Response
-```ruby
+ Example Response
+```json
 {
-  "id": "37d6706e-be91-463e-b3b3-b69451dd4752",
-  "isAdmin": 0,
-  "username": "user_test",
-  "email": "user_test@uiza.io",
-  "avatar": "https://exemple.com/avatar.jpeg",
-  "fullname": "User Test",
-  "updatedAt": "2018-06-22T18:05:47.000Z",
-  "createdAt": "2018-06-22T18:05:47.000Z"
+  "data": {
+    "id": "fc1e299b-be9f-40d7-9413-1850e6feb1df",
+    "email": "vugakl12@gmail.com",
+    "dob": nil,
+    "name": "user_test",
+    "status": 1,
+    "avatar": nil,
+    "createdAt": "2019-03-13T11:39:18.000Z",
+    "updatedAt": "2019-03-13T13:06:27.000Z"
+  },
+  "version": 4,
+  "datetime": "2019-03-13T13:06:27.620Z",
+  "policy": "public",
+  "requestId": "8b0bbbd5-8699-4a69-a314-674ec9f23602",
+  "serviceName": "api-v4",
+  "message": "OK",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```
 
-## Delete an user
-Permanently deletes an user. It cannot be undone. Also immediately cancels all token & information of this user.
-
-See details [here](https://docs.uiza.io/#delete-an-user).
-
-```ruby
-require "uiza"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-begin
-  user = Uiza::User.delete "your-user-id"
-  puts user.id
-rescue Uiza::Error::UizaError => e
-  puts "description_link: #{e.description_link}"
-  puts "code: #{e.code}"
-  puts "message: #{e.message}"
-rescue StandardError => e
-  puts "message: #{e.message}"
-end
-```
-
-Example Response
-```
-{
-  "id": "2c98b4d5-7d7f-4a0f-9258-5689f90fd28c"
-}
-```
-
-## Update password
-Update password allows Admin or User update their current password.
-
-See details [here](https://docs.uiza.io/#update-password).
-
-```ruby
-require "uiza"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-params = {
-  id: "your-user-id",
-  oldPassword: "FMpsr<4[dGPu?B#u",
-  newPassword: "S57Eb{:aMZhW=)G$"
-}
-
-begin
-  response = Uiza::User.change_password params
-  puts response.result
-rescue Uiza::Error::UizaError => e
-  puts "description_link: #{e.description_link}"
-  puts "code: #{e.code}"
-  puts "message: #{e.message}"
-rescue StandardError => e
-  puts "message: #{e.message}"
-end
-```
-
-Example Response
-```ruby
-{
-  "result": "ok"
-}
-```
-
-## Log Out
+ ## Log Out
 This API use to log out an user. After logged out, token will be removed.
 
-See details [here](https://docs.uiza.io/#log-out).
+ See details [here](https://docs.uiza.io/#log-out).
 
-```ruby
+ ```ruby
 require "uiza"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+ Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
-
-begin
+ begin
   response = Uiza::User.logout
   puts response.message
 rescue Uiza::Error::UizaError => e
@@ -278,9 +188,19 @@ rescue StandardError => e
 end
 ```
 
-Example Response
+ Example Response
 ```ruby
 {
-  "message": "Logout success"
+  "data": {
+    "message": "success"
+  },
+  "message": "Logout success",
+  "version": 4,
+  "datetime": "2019-03-13T13:09:56.471Z",
+  "policy": "public",
+  "requestId": "b3609e7f-a02d-49cb-a6c0-dde57e49cca5",
+  "serviceName": "api-v4",
+  "code": 200,
+  "type": "SUCCESS"
 }
 ```

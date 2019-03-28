@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::Entity do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -12,9 +12,9 @@ RSpec.describe Uiza::Entity do
         keyword = "your-key-word"
 
         expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/search"
+        expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity/search"
         expected_headers = {"Authorization" => "your-authorization"}
-        expected_query = {keyword: keyword}
+        expected_query = {keyword: keyword, appId: "your-app-id"}
         mock_response = {
           data: [{
             id: "your-entity-id-01",
@@ -102,9 +102,9 @@ RSpec.describe Uiza::Entity do
     keyword = "invalid-key-word"
 
     expected_method = :get
-    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/search"
+    expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity/search"
     expected_headers = {"Authorization" => "your-authorization"}
-    expected_query = {keyword: keyword}
+    expected_query = {keyword: keyword, appId: "your-app-id"}
     mock_response = {
       code: error_code,
       message: "error message"
@@ -116,7 +116,7 @@ RSpec.describe Uiza::Entity do
 
     expect{Uiza::Entity.search keyword}.to raise_error do |error|
       expect(error).to be_a error_class
-      expect(error.description_link).to eq "https://docs.uiza.io/#search-entity"
+      expect(error.description_link).to eq "https://docs.uiza.io/v4/#search-entity"
       expect(error.code).to eq error_code
       expect(error.message).to eq "error message"
     end

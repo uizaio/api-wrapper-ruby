@@ -1,7 +1,9 @@
 # Uiza
 
 ## Introduction
-This is documents the public API for Uiza version 3.0.
+This is documents the public API for Uiza version 4.0.
+
+See documents for public API for Uiza version 3.0 [here](https://github.com/uizaio/api-wrapper-ruby/tree/master_v3). Please use gem `uiza` version 1.1.0 to use API v3
 
 The Uiza API is organized around RESTful standard.
 Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors.
@@ -49,7 +51,7 @@ See details [here](https://docs.uiza.io/#authentication).
 ## Ruby
 ```ruby
 require "uiza"
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 ```
 
@@ -57,14 +59,14 @@ Uiza.authorization = "your-authorization"
 Create file `your-app/config/initializers/uiza.rb`
 
 ```ruby
-Uiza.workspace_api_domain = ENV["WORKSPACE_API_DOMAIN"]
+Uiza.app_id = ENV["APP_ID"]
 Uiza.authorization = ENV["AUTHORIZATION"]
 ```
 
 ## Entity
 These below APIs used to take action with your media files (we called Entity).
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/ENTITY.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/ENTITY.md).
 
 ```ruby
 begin
@@ -83,12 +85,12 @@ end
 ## Category
 Category has been splits into 3 types: `folder`, `playlist` and `tag`. These will make the management of entity more easier.
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/CATEGORY.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/CATEGORY.md).
 
 ```ruby
 require "uiza"
 
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 
 begin
@@ -134,12 +136,12 @@ These APIs used to create and manage live streaming event.
 * When a Live is not start : it's named as `Event`.
 * When have an `Event` , you can start it : it's named as `Feed`.
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/LIVE_STREAMING.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/LIVE.md).
 
 ```ruby
 require "json"
 
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 
 begin
@@ -158,16 +160,16 @@ end
 ## Callback
 Callback used to retrieve an information for Uiza to your server, so you can have a trigger notice about an entity is upload completed and .
 
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/CALLBACK.md).
+See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/CALLBACK.md).
 
 ```ruby
 require "json"
 
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
 
 begin
-  callback = Uiza::Live.retrieve "your-callback-id"
+  callback = Uiza::Callback.retrieve "your-callback-id"
   puts callback.id
   puts callback.url
 rescue Uiza::Error::UizaError => e
@@ -184,50 +186,16 @@ You can manage user with APIs user. Uiza have 2 levels of user:
   Admin - This account will have the highest priority, can have permission to create & manage users.
   User - This account level is under Admin level. It only manages APIs that relates to this account.
 
-See details [here](https://docs.uiza.io/#user-management).
+ See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/develop/doc/USER.md).
 
-```ruby
+ ```ruby
 require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+ Uiza.app_id = "your-app-id"
 Uiza.authorization = "your-authorization"
-
-begin
+ begin
   user = Uiza::User.retrieve "your-user-id"
   puts user.id
   puts user.username
-rescue Uiza::Error::UizaError => e
-  puts "description_link: #{e.description_link}"
-  puts "code: #{e.code}"
-  puts "message: #{e.message}"
-rescue StandardError => e
-  puts "message: #{e.message}"
-end
-```
-
-## Analytic
-Monitor the four key dimensions of video QoS: playback failures, startup time, rebuffering, and video quality.
-These 15 metrics help you track playback performance, so your team can know exactly what’s going on.
-
-See details [here](https://github.com/uizaio/api-wrapper-ruby/blob/master/doc/ANALYTIC.md).
-
-```ruby
-require "json"
-
-Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
-Uiza.authorization = "your-authorization"
-
-params = {
-  start_date: "YYYY-MM-DD hh:mm",
-  end_date: "YYYY-MM-DD hh:mm",
-  type_filter: "your-type-filter"
-}
-
-begin
-  response = Uiza::Analytic.total_line params
-  puts response.first.name
-  puts response.first.total_view
-  puts response.percentage_of_view
 rescue Uiza::Error::UizaError => e
   puts "description_link: #{e.description_link}"
   puts "code: #{e.code}"

@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::Entity do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -12,9 +12,9 @@ RSpec.describe Uiza::Entity do
         id = "your-entity-id"
 
         expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/publish/status"
+        expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity/publish/status"
         expected_headers = {"Authorization" => "your-authorization"}
-        expected_query = {id: id}
+        expected_query = {id: id, appId: "your-app-id"}
         mock_response = {
           data: {
             status: "success",
@@ -95,9 +95,9 @@ RSpec.describe Uiza::Entity do
       id = "invalid-entity-id"
 
       expected_method = :get
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity/publish/status"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity/publish/status"
       expected_headers = {"Authorization" => "your-authorization"}
-      expected_query = {id: id}
+      expected_query = {id: id, appId: "your-app-id"}
       mock_response = {
         code: error_code,
         message: "error message"
@@ -109,7 +109,7 @@ RSpec.describe Uiza::Entity do
 
       expect{Uiza::Entity.get_status_publish id}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#get-status-publish"
+        expect(error.description_link).to eq "https://docs.uiza.io/v4/#get-publish-status"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

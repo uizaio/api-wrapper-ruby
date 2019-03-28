@@ -8,23 +8,23 @@ module Uiza
 
     OBJECT_API_PATH = "media/entity".freeze
     OBJECT_API_DESCRIPTION_LINK = {
-      create: "https://docs.uiza.io/#create-entity",
-      retrieve: "https://docs.uiza.io/#retrieve-an-entity",
-      list: "https://docs.uiza.io/#list-all-entities",
-      update: "https://docs.uiza.io/#update-an-entity",
-      delete: "https://docs.uiza.io/#delete-an-entity",
-      search: "https://docs.uiza.io/#search-entity",
-      publish: "https://docs.uiza.io/#publish-entity-to-cdn",
-      get_status_publish: "https://docs.uiza.io/#get-status-publish",
-      get_aws_upload_key: "https://docs.uiza.io/#get-aws-upload-key"
+      create: "https://docs.uiza.io/v4/#create-entity",
+      retrieve: "https://docs.uiza.io/v4/#retrieve-an-entity",
+      list: "https://docs.uiza.io/v4/#list-entities",
+      update: "https://docs.uiza.io/v4/#update-an-entity",
+      delete: "https://docs.uiza.io/v4/#delete-an-entity",
+      search: "https://docs.uiza.io/v4/#search-entity",
+      publish: "https://docs.uiza.io/v4/#publish-entity-to-cdn",
+      get_status_publish: "https://docs.uiza.io/v4/#get-publish-status",
+      get_aws_upload_key: "https://docs.uiza.io/v4/#get-aws-upload-key"
     }.freeze
 
     class << self
       def search keyword
-        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/search"
+        url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/search"
         method = :get
         headers = {"Authorization" => Uiza.authorization}
-        params = {keyword: keyword}
+        params = {keyword: keyword, appId: Uiza.app_id}
         description_link = OBJECT_API_DESCRIPTION_LINK[:search]
 
         uiza_client = UizaClient.new url, method, headers, params, description_link
@@ -32,10 +32,10 @@ module Uiza
       end
 
       def publish id
-        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/publish"
+        url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/publish"
         method = :post
         headers = {"Authorization" => Uiza.authorization}
-        params = {id: id}
+        params = {id: id, appId: Uiza.app_id}
         description_link = OBJECT_API_DESCRIPTION_LINK[:publish]
 
         uiza_client = UizaClient.new url, method, headers, params, description_link
@@ -43,10 +43,10 @@ module Uiza
       end
 
       def get_status_publish id
-        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/#{OBJECT_API_PATH}/publish/status"
+        url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/publish/status"
         method = :get
         headers = {"Authorization" => Uiza.authorization}
-        params = {id: id}
+        params = {id: id, appId: Uiza.app_id}
         description_link = OBJECT_API_DESCRIPTION_LINK[:get_status_publish]
 
         uiza_client = UizaClient.new url, method, headers, params, description_link
@@ -54,10 +54,10 @@ module Uiza
       end
 
       def get_aws_upload_key
-        url = "https://#{Uiza.workspace_api_domain}/api/public/v3/admin/app/config/aws"
+        url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/admin/app/config/aws"
         method = :get
         headers = {"Authorization" => Uiza.authorization}
-        params = {}
+        params = {"appId" => Uiza.app_id}
         description_link = OBJECT_API_DESCRIPTION_LINK[:get_aws_upload_key]
 
         uiza_client = UizaClient.new url, method, headers, params, description_link

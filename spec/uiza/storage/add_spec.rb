@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::Storage do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -19,9 +19,9 @@ RSpec.describe Uiza::Storage do
 
         # add storage
         expected_method_1 = :post
-        expected_url_1 = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/storage"
+        expected_url_1 = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/storage"
         expected_headers_1 = {"Authorization" => "your-authorization"}
-        expected_body_1 = params
+        expected_body_1 = params.merge!(appId: "your-app-id")
         mock_response_1 = {
           data: {
             id: "your-storage-id"
@@ -35,9 +35,9 @@ RSpec.describe Uiza::Storage do
 
         # retrieve storage with id = "your-storage-id"
         expected_method_2 = :get
-        expected_url_2 = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/storage"
+        expected_url_2 = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/storage"
         expected_headers_2 = {"Authorization" => "your-authorization"}
-        expected_query_2 = {id: "your-storage-id"}
+        expected_query_2 = {id: "your-storage-id", appId: "your-app-id"}
         mock_response_2 = {
           data: {
             id: "your-storage-id",
@@ -131,9 +131,9 @@ RSpec.describe Uiza::Storage do
       }
 
       expected_method = :post
-      expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/storage"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/storage"
       expected_headers = {"Authorization" => "your-authorization"}
-      expected_body = params
+      expected_body = params.merge(appId: "your-app-id")
       mock_response = {
         code: error_code,
         message: "error message"
@@ -145,7 +145,7 @@ RSpec.describe Uiza::Storage do
 
       expect{Uiza::Storage.add params}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://docs.uiza.io/#add-a-storage"
+        expect(error.description_link).to eq "https://docs.uiza.io/v4/#add-a-storage"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

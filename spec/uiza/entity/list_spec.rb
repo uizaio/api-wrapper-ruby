@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Uiza::Entity do
   before(:each) do
-    Uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+    Uiza.app_id = "your-app-id"
     Uiza.authorization = "your-authorization"
   end
 
@@ -10,8 +10,9 @@ RSpec.describe Uiza::Entity do
     context "API returns code 200" do
       it "should returns an array of entity" do
         expected_method = :get
-        expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity"
+        expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity"
         expected_headers = {"Authorization" => "your-authorization"}
+        expected_query = {"appId" => "your-app-id"}
         mock_response = {
           data: [{
             id: "your-entity-id-01",
@@ -24,7 +25,7 @@ RSpec.describe Uiza::Entity do
         }
 
         stub_request(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, query: expected_query)
           .to_return(body: mock_response.to_json)
 
         entities = Uiza::Entity.list
@@ -36,7 +37,7 @@ RSpec.describe Uiza::Entity do
         expect(entities.last.name).to eq "Sample video 2"
 
         expect(WebMock).to have_requested(expected_method, expected_url)
-          .with(headers: expected_headers)
+          .with(headers: expected_headers, query: expected_query)
       end
     end
 
@@ -97,25 +98,26 @@ RSpec.describe Uiza::Entity do
 
   def api_return_error_code error_code, error_class
     expected_method = :get
-    expected_url = "https://your-workspace-api-domain.uiza.co/api/public/v3/media/entity"
+    expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity"
     expected_headers = {"Authorization" => "your-authorization"}
+    expected_query = {"appId" => "your-app-id"}
     mock_response = {
       code: error_code,
       message: "error message"
     }
 
     stub_request(expected_method, expected_url)
-      .with(headers: expected_headers)
+      .with(headers: expected_headers, query: expected_query)
       .to_return(body: mock_response.to_json)
 
     expect{Uiza::Entity.list}.to raise_error do |error|
       expect(error).to be_a error_class
-      expect(error.description_link).to eq "https://docs.uiza.io/#list-all-entities"
+      expect(error.description_link).to eq "https://docs.uiza.io/v4/#list-entities"
       expect(error.code).to eq error_code
       expect(error.message).to eq "error message"
     end
 
     expect(WebMock).to have_requested(expected_method, expected_url)
-      .with(headers: expected_headers)
+      .with(headers: expected_headers, query: expected_query)
   end
 end
