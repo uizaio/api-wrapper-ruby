@@ -12,7 +12,7 @@ RSpec.describe Uiza::Callback do
         id = "your-callback-id"
 
         expected_method = :get
-        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/entity/callback"
+        expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity/callback"
         expected_headers = {"Authorization" => "your-authorization"}
         expected_query = {id: id, appId: "your-app-id"}
         mock_response = {
@@ -95,7 +95,7 @@ RSpec.describe Uiza::Callback do
       id = "invalid-callback-id"
 
       expected_method = :get
-      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/entity/callback"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity/callback"
       expected_headers = {"Authorization" => "your-authorization"}
       expected_query = {id: id, appId: "your-app-id"}
       mock_response = {
@@ -109,7 +109,7 @@ RSpec.describe Uiza::Callback do
 
       expect{Uiza::Callback.retrieve id}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Callback-get_entity_callback"
+        expect(error.description_link).to eq "https://docs.uiza.io/v4/#retrieve-a-callback"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

@@ -12,7 +12,7 @@ RSpec.describe Uiza::Entity do
         keyword = "your-key-word"
 
         expected_method = :get
-        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/entity/search"
+        expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity/search"
         expected_headers = {"Authorization" => "your-authorization"}
         expected_query = {keyword: keyword, appId: "your-app-id"}
         mock_response = {
@@ -102,7 +102,7 @@ RSpec.describe Uiza::Entity do
     keyword = "invalid-key-word"
 
     expected_method = :get
-    expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/entity/search"
+    expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity/search"
     expected_headers = {"Authorization" => "your-authorization"}
     expected_query = {keyword: keyword, appId: "your-app-id"}
     mock_response = {
@@ -116,7 +116,7 @@ RSpec.describe Uiza::Entity do
 
     expect{Uiza::Entity.search keyword}.to raise_error do |error|
       expect(error).to be_a error_class
-      expect(error.description_link).to eq "https://docs.uiza.io/#search-entity"
+      expect(error.description_link).to eq "https://docs.uiza.io/v4/#search-entity"
       expect(error.code).to eq error_code
       expect(error.message).to eq "error message"
     end

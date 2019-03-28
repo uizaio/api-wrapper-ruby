@@ -12,7 +12,7 @@ require "spec_helper"
         id = "your-user-id"
 
          expected_method = :get
-        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/user"
+        expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/admin/user"
         expected_headers = {"Authorization" => "your-authorization"}
         expected_query = {id: id, appId: "your-app-id"}
         mock_response = {
@@ -99,7 +99,7 @@ require "spec_helper"
       id = "invalid-user-id"
 
        expected_method = :get
-      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/user"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/admin/user"
       expected_headers = {"Authorization" => "your-authorization"}
       expected_query = {id: id, appId: "your-app-id"}
       mock_response = {

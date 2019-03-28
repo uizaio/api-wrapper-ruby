@@ -20,7 +20,7 @@ RSpec.describe Uiza::Storage do
 
         # update storage
         expected_method_1 = :put
-        expected_url_1 = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/storage"
+        expected_url_1 = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/storage"
         expected_headers_1 = {"Authorization" => "your-authorization"}
         expected_body_1 = params.merge!(appId: "your-app-id")
         mock_response_1 = {
@@ -36,7 +36,7 @@ RSpec.describe Uiza::Storage do
 
         # retrieve storage with id = "your-storage-id"
         expected_method_2 = :get
-        expected_url_2 = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/storage"
+        expected_url_2 = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/storage"
         expected_headers_2 = {"Authorization" => "your-authorization"}
         expected_query_2 = {id: "your-storage-id", appId: "your-app-id"}
         mock_response_2 = {
@@ -129,7 +129,7 @@ RSpec.describe Uiza::Storage do
       }
 
       expected_method = :put
-      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/storage"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/storage"
       expected_headers = {"Authorization" => "your-authorization"}
       expected_body = params.merge(appId: "your-app-id")
       mock_response = {
@@ -143,7 +143,7 @@ RSpec.describe Uiza::Storage do
 
       expect{Uiza::Storage.update params}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Storage-update_storage"
+        expect(error.description_link).to eq "https://docs.uiza.io/v4/#update-storage"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

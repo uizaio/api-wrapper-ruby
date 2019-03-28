@@ -1,14 +1,14 @@
 ## Storage
 You can add your storage (FTP, AWS S3) with UIZA.
-After synced, you can select your content easier from your storage to [create entity](https://docs.uiza.io/#create-entity).
+After synced, you can select your content easier from your storage to [create entity](https://docs.uiza.io/v4/#create-entity).
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Storage).
+See details [here](https://docs.uiza.io/v4/#storage).
 
 ## Add a storage
 You can sync your storage (FTP, AWS S3) with UIZA.
 After synced, you can select your content easier from your storage to [create entity](https://docs.uiza.io/#create-entity).
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Storage-create_storage).
+See details [here](https://docs.uiza.io/v4/#add-a-storage).
 
 ```ruby
 require "uiza"
@@ -74,7 +74,7 @@ Example Response
 ## Retrieve a storage
 Get information of your added storage (`FTP` or `AWS S3`).
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Storage-list_storage).
+See details [here](https://docs.uiza.io/v4/#retrieve-a-storage).
 
 ```ruby
 
@@ -129,7 +129,7 @@ Example Response
 ## Update storage
 Update storage's information.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Storage-update_storage).
+See details [here](https://docs.uiza.io/v4/#update-storage).
 
 ```ruby
 require "uiza"
@@ -192,7 +192,7 @@ Example Response
 ## Remove storage
 Remove storage that added to Uiza.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Storage-delete_storage).
+See details [here](https://docs.uiza.io/v4/#delete-a-storage).
 
 ```ruby
 require "uiza"

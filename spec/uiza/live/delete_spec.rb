@@ -12,7 +12,7 @@ RSpec.describe Uiza::Live do
         id = "your-record-id"
 
         expected_method = :delete
-        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/live/entity/dvr"
+        expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/live/entity/dvr"
         expected_headers = {"Authorization" => "your-authorization"}
         expected_body = {id: id, appId: "your-app-id"}
         mock_response = {
@@ -93,7 +93,7 @@ RSpec.describe Uiza::Live do
       id = "invalid-record-id"
 
       expected_method = :delete
-      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/live/entity/dvr"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/live/entity/dvr"
       expected_headers = {"Authorization" => "your-authorization"}
       expected_body = {id: id, appId: "your-app-id"}
       mock_response = {
@@ -107,7 +107,7 @@ RSpec.describe Uiza::Live do
 
       expect{Uiza::Live.delete id}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-delete_live_entity_dvr"
+        expect(error.description_link).to eq "https://docs.uiza.io/v4/#delete-a-record-file"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

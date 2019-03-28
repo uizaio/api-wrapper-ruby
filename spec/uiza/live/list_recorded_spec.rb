@@ -10,7 +10,7 @@ RSpec.describe Uiza::Live do
     context "API returns code 200" do
       it "should returns an array of recorded files" do
         expected_method = :get
-        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/live/entity/dvr"
+        expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/live/entity/dvr"
         expected_headers = {"Authorization" => "your-authorization"}
         expected_query = {"appId" => "your-app-id"}
         mock_response = {
@@ -98,7 +98,7 @@ RSpec.describe Uiza::Live do
 
   def api_return_error_code error_code, error_class
     expected_method = :get
-    expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/live/entity/dvr"
+    expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/live/entity/dvr"
     expected_headers = {"Authorization" => "your-authorization"}
     expected_query = {"appId" => "your-app-id"}
     mock_response = {
@@ -112,7 +112,7 @@ RSpec.describe Uiza::Live do
 
     expect{Uiza::Live.list_recorded}.to raise_error do |error|
       expect(error).to be_a error_class
-      expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-get_live_entity_dvr"
+      expect(error.description_link).to eq "https://docs.uiza.io/v4/#list-recorded-files"
       expect(error.code).to eq error_code
       expect(error.message).to eq "error message"
     end

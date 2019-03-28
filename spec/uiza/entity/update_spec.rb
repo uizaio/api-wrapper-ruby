@@ -16,7 +16,7 @@ RSpec.describe Uiza::Entity do
 
         # update entity
         expected_method_1 = :put
-        expected_url_1 = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/entity"
+        expected_url_1 = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity"
         expected_headers_1 = {"Authorization" => "your-authorization"}
         expected_body_1 = params.merge("appId" => "your-app-id")
         mock_response_1 = {
@@ -32,7 +32,7 @@ RSpec.describe Uiza::Entity do
 
         # retrieve entity with id = "your-entity-id"
         expected_method_2 = :get
-        expected_url_2 = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/entity"
+        expected_url_2 = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity"
         expected_headers_2 = {"Authorization" => "your-authorization"}
         expected_query_2 = {id: "your-entity-id", appId: "your-app-id"}
         mock_response_2 = {
@@ -125,7 +125,7 @@ RSpec.describe Uiza::Entity do
       }
 
       expected_method = :put
-      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/entity"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity"
       expected_headers = {"Authorization" => "your-authorization"}
       expected_body = params.merge("appId" => "your-app-id")
       mock_response = {
@@ -139,7 +139,7 @@ RSpec.describe Uiza::Entity do
 
       expect{Uiza::Entity.update params}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-update_entity"
+        expect(error.description_link).to eq "https://docs.uiza.io/v4/#update-an-entity"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end
