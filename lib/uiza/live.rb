@@ -6,15 +6,15 @@ module Uiza
 
     OBJECT_API_PATH = "live/entity".freeze
     OBJECT_API_DESCRIPTION_LINK = {
-      create: "https://docs.uiza.io/#create-a-live-event",
-      retrieve: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-get_live_entity",
-      update: "https://docs.uiza.io/#update-a-live-event",
-      start_feed: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live_Feed-post_live_feed_start",
-      list_recorded: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-get_live_entity_dvr",
-      stop_feed: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live_Feed-put_live_feed_stop",
-      get_view: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live_Tracking-get_live_currentview",
-      delete: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-delete_live_entity_dvr",
-      convert_to_vod: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live-post_convert_to_vod"
+      create: "https://docs.uiza.io/v4/#create-a-live-event",
+      retrieve: "https://docs.uiza.io/v4/#retrieve-a-live-event",
+      update: "https://docs.uiza.io/v4/#update-a-live-event",
+      start_feed: "https://docs.uiza.io/v4/#start-a-live-feed",
+      list_recorded: "https://docs.uiza.io/v4/#list-recorded-files",
+      stop_feed: "https://docs.uiza.io/v4/#stop-a-live-feed",
+      get_view: "https://docs.uiza.io/v4/#retrieve-views",
+      delete: "https://docs.uiza.io/v4/#delete-a-record-file",
+      convert_to_vod: "https://docs.uiza.io/v4/#convert-into-vod"
     }.freeze
 
     class << self

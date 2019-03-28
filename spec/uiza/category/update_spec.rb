@@ -21,7 +21,7 @@ RSpec.describe Uiza::Category do
 
         # update category
         expected_method_1 = :put
-        expected_url_1 = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/metadata"
+        expected_url_1 = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/metadata"
         expected_headers_1 = {"Authorization" => "your-authorization"}
         expected_body_1 = params
         mock_response_1 = {
@@ -37,7 +37,7 @@ RSpec.describe Uiza::Category do
 
         # retrieve category with id = "your-category-id"
         expected_method_2 = :get
-        expected_url_2 = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/metadata"
+        expected_url_2 = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/metadata"
         expected_headers_2 = {"Authorization" => "your-authorization"}
         expected_query_2 = {id: "your-category-id", appId: "your-app-id"}
         mock_response_2 = {
@@ -131,7 +131,7 @@ RSpec.describe Uiza::Category do
       }
 
       expected_method = :put
-      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/metadata"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/metadata"
       expected_headers = {"Authorization" => "your-authorization"}
       expected_body = params
       mock_response = {
@@ -145,7 +145,7 @@ RSpec.describe Uiza::Category do
 
       expect{Uiza::Category.update params}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-update_metadata"
+        expect(error.description_link).to eq "https://docs.uiza.io/v4/#update-a-category"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

@@ -16,7 +16,7 @@ RSpec.describe Uiza::Category do
         }
 
         expected_method = :post
-        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/entity/related/metadata"
+        expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity/related/metadata"
         expected_headers = {"Authorization" => "your-authorization"}
         expected_body = params
         mock_response = {
@@ -110,7 +110,7 @@ RSpec.describe Uiza::Category do
     }
 
     expected_method = :post
-    expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/media/entity/related/metadata"
+    expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/media/entity/related/metadata"
     expected_headers = {"Authorization" => "your-authorization"}
     expected_body = params
     mock_response = {
@@ -124,7 +124,7 @@ RSpec.describe Uiza::Category do
 
     expect{Uiza::Category.delete_relation params}.to raise_error do |error|
       expect(error).to be_a error_class
-      expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-delete_n_metadata_for_one_entiy"
+      expect(error.description_link).to eq "https://docs.uiza.io/v4/#delete-category-relation"
       expect(error.code).to eq error_code
       expect(error.message).to eq "error message"
     end

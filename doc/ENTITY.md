@@ -1,12 +1,12 @@
 ## Entity
 These below APIs used to take action with your media files (we called Entity).
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media).
+See details [here](https://docs.uiza.io/v4/#video).
 
 ## Create entity
 Create entity using full URL. Direct HTTP, FTP or AWS S3 link are acceptable.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-create_entity).
+See details [here](https://docs.uiza.io/v4/#create-entity).
 
 ```ruby
 require "uiza"
@@ -79,7 +79,7 @@ Example Response
 ## Retrieve entity
 Get detail of entity including all information of entity.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-get_entity).
+See details [here](https://docs.uiza.io/v4/#retrieve-an-entity).
 
 ```ruby
 require "uiza"
@@ -142,7 +142,7 @@ Example Response
 ## List all entities
 Get list of entities including all detail.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-get_entity).
+See details [here](https://docs.uiza.io/v4/#list-entities).
 
 ```ruby
 require "uiza"
@@ -245,7 +245,7 @@ Example Response
 ## Update entity
 Update entity's information.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-update_entity).
+See details [here](https://docs.uiza.io/v4/#update-an-entity).
 
 ```ruby
 require "uiza"
@@ -313,7 +313,7 @@ Example Response
 ## Delete entity
 Delete entity.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-delete_entity).
+See details [here](https://docs.uiza.io/v4/#delete-an-entity).
 
 ```ruby
 require "uiza"
@@ -353,7 +353,7 @@ Example Response
 ## Search entity
 Search entity base on keyword entered.
 
-See details [here](https://docs.uiza.io/#search-entity).
+See details [here](https://docs.uiza.io/v4/#search-entity).
 
 ```ruby
 require "uiza"
@@ -435,7 +435,7 @@ Example Response
 ## Publish entity to CDN
 Publish entity to CDN, use for streaming.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-post_transcode_standard).
+See details [here](https://docs.uiza.io/v4/#publish-entity-to-cdn).
 
 ```ruby
 require "uiza"
@@ -477,7 +477,7 @@ Example Response
 ## Get status publish
 Publish entity to CDN, use for streaming.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media-get_publish_cdn_status).
+See details [here](https://docs.uiza.io/v4/#get-publish-status).
 
 ```ruby
 require "uiza"
@@ -519,7 +519,7 @@ Example Response
 ## Get AWS upload key
 This API will be return the bucket temporary upload storage & key for upload, so that you can push your file to Uiza’s storage and get the link for URL upload & create entity.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-App-get_aws_key).
+See details [here](https://docs.uiza.io/v4/#get-aws-upload-key).
 
 ```ruby
 require "uiza"

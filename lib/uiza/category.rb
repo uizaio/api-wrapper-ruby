@@ -8,13 +8,13 @@ module Uiza
 
     OBJECT_API_PATH = "media/metadata".freeze
     OBJECT_API_DESCRIPTION_LINK = {
-      create: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-create_metadata",
-      retrieve: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-get_metadata",
-      list: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-get_metadata",
-      update: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-update_metadata",
-      delete: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-delete_metadata",
-      create_relation: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-create_n_metadata_for_one_entiy",
-      delete_relation: "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-delete_n_metadata_for_one_entiy"
+      create: "https://docs.uiza.io/v4/#create-category",
+      retrieve: "https://docs.uiza.io/v4/#retrieve-category",
+      list: "https://docs.uiza.io/v4/#list-categories",
+      update: "https://docs.uiza.io/v4/#update-a-category",
+      delete: "https://docs.uiza.io/v4/#delete-a-category",
+      create_relation: "https://docs.uiza.io/v4/#create-category-relation",
+      delete_relation: "https://docs.uiza.io/v4/#delete-category-relation"
     }.freeze
 
     class << self

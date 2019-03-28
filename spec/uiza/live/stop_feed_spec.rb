@@ -13,7 +13,7 @@ RSpec.describe Uiza::Live do
 
         # stop a live feed
         expected_method = :put
-        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/live/entity/feed"
+        expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/live/entity/feed"
         expected_headers = {"Authorization" => "your-authorization"}
         expected_body = {id: id, appId: "your-app-id"}
         mock_response = {
@@ -94,7 +94,7 @@ RSpec.describe Uiza::Live do
       id = "invalid-value"
 
       expected_method = :put
-      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/live/entity/feed"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/live/entity/feed"
       expected_headers = {"Authorization" => "your-authorization"}
       expected_body = {id: id, appId: "your-app-id"}
       mock_response = {
@@ -108,7 +108,7 @@ RSpec.describe Uiza::Live do
 
       expect{Uiza::Live.stop_feed id}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Live_Feed-put_live_feed_stop"
+        expect(error.description_link).to eq "https://docs.uiza.io/v4/#stop-a-live-feed"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end

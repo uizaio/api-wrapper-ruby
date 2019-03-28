@@ -10,7 +10,7 @@ require "spec_helper"
     context "API returns code 200" do
       it "should returns an array of user" do
         expected_method = :get
-        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/user"
+        expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/admin/user"
         expected_headers = {"Authorization" => "your-authorization"}
         expected_query = {"appId" => "your-app-id", "id" => ""}
         mock_response = {
@@ -98,7 +98,7 @@ require "spec_helper"
 
    def api_return_error_code error_code, error_class
     expected_method = :get
-    expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/user"
+    expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/admin/user"
     expected_headers = {"Authorization" => "your-authorization"}
     expected_query = {"appId" => "your-app-id", "id" => ""}
     mock_response = {

@@ -17,7 +17,7 @@ require "spec_helper"
 
          # change password
         expected_method_1 = :post
-        expected_url_1 = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/user/changepassword"
+        expected_url_1 = "https://ap-southeast-1-api.uiza.co/api/public/v4/admin/user/changepassword"
         expected_headers_1 = {"Authorization" => "your-authorization"}
         expected_body_1 = params.merge!(appId: "your-app-id")
         mock_response_1 = {
@@ -100,7 +100,7 @@ require "spec_helper"
       }
 
        expected_method = :post
-      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/user/changepassword"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/admin/user/changepassword"
       expected_headers = {"Authorization" => "your-authorization"}
       expected_body = params.merge!(appId: "your-app-id")
       mock_response = {

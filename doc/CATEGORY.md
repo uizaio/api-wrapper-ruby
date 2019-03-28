@@ -2,13 +2,13 @@
 Category has been splits into 3 types: folder, playlist and tag.
 These will make the management of entity more easier.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata).
+See details [here](https://docs.uiza.io/v4/#categorization).
 
 ## Create category
 Create category for entity for easier management.
 Category use to group all the same entities into a group (like `Folder`/`playlist` or `tag`).
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-create_metadata).
+See details [here](https://docs.uiza.io/v4/#create-category).
 
 ```ruby
 require "uiza"
@@ -68,7 +68,7 @@ Example Response
 ## Retrieve category
 Get detail of category.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-get_metadata).
+See details [here](https://docs.uiza.io/v4/#retrieve-category).
 
 ```ruby
 require "uiza"
@@ -118,7 +118,7 @@ Example Response
 ## Retrieve category list
 Get all category.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-get_metadata).
+See details [here](https://docs.uiza.io/v4/#list-categories).
 
 ```ruby
 require "uiza"
@@ -195,7 +195,7 @@ Example Response
 ## Update category
 Update information of category.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-update_metadata).
+See details [here](https://docs.uiza.io/v4/#update-a-category).
 
 ```ruby
 require "uiza"
@@ -250,7 +250,7 @@ Example Response
 ## Delete category
 Delete category.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-delete_metadata).
+See details [here](https://docs.uiza.io/v4/#delete-a-category).
 
 ```ruby
 require "uiza"
@@ -290,7 +290,7 @@ Example Response
 ## Create category relation
 Add relation for entity and category.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-create_n_metadata_for_one_entiy).
+See details [here](https://docs.uiza.io/v4/#create-category-relation).
 
 ```ruby
 require "uiza"
@@ -351,7 +351,7 @@ Example Response
 ## Delete category relation
 Delete relation for entity and category.
 
-See details [here](https://dev-ap-southeast-1-api.uizadev.io/docs/#api-Media_Metadata-delete_n_metadata_for_one_entiy).
+See details [here](https://docs.uiza.io/v4/#delete-category-relation).
 
 ```ruby
 require "uiza"

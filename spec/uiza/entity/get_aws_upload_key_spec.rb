@@ -10,7 +10,7 @@ RSpec.describe Uiza::Entity do
     context "API returns code 200" do
       it "should returns an object with aws data" do
         expected_method = :get
-        expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/app/config/aws"
+        expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/admin/app/config/aws"
         expected_headers = {"Authorization" => "your-authorization"}
         expected_query = {"appId" => "your-app-id"}
         mock_response = {
@@ -91,7 +91,7 @@ RSpec.describe Uiza::Entity do
 
     def api_return_error_code error_code, error_class
       expected_method = :get
-      expected_url = "https://stag-ap-southeast-1-api.uizadev.io/api/public/v4/admin/app/config/aws"
+      expected_url = "https://ap-southeast-1-api.uiza.co/api/public/v4/admin/app/config/aws"
       expected_headers = {"Authorization" => "your-authorization"}
       expected_query = {"appId" => "your-app-id"}
       mock_response = {
@@ -105,7 +105,7 @@ RSpec.describe Uiza::Entity do
 
       expect{Uiza::Entity.get_aws_upload_key}.to raise_error do |error|
         expect(error).to be_a error_class
-        expect(error.description_link).to eq "https://dev-ap-southeast-1-api.uizadev.io/docs/#api-App-get_aws_key"
+        expect(error.description_link).to eq "https://docs.uiza.io/v4/#get-aws-upload-key"
         expect(error.code).to eq error_code
         expect(error.message).to eq "error message"
       end
