@@ -10,9 +10,26 @@ RSpec.describe Uiza::Entity do
     context "API returns code 200" do
       it "should returns an entity" do
         params = {
-          name: "Sample Video",
-          url: "https://example.com/video.mp4",
-          inputType: "http"
+          name: "The Evolution of Dance",
+          url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4",
+          inputType: "http",
+          description: "Judson Laipply did a fantastic job in performing various dance moves",
+          shortDescription: "How good a dancer can you be?",
+          poster: "https://sample-videos.com/img/Sample-jpg-image-200kb.jpg",
+          thumbnail: "https://sample-videos.com/img/Sample-jpg-image-200kb.jpg",
+          extendMetadata: {
+            movie_category: "action",
+            imdb_score: 8.8,
+            published_year: "2018"
+          },
+          embedMetadata: {
+            artist: "John Doe",
+            album: "Album sample",
+            genre: "Pop"
+          },
+          metadataIds: [
+          	"3217b908-15ec-4ed7-a30d-f1072f1ebef6", "2ac7e44c-1c25-42f0-aeb8-3d7e57172a1e"
+          ]
         }
 
         # create entity
@@ -39,14 +56,36 @@ RSpec.describe Uiza::Entity do
         mock_response_2 = {
           data: {
             id: "your-entity-id",
-            name: "Sample Video",
+            appId: "your-app-id",
+            name: "The Evolution of Dance",
+            description: "Judson Laipply did a fantastic job in performing various dance moves",
+            shortDescription: "How good a dancer can you be?",
+            inputType: "http",
+            url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4",
+            view: 0,
+            poster: "https://sample-videos.com/img/Sample-jpg-image-200kb.jpg",
+            thumbnail: "https://sample-videos.com/img/Sample-jpg-image-200kb.jpg",
+            type: "vod",
+            status: 1,
             embedMetadata: {
               artist: "John Doe",
               album: "Album sample",
               genre: "Pop"
+            },
+            extendMetadata: {
+              movie_category: "action",
+              imdb_score: 8.8,
+              published_year: "2018"
             }
           },
-          code: 200
+          version: 4,
+          datetime: "2019-03-29T01:31:53.641Z",
+          policy: "public",
+          requestId: "79ba7199-a1a1-4997-a87b-753ea0199935",
+          serviceName: "api-v4",
+          message: "OK",
+          code: 200,
+          type: "SUCCESS"
         }
 
         stub_request(expected_method_2, expected_url_2)
@@ -56,10 +95,22 @@ RSpec.describe Uiza::Entity do
         entity = Uiza::Entity.create params
 
         expect(entity.id).to eq "your-entity-id"
-        expect(entity.name).to eq "Sample Video"
+        expect(entity.name).to eq "The Evolution of Dance"
+        expect(entity.description).to eq "Judson Laipply did a fantastic job in performing various dance moves"
+        expect(entity.shortDescription).to eq "How good a dancer can you be?"
+        expect(entity.inputType).to eq "http"
+        expect(entity.url).to eq "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4"
+        expect(entity.view).to eq 0
+        expect(entity.poster).to eq "https://sample-videos.com/img/Sample-jpg-image-200kb.jpg"
+        expect(entity.thumbnail).to eq "https://sample-videos.com/img/Sample-jpg-image-200kb.jpg"
+        expect(entity.type).to eq "vod"
+        expect(entity.status).to eq 1
         expect(entity.embedMetadata.artist).to eq "John Doe"
         expect(entity.embedMetadata.album).to eq "Album sample"
         expect(entity.embedMetadata.genre).to eq "Pop"
+        expect(entity.extendMetadata.movie_category).to eq "action"
+        expect(entity.extendMetadata.imdb_score).to eq 8.8
+        expect(entity.extendMetadata.published_year).to eq "2018"
 
         expect(WebMock).to have_requested(expected_method_1, expected_url_1)
           .with(headers: expected_headers_1, body: expected_body_1)
