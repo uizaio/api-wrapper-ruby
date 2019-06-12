@@ -44,3 +44,11 @@ module Uiza
     end
   end
 end
+
+# RUN irb -Ilib -ruiza to execute code below
+
+Uiza.authorization = "uap-212f8ac7dcc7471c936babf43a1a252e-57078be1"
+
+entities = Uiza::Entity.list
+puts "\nAll entities: #{entities}"
+puts "\nFirst entity's id: #{entities.first.id}"
