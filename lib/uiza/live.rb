@@ -5,6 +5,7 @@ module Uiza
     extend Uiza::APIOperation::Update
 
     OBJECT_API_PATH = "live/entity".freeze
+    REGION_OBJECT_API_PATH = "live/region".freeze
     OBJECT_API_DESCRIPTION_LINK = {
       create: "https://docs.uiza.io/v4/#create-a-live-event",
       retrieve: "https://docs.uiza.io/v4/#retrieve-a-live-event",
@@ -14,7 +15,8 @@ module Uiza
       stop_feed: "https://docs.uiza.io/v4/#stop-a-live-feed",
       get_view: "https://docs.uiza.io/v4/#retrieve-views",
       delete: "https://docs.uiza.io/v4/#delete-a-record-file",
-      convert_to_vod: "https://docs.uiza.io/v4/#convert-into-vod"
+      convert_to_vod: "https://docs.uiza.io/v4/#convert-into-vod",
+      get_regions: "https://docs.uiza.io/v4/#get_regions"
     }.freeze
 
     class << self
@@ -22,17 +24,27 @@ module Uiza
         url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/feed"
         method = :post
         headers = {"Authorization" => Uiza.authorization}
-        params = {id: id, appId: Uiza.app_id}
+        params = {id: id}
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:start_feed]
         response = uiza_client.execute_request
+      end
+
+      def get_regions
+        url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{REGION_OBJECT_API_PATH}"
+        method = :get
+        headers = {"Authorization" => Uiza.authorization}
+        description_link = OBJECT_API_DESCRIPTION_LINK[:get_regions]
+
+        uiza_client = UizaClient.new url, method, headers, nil, description_link
+        uiza_client.execute_request
       end
 
       def get_view id
         url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/tracking/current-view"
         method = :get
         headers = {"Authorization" => Uiza.authorization}
-        params = {id: id, appId: Uiza.app_id}
+        params = {id: id}
         description_link = OBJECT_API_DESCRIPTION_LINK[:get_view]
 
         uiza_client = UizaClient.new url, method, headers, params, description_link
@@ -43,7 +55,7 @@ module Uiza
         url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/feed"
         method = :put
         headers = {"Authorization" => Uiza.authorization}
-        params = {id: id, appId: Uiza.app_id}
+        params = {id: id}
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:stop_feed]
         response = uiza_client.execute_request
@@ -53,7 +65,6 @@ module Uiza
         url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/dvr"
         method = :get
         headers = {"Authorization" => Uiza.authorization}
-        params[:appId] = Uiza.app_id
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:list_recorded]
         uiza_client.execute_request
@@ -63,7 +74,7 @@ module Uiza
         url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/dvr"
         method = :delete
         headers = {"Authorization" => Uiza.authorization}
-        params = {id: id, appId: Uiza.app_id}
+        params = {id: id}
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:delete]
         uiza_client.execute_request
@@ -73,7 +84,7 @@ module Uiza
         url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/dvr/convert-to-vod"
         method = :post
         headers = {"Authorization" => Uiza.authorization}
-        params = {id: id, appId: Uiza.app_id}
+        params = {id: id}
 
         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:convert_to_vod]
         uiza_client.execute_request
