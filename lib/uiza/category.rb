@@ -23,7 +23,6 @@ module Uiza
         method = :post
         headers = {"Authorization" => Uiza.authorization}
         description_link = OBJECT_API_DESCRIPTION_LINK[:create_relation]
-        params["appId"] = Uiza.app_id
 
         uiza_client = UizaClient.new url, method, headers, params, description_link
         uiza_client.execute_request
@@ -34,7 +33,6 @@ module Uiza
         method = :post
         headers = {"Authorization" => Uiza.authorization}
         description_link = OBJECT_API_DESCRIPTION_LINK[:delete_relation]
-        params["appId"] = Uiza.app_id
 
         uiza_client = UizaClient.new url, method, headers, params, description_link
         uiza_client.execute_request

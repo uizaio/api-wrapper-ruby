@@ -20,7 +20,6 @@ module Uiza
         url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/changepassword"
         method = :post
         headers = {"Authorization" => Uiza.authorization}
-        params["appId"] = Uiza.app_id
 
          uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:change_password]
         uiza_client.execute_request
@@ -30,9 +29,8 @@ module Uiza
         url = "https://#{Uiza.workspace_api_domain}/api/public/#{Uiza.api_version}/#{OBJECT_API_PATH}/logout"
         method = :post
         headers = {"Authorization" => Uiza.authorization}
-        params = {appId: Uiza.app_id}
 
-         uiza_client = UizaClient.new url, method, headers, params, OBJECT_API_DESCRIPTION_LINK[:logout]
+         uiza_client = UizaClient.new url, method, headers, nil, OBJECT_API_DESCRIPTION_LINK[:logout]
         uiza_client.execute_request
       end
     end
