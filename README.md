@@ -232,6 +232,22 @@ bundle exec rspec spec
 Open `coverage/index.html` to see coversage of RSpec.
 See details [here](https://github.com/colszowka/simplecov).
 
+## Running gem in local 
+Run below command to run gem in local.
+```ruby
+git clone https://github.com/uizaio/api-wrapper-ruby.git
+cd api-wrapper-ruby
+
+irb -Ilib -ruiza
+
+Uiza.app_id = "your-app-id"
+Uiza.authorization = "your-authorization"
+
+# test code here
+# Example: Uiza::Entity.list
+# Documentation: https://guides.rubygems.org/make-your-own-gem/
+```
+
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/uizaio/api-wrapper-ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
